@@ -1,0 +1,111 @@
+@import "./../../assets/style/components.scss";
+#header {
+  position: relative;
+  z-index: 50;
+  .top {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .left {
+      display: flex;
+      gap: 10px;
+      select {
+        border: none;
+        font-size: 17px;
+        cursor: pointer;
+      }
+    }
+    .right {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+
+      a {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        color: #000;
+        border-radius: 5px;
+
+        padding: 3px 7px;
+        svg {
+          font-size: 22px;
+        }
+        &:hover {
+          color: #fff;
+          background-color: $primary;
+        }
+      }
+      .cart {
+        position: relative;
+        .items-count {
+          position: absolute;
+          left: 19px;
+          top: 0px;
+          color: #fff;
+          background-color: $danger;
+          width: 15px;
+          height: 15px;
+          border-radius: 50%;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+        }
+      }
+    }
+  }
+  .bottom {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    nav {
+      display: flex;
+      gap: 30px;
+      a {
+        text-transform: uppercase;
+        font-weight: bold;
+        color: #000;
+        &.active {
+          color: $primary;
+        }
+      }
+    }
+    .menu-toggle {
+      font-size: 22px;
+      border: none;
+      background-color: transparent;
+      display: none;
+      cursor: pointer;
+    }
+    @include tablet {
+      .menu-toggle {
+        display: block;
+      }
+      nav {
+        position: absolute;
+        top: 100%;
+        background-color: #ccc;
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        left: 0;
+        padding: 20px 0;
+        transition: 400ms;
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      }
+      nav[data-active="true"] {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+  }
+}

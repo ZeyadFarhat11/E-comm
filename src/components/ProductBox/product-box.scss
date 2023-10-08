@@ -1,0 +1,111 @@
+@import "../../assets/style/components.scss";
+.product-box {
+  border-radius: 6px;
+  border: 2px solid #f6f6f6;
+  .image {
+    position: relative;
+    aspect-ratio: 9/10;
+    background-size: cover;
+    background-position: center;
+    .item-hover {
+      position: absolute;
+      inset: 0;
+      border-radius: 6px;
+      background-color: rgba(255, 255, 255, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      z-index: -1;
+      opacity: 0;
+      transition: 500ms;
+      button {
+        all: unset;
+        font-size: 24px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        border: 2px solid #33a0ff18;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $primary;
+        line-height: 1;
+        transition: 250ms;
+        transform: translateY(20px);
+        cursor: pointer;
+        &:hover {
+          background-color: $primary;
+          border-color: $primary;
+          color: #fff;
+        }
+      }
+    }
+    &:hover {
+      .item-hover {
+        opacity: 1;
+        z-index: 3;
+        button {
+          transform: translateY(0);
+        }
+      }
+    }
+    .label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $danger;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 400;
+      border-radius: 3px;
+      padding: 2px 12px;
+      z-index: 5;
+    }
+  }
+  .text {
+    padding: 15px;
+    .title {
+      display: block;
+      text-align: center;
+      color: #223263;
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 150%;
+      letter-spacing: 0.5px;
+    }
+    .rating-stars {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+      font-size: 18px;
+      padding: 10px 0;
+      color: #ffc600;
+    }
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      .price {
+        color: $primary;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        font-size: 18px;
+      }
+      del {
+        font-size: 14px;
+        font-weight: 400;
+        letter-spacing: 0.5px;
+        text-decoration: line-through;
+        color: $old-price-color;
+      }
+      .discount {
+        color: $discount-color;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+      }
+    }
+  }
+}
