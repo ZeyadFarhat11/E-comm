@@ -55,10 +55,7 @@ const RatingStars = React.memo(({ rating }) => {
     stars.push(<AiFillStar />);
     ratingTemp--;
   }
-  console.log(ratingTemp);
   if (ratingTemp >= 0.5) stars.push(<BsStarHalf />);
-
-  console.log("Rating Stars Render");
 
   return <div className="rating-stars">{stars}</div>;
 });
