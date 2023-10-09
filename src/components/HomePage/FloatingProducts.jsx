@@ -1,4 +1,4 @@
-import img1 from "../../assets/img/products/floating-product-1.png";
+import img1 from "../../assets/img/products/floating-product-1.webp";
 import img2 from "../../assets/img/products/floating-product-2.png";
 import img3 from "../../assets/img/products/floating-product-3.png";
 const products = [
@@ -32,6 +32,7 @@ export default function FloatingProducts() {
             <div
               className="product"
               style={{ backgroundImage: `url("${img}")` }}
+              key={i}
             >
               <header>
                 <h3>{title}</h3>

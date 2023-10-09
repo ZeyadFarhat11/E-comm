@@ -16,15 +16,11 @@ export default function Header() {
         <div className="container">
           <div className="wrapper left">
             <select>
-              <option value="en" selected>
-                EN
-              </option>
+              <option value="en">EN</option>
               <option value="ar">AR</option>
             </select>
             <select>
-              <option value="usd" selected>
-                USD
-              </option>
+              <option value="usd">USD</option>
               <option value="egp">EGP</option>
               <option value="eur">EUR</option>
             </select>

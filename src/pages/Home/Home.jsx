@@ -1,5 +1,6 @@
 import Banner from "../../components/HomePage/Banner";
 import BestSellerProducts from "../../components/HomePage/BestSellerProducts";
+import FeaturedProducts from "../../components/HomePage/FeaturedProducts";
 import Features from "../../components/HomePage/Features";
 import FloatingProducts from "../../components/HomePage/FloatingProducts";
 import Landing from "../../components/HomePage/Landing";
@@ -13,6 +14,7 @@ export default function Home() {
       <BestSellerProducts />
       <Banner />
       <Features />
+      <FeaturedProducts />
     </main>
   );
 }

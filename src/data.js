@@ -12,7 +12,7 @@ export const products = [
   {
     id: 1,
     title: "Nike Air Max 270 React",
-    rating: 5,
+    rating: 3.6,
     price: 245,
     img: product1,
     discount: 15,

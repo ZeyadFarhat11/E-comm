@@ -1,12 +1,8 @@
 import React from "react";
-import {
-  AiFillStar,
-  AiOutlineHeart,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { BsStarHalf } from "react-icons/bs";
+import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import "./product-box.scss";
 import { Link } from "react-router-dom";
+import RatingStars from "../../util/RatingStars";
 
 export default function ProductBox({
   img,
@@ -21,7 +17,6 @@ export default function ProductBox({
   return (
     <div className="product-box">
       <div className="image" style={{ backgroundImage: `url("${img}")` }}>
-        {/* <img src={img} alt={title} /> */}
         <div className="item-hover">
           <button title="add to wishlist">
             <AiOutlineHeart />
@@ -46,16 +41,3 @@ export default function ProductBox({
     </div>
   );
 }
-
-const RatingStars = React.memo(({ rating }) => {
-  let stars = [];
-
-  let ratingTemp = rating;
-  for (let i = 0; i < Math.floor(rating); i++) {
-    stars.push(<AiFillStar />);
-    ratingTemp--;
-  }
-  if (ratingTemp >= 0.5) stars.push(<BsStarHalf />);
-
-  return <div className="rating-stars">{stars}</div>;
-});
