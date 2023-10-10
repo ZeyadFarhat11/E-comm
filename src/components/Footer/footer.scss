@@ -1,0 +1,72 @@
+@import "../../assets/style/components.scss";
+#footer {
+  padding-top: 50px;
+  background-color: #bcddfe;
+  .wrapper {
+    h3 {
+      color: #22262a;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+  }
+  .top {
+    display: flex;
+    align-items: flex-start;
+    gap: 25px;
+    justify-content: space-between;
+    p {
+      font-size: 14px;
+    }
+    .wrapper:first-child {
+      p {
+        max-width: 300px;
+        font-size: 13px;
+        font-weight: 400;
+        color: #22262a;
+        margin-top: 15px;
+      }
+    }
+    .wrapper:nth-child(2) {
+      p {
+        max-width: 300px;
+      }
+      .social {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        margin-top: 10px;
+      }
+    }
+  }
+  .middle {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    .wrapper {
+      button {
+        display: block;
+        background-color: transparent;
+        border: none;
+        padding: 4px 0;
+        cursor: pointer;
+      }
+    }
+  }
+  .bottom {
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #fff;
+    }
+    > div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+    }
+  }
+}
