@@ -1,0 +1,78 @@
+@import "../../assets/style/components.scss";
+main#contact {
+  .contact-container {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    > .wrapper {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px #dbdbdb;
+      @include laptop {
+        flex-direction: column;
+        .text-wrapper {
+          width: 100%;
+          padding: 40px 20px;
+        }
+      }
+      @include mobile {
+        .image {
+          display: none;
+        }
+        .text {
+          text-align: center;
+          width: 100%;
+        }
+        form {
+          padding: 40px 20px;
+        }
+      }
+    }
+    .text-wrapper {
+      padding: 80px 20px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: 60%;
+      background-color: $primary;
+      color: #fff;
+      .image {
+        width: 60%;
+      }
+      .text {
+        p {
+          margin-top: 10px;
+          font-size: 14px;
+        }
+        h2 {
+          font-size: 30px;
+          text-transform: uppercase;
+          margin-bottom: 40px;
+        }
+      }
+    }
+    form {
+      padding: 40px;
+      flex-grow: 1;
+
+      input,
+      textarea {
+        width: 100%;
+      }
+      button[type="submit"] {
+        color: #fff;
+        border-radius: 6px;
+        background-color: $primary;
+        padding: 5px 15px;
+        outline: transparent;
+        border: none;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 300ms;
+        &:hover {
+          background-color: #349dd1;
+        }
+      }
+    }
+  }
+}
