@@ -1,8 +1,7 @@
 import Product from "./Product";
 import ProductPlaceholder from "./ProductPlaceholder";
 
-export default function ProductsTable({ products, loading, loadProducts }) {
-  console.log(loading);
+export default function ProductsTable({ products, loading }) {
   return (
     <table className="cart-products">
       <thead>

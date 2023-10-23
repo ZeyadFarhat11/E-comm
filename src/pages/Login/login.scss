@@ -1,0 +1,68 @@
+@import "../../assets/style/components.scss";
+main#login {
+  form {
+    width: fit-content;
+    margin: 50px auto;
+    padding: 20px;
+    max-width: 100%;
+    a {
+      color: #4944f5;
+    }
+    h1 {
+      font-size: 40px;
+      font-weight: 600;
+    }
+    h4 {
+      font-weight: 600;
+      margin-top: 5px;
+      margin-bottom: 30px;
+    }
+    .control {
+      width: 400px;
+      max-width: 100%;
+      label {
+        font-weight: bold;
+      }
+      input {
+        border-color: #ccc;
+        padding: 7px 10px;
+        width: 100%;
+      }
+    }
+    .wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .checkbox {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        label {
+          user-select: none;
+          cursor: pointer;
+        }
+      }
+    }
+    button[type="submit"] {
+      background-color: #33a0ff;
+      color: #fff;
+      border: none;
+      outline: transparent;
+      font-size: 20px;
+      padding: 7px;
+      border-radius: 6px;
+      width: 100%;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: 300ms;
+      &:hover {
+        background-color: $primary;
+      }
+    }
+    button[type="submit"] + p {
+      text-align: center;
+      font-size: 14px;
+      margin-top: 7px;
+    }
+  }
+}
