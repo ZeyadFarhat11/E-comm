@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import "./assets/style/style.scss";
 import Footer from "./components/Footer/Footer";
 import Contact from "./pages/Contact/Contact";
+import Cart from "./pages/Cart/Cart";
 
 export default function App() {
   return (
@@ -12,6 +13,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
       <Footer />
     </>

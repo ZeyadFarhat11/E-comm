@@ -1,0 +1,15 @@
+.breadcrumb {
+  background-color: #f6f7f8;
+  text-align: center;
+  padding: 10px 0;
+  font-size: 20px;
+  a {
+    color: #33a0ff;
+  }
+  .seperator {
+    display: inline-block;
+    margin: 0 5px;
+    font-size: 16px;
+    color: #c1c8ce;
+  }
+}

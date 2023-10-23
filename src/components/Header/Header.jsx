@@ -45,7 +45,7 @@ export default function Header() {
           </Link>
           <nav data-active={menuActive}>
             <NavLink to="/">home</NavLink>
-            <NavLink to="/bags">bags</NavLink>
+            <NavLink to="/shop">shop</NavLink>
             <NavLink to="/sneakers">sneakers</NavLink>
             <NavLink to="/belt">belt</NavLink>
             <NavLink to="/contact">contact</NavLink>
