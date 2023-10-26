@@ -1,12 +1,10 @@
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import "./login.scss";
-import { Link } from "react-router-dom";
-import { Checkbox } from "antd";
-import { useState } from "react";
-import { Formik } from "formik";
-import { loginForm } from "../../components/Formik/LoginForm";
+import "./auth.scss";
 
-export default function Login() {
+import { Formik } from "formik";
+import { registerForm } from "../../components/Formik/RegisterForm";
+
+export default function Register() {
   const handleSubmit = async (values, { setSubmitting }) => {
     // setSubmitting(true);
     console.log("Submit");
@@ -16,19 +14,19 @@ export default function Login() {
   };
   const valdiateValues = () => {};
   return (
-    <main id="login">
-      <Breadcrumb>Login</Breadcrumb>
+    <main id="register">
+      <Breadcrumb>Register</Breadcrumb>
       <div className="container">
         <Formik
           initialValues={{
             email: "",
             password: "",
-            remember: false,
+            username: "",
           }}
           validate={valdiateValues}
           onSubmit={handleSubmit}
         >
-          {loginForm}
+          {registerForm}
         </Formik>
       </div>
     </main>

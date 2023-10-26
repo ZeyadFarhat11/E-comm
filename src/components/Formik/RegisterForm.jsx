@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Checkbox } from "antd";
 
-export const loginForm = ({
+export const registerForm = ({
   values,
   errors,
   touched,
@@ -11,9 +11,20 @@ export const loginForm = ({
   isSubmitting,
 }) => (
   <form onSubmit={handleSubmit}>
-    <h1>Login</h1>
-    <h4>Hi, Welcome back 👋</h4>
+    <h1 style={{ marginBottom: "20px" }}>Register</h1>
 
+    <div className="control">
+      <label htmlFor="username">Username</label>
+      <input
+        type="text"
+        id="username"
+        name="username"
+        placeholder="Enter your username"
+        value={values.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+    </div>
     <div className="control">
       <label htmlFor="email">Email</label>
       <input
@@ -37,18 +48,11 @@ export const loginForm = ({
         onChange={handleChange}
       />
     </div>
-    <div className="wrapper">
-      <div className="checkbox">
-        <Checkbox id="remember-me" name="remember" onChange={handleChange} />
-        <label htmlFor="remember-me">Remember Me</label>
-      </div>
-      <Link to="/forgot-password">Forgot Password?</Link>
-    </div>
     <button type="submit" disabled={isSubmitting}>
-      Login
+      Create Account
     </button>
     <p>
-      Not registered yet? <Link to="/register">Create an account</Link>
+      Already have an account? <Link to="/login">Login</Link>
     </p>
   </form>
 );

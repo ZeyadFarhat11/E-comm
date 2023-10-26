@@ -1,5 +1,6 @@
 @import "../../assets/style/components.scss";
-main#login {
+main#login,
+main#register {
   form {
     width: fit-content;
     margin: 50px auto;
