@@ -1,0 +1,143 @@
+@import "../../assets/style/components.scss";
+.payment-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 80;
+  background-color: #fff;
+  width: 800px;
+  max-width: calc(100vw - 30px);
+  padding: 40px;
+  border-radius: 10px;
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    button {
+      color: $primary;
+      font-size: 30px;
+      background-color: transparent;
+      border: none;
+      outline: transparent;
+      cursor: pointer;
+      &:disabled {
+        color: #ccc;
+        cursor: default;
+      }
+    }
+  }
+  h2 {
+    text-align: center;
+    color: $primary;
+    font-weight: 600;
+    font-size: 32px;
+  }
+  .stepper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    width: fit-content;
+    margin: 15px auto 40px;
+    position: relative;
+
+    span {
+      background-color: #dfdede;
+      color: #fff;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &[data-active="true"] {
+        background-color: $primary;
+        color: #fff;
+      }
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      transform: translateY(-50%);
+      height: 2px;
+      background-color: #dfdede;
+      z-index: -1;
+    }
+    &[data-phase="2"]::before {
+      background-color: $primary;
+    }
+  }
+
+  form {
+    input {
+      background-color: #e9e9e9;
+      border-radius: 10px;
+      padding: 10px 15px;
+      border: none;
+      outline-color: transparent;
+      &::placeholder {
+        color: #999999;
+      }
+    }
+    button[type="submit"] {
+      color: #fff;
+      background-color: #33a0ff;
+      border-radius: 6px;
+      padding: 10px 50px;
+      font-size: 20px;
+      border: none;
+      outline: transparent;
+      margin: 20px auto 0;
+      display: block;
+      width: fit-content;
+      cursor: pointer;
+      transition: 300ms;
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+
+  .first-phase {
+    .wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+      gap: 30px;
+    }
+    .payment-methods {
+      h3 {
+        color: $primary;
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+      }
+      .payment-method {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        &[data-active="true"] {
+          background-color: #ebf0ff;
+        }
+        svg {
+          color: $primary;
+          font-size: 25px;
+        }
+        .info {
+          color: #223263;
+          font-weight: bold;
+          font-size: 14px;
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+    }
+  }
+}

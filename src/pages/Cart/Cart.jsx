@@ -7,6 +7,8 @@ import product3 from "../../assets/img/products/product-5.png";
 import ProductsTable from "../../components/CartPage/ProductsTable";
 import CouponInput from "../../components/CartPage/CouponInput";
 import CartTotal from "../../components/CartPage/CartTotal";
+import Overlay from "../../components/Overlay/Overlay";
+import PaymentModal from "../../components/PaymentModal/PaymentModal";
 
 const PRODUCTS = [
   {
@@ -34,6 +36,17 @@ const PRODUCTS = [
 
 export default function Cart() {
   const { products, loading, loadProducts } = useCartProducts();
+  const [paymentModalActive, setPaymentModalActive] = useState(false);
+
+  const openPaymentModal = () => {
+    setPaymentModalActive(true);
+  };
+  const closePaymentModal = () => {
+    setPaymentModalActive(false);
+  };
+
+  console.log(paymentModalActive);
+
   return (
     <main id="cart">
       <Breadcrumb>Cart</Breadcrumb>
@@ -47,9 +60,14 @@ export default function Cart() {
       <div className="container">
         <div className="cart-footer">
           <CouponInput />
-          <CartTotal />
+          <CartTotal openPaymentModal={openPaymentModal} />
         </div>
       </div>
+      <Overlay active={paymentModalActive} onClick={closePaymentModal} />
+      <PaymentModal
+        active={paymentModalActive}
+        closeModal={closePaymentModal}
+      />
     </main>
   );
 }

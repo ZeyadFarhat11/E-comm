@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-export default function CartTotal() {
+export default function CartTotal({ openPaymentModal }) {
   return (
     <div className="cart-total">
       <p>
@@ -20,7 +18,7 @@ export default function CartTotal() {
         <b>TOTAL</b>
         <b>$118</b>
       </p>
-      <Link to="/check-out">Check out</Link>
+      <button onClick={openPaymentModal}>Check out</button>
     </div>
   );
 }

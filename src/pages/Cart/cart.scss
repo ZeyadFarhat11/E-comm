@@ -153,8 +153,10 @@ main#cart {
       height: 1px;
       background-color: #ccc;
     }
-    a {
+    button {
       width: 100%;
+      border: none;
+      cursor: pointer;
       background-color: #33a0ff;
       color: #fff;
       padding: 7px;
