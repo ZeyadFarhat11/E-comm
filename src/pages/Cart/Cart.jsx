@@ -45,8 +45,6 @@ export default function Cart() {
     setPaymentModalActive(false);
   };
 
-  console.log(paymentModalActive);
-
   return (
     <main id="cart">
       <Breadcrumb>Cart</Breadcrumb>

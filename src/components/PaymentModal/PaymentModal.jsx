@@ -3,11 +3,15 @@ import "./payment-modal.scss";
 import { FaArrowLeft } from "react-icons/fa6";
 import { AiOutlineClose } from "react-icons/ai";
 import FirstPhase from "./FirstPhase";
+import SecondPhase from "./SecondPhase";
+import LastPhase from "./LastPhase";
 
 export default function PaymentModal({ active, closeModal }) {
   const [phase, setPhase] = useState(1);
+  const [paymentData, setPaymentData] = useState({});
 
-  const returnPhase = () => {};
+  const returnPhase = () => setPhase((phase) => phase - 1);
+  const nextPhase = () => setPhase((phase) => phase + 1);
 
   if (!active) return;
 
@@ -27,7 +31,13 @@ export default function PaymentModal({ active, closeModal }) {
         <span data-active={phase >= 2}>2</span>
         <span data-active={phase === 3}>3</span>
       </div>
-      {phase === 1 ? <FirstPhase /> : null}
+      {phase === 1 ? (
+        <FirstPhase nextPhase={nextPhase} setPaymentData={setPaymentData} />
+      ) : phase === 2 ? (
+        <SecondPhase nextPhase={nextPhase} />
+      ) : (
+        <LastPhase closeModal={closeModal} />
+      )}
     </div>
   );
 }
