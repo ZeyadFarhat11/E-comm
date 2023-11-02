@@ -1,0 +1,194 @@
+@import "../../assets/style/components.scss";
+#product {
+  .container.product {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    display: flex;
+    gap: 50px;
+  }
+  .product-info {
+    flex-grow: 1;
+    .title {
+      font-weight: 600;
+      font-size: 23px;
+    }
+    .title + div {
+      margin-top: 20px;
+      display: flex;
+      gap: 25px;
+      align-items: center;
+      .rating-stars {
+        color: #ffc600;
+        white-space: nowrap;
+      }
+      p.reviews {
+        color: #c1c8ce;
+        white-space: nowrap;
+      }
+      > button {
+        color: $primary;
+        background-color: transparent;
+        border: none;
+        outline: transparent;
+        font-size: 16px;
+        cursor: pointer;
+      }
+    }
+    hr {
+      border: none;
+      height: 1px;
+      background-color: #dfdfdf;
+      margin: 15px 0;
+    }
+    .price-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      .price {
+        font-weight: bold;
+        font-size: 20px;
+        color: $primary;
+      }
+      del {
+        color: $old-price-color;
+        text-decoration: line-through;
+      }
+      .discount {
+        color: $discount-color;
+        font-weight: bold;
+      }
+    }
+
+    .info {
+      margin: 10px 0;
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      font-size: 15px;
+    }
+
+    .select-color {
+      span {
+        font-size: 18px;
+      }
+      .colors {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        .color {
+          box-sizing: content-box;
+          display: block;
+          width: 21px;
+          height: 21px;
+          border-radius: 50%;
+          border: none;
+          cursor: pointer;
+          &[data-active="true"] {
+            width: 17px;
+            height: 17px;
+            border: 3px solid #fff;
+            outline: 2px solid;
+          }
+        }
+      }
+    }
+    .select-size {
+      margin-top: 30px;
+      align-items: center;
+      span {
+        font-size: 18px;
+      }
+      select {
+        width: 100px;
+        font-size: 17px;
+        font-weight: 600;
+        border: 2px solid #dfdfdf;
+        padding: 2px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+    }
+    .actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .wrapper {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        button {
+          color: #33a0ff;
+          background-color: rgba(51, 160, 255, 0.1);
+          border: none;
+          outline: transparent;
+          border-radius: 6px;
+          padding: 10px;
+          transition: 400ms;
+          cursor: pointer;
+          &:hover {
+            background-color: #33a0ff;
+            color: #fff;
+          }
+          &.add-to-cart {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 18px;
+            svg {
+              font-size: 25px;
+            }
+          }
+          &.add-to-wishlist {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+          }
+        }
+      }
+    }
+    .share-btns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      button {
+        color: #fff;
+        font-size: 20px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: center;
+        border: none;
+        outline: transparent;
+        padding: 10px;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+    }
+  }
+  .images-preview {
+    width: 450px;
+    .current-img {
+      aspect-ratio: 1 / 1;
+      margin-bottom: 20px;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      gap: 10px;
+      img {
+        border: 2px solid #e4e4e4;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 6px;
+        cursor: pointer;
+        &[data-active="true"] {
+          border-color: $primary;
+        }
+      }
+    }
+  }
+}

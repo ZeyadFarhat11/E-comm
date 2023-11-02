@@ -58,6 +58,24 @@ img {
   }
 }
 
+.qty-control {
+  background-color: #f6f7f8;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  width: fit-content;
+  padding: 10px 15px;
+  button {
+    color: $primary;
+    line-height: 1;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+}
+
 .container {
   width: 100%;
   padding-right: 15px;
