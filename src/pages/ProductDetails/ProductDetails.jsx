@@ -23,7 +23,9 @@ export default function ProductDetails() {
         <ProductImagesPreview product={product} />
         <ProductInfo product={product} />
       </div>
-      <Tabs product={product} />
+      <div className="container">
+        <Tabs product={product} />
+      </div>
       <RelatedProducts />
     </main>
   );

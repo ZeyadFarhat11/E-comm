@@ -191,4 +191,50 @@
       }
     }
   }
+
+  .product-tabs {
+    background-color: #f1f1f1;
+    border-radius: 6px;
+    .tabs-header {
+      display: flex;
+      gap: 50px;
+      padding: 0 30px;
+      border-bottom: 4px solid #ddd;
+      button {
+        font-size: 20px;
+        padding: 20px 0;
+        background-color: transparent;
+        border: none;
+        outline: transparent;
+        cursor: pointer;
+        position: relative;
+        &[data-active="true"]::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          width: 100%;
+          background-color: $primary;
+          height: 4px;
+          bottom: -4px;
+          border-radius: 10px;
+        }
+      }
+    }
+    .tab-body {
+      padding: 20px;
+      .description {
+        color: #7a7f8f;
+        font-size: 15px;
+        line-height: 1.7;
+      }
+    }
+  }
+
+  .related-products {
+    padding: 50px 0;
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
 }
