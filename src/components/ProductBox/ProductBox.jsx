@@ -3,6 +3,7 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import "./product-box.scss";
 import { Link } from "react-router-dom";
 import RatingStars from "../../components/RatingStars";
+import { Rate } from "antd";
 
 export default function ProductBox({
   img,
@@ -31,7 +32,9 @@ export default function ProductBox({
         <Link className="title" to={`/product/${id}`}>
           {title}
         </Link>
-        <RatingStars rating={rating} />
+        {/* <RatingStars rating={rating} /> */}
+
+        <Rate value={rating} disabled allowHalf />
         <footer>
           <span className="price">${price}</span>
           <del>${oldPrice}</del>

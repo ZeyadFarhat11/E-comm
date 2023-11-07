@@ -77,17 +77,10 @@
         text-decoration: underline;
       }
     }
-    .rating-stars {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 5px;
-      font-size: 18px;
-      padding: 10px 0;
-      color: #ffc600;
-      .empty {
-        color: #c1c8ce;
-      }
+    .ant-rate {
+      display: block;
+      width: fit-content;
+      margin: 10px auto;
     }
     footer {
       display: flex;

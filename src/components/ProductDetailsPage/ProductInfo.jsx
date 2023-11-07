@@ -9,10 +9,13 @@ import {
 } from "react-icons/ai";
 import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { transparentize } from "polished";
+import { Rate } from "antd";
+import CreateReviewModal from "./CreateReviewModal";
 export default function ProductInfo({ product }) {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
+  const [createReviewActive, setCreateReviewActive] = useState(false);
   const oldPrice = (145).toFixed(2);
 
   const increateQuantity = () => {
@@ -28,9 +31,15 @@ export default function ProductInfo({ product }) {
     <div className="product-info">
       <h3 className="title">{product.title}</h3>
       <div>
-        <RatingStars rating={product.rating} />
+        <Rate value={product.rating} disabled />
         <p className="reviews">{product.reviewsCount} reviews</p>
-        <button>Submit a review</button>
+        <button onClick={() => setCreateReviewActive(true)}>
+          Submit a review
+        </button>
+        <CreateReviewModal
+          active={createReviewActive}
+          closeModal={() => setCreateReviewActive(false)}
+        />
       </div>
       <hr />
       <div className="price-wrapper">

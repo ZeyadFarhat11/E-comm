@@ -237,4 +237,61 @@
       margin-bottom: 30px;
     }
   }
+
+  form.create-review {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 80;
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 600px;
+    max-width: calc(100% - 30px);
+    h3 {
+      font-size: 30px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .ant-rate {
+      margin: 0 auto;
+      display: block;
+      width: fit-content;
+      svg {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    textarea {
+      margin: 20px 0;
+      font-size: 20px;
+      height: 100px;
+      resize: vertical;
+    }
+    button[type="submit"] {
+      margin: 0 auto;
+      display: block;
+      width: fit-content;
+      padding: 5px 30px;
+      height: auto;
+      font-size: 20px;
+    }
+    @include mobile {
+      h3 {
+        font-size: 20px;
+      }
+      .ant-rate svg {
+        width: 25px;
+        height: 25px;
+      }
+      textarea {
+        font-size: 16px;
+      }
+      button[type="submit"] {
+        font-size: 18px;
+        padding: 5px 25px;
+      }
+    }
+  }
 }

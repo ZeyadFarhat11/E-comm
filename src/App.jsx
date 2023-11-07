@@ -8,6 +8,8 @@ import Cart from "./pages/Cart/Cart";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
+import Shop from "./pages/Shop/Shop";
+import { ShopProvider } from "./context/ShopContext";
 
 export default function App() {
   return (
@@ -19,6 +21,14 @@ export default function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route
+          path="/shop"
+          element={
+            <ShopProvider>
+              <Shop />
+            </ShopProvider>
+          }
+        />
         <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />

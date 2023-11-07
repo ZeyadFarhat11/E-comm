@@ -241,11 +241,15 @@ main#home {
           text-decoration: underline;
         }
       }
-      .rating-stars {
-        color: #ffc600;
-        margin: 5px 0;
-        .empty {
-          color: #c1c8ce;
+      .ant-rate {
+        padding: 5px 0;
+        display: block;
+        li {
+          margin-inline-end: 5px;
+        }
+        svg {
+          width: 17px;
+          height: 17px;
         }
       }
       .price {

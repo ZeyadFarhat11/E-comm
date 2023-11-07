@@ -1,3 +1,4 @@
+import { Rate } from "antd";
 import img from "../../assets/img/featured-product.png";
 import RatingStars from "../RatingStars.jsx";
 import { Link } from "react-router-dom";
@@ -40,7 +41,7 @@ export default function FeaturedProducts() {
               <Link to={`/product/${id}`} className="title">
                 {title}
               </Link>
-              <RatingStars rating={rating} />
+              <Rate allowHalf value={rating} />
               <div className="price">
                 <span>${price}</span>
                 <del>${price / ((100 - discount) / 100)}</del>
