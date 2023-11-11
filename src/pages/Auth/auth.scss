@@ -28,6 +28,9 @@ main#register {
         border-color: #ccc;
         padding: 7px 10px;
         width: 100%;
+        &::placeholder {
+          color: #bdbdbd;
+        }
       }
     }
     .wrapper {
@@ -56,6 +59,7 @@ main#register {
       margin-top: 20px;
       cursor: pointer;
       transition: 300ms;
+      height: auto;
       &:hover {
         background-color: $primary;
       }

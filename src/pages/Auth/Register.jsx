@@ -6,6 +6,7 @@ import { registerForm } from "../../components/Formik/RegisterForm";
 import http from "../../util/http";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { validateRegisterValues } from "../../util/validators";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ export default function Register() {
           type: "success",
           content: "An account has been created. Please log in",
         });
-        navigate("/login", { replace: true });
+        navigate(`/login?email=${values.email}`, { replace: true });
       }
     } catch (err) {
       handleError(err);
@@ -34,7 +35,6 @@ export default function Register() {
     }
   };
 
-  const valdiateValues = () => {};
   return (
     <main id="register">
       <Breadcrumb>Register</Breadcrumb>
@@ -45,7 +45,7 @@ export default function Register() {
             password: "",
             username: "",
           }}
-          validate={valdiateValues}
+          validate={validateRegisterValues}
           onSubmit={handleSubmit}
         >
           {registerForm}

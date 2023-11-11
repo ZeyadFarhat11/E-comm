@@ -5,13 +5,16 @@ import { Formik } from "formik";
 import { loginForm } from "../../components/Formik/LoginForm";
 import { message } from "antd";
 import http from "../../util/http";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { validateLoginValues } from "../../util/validators";
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  let searchParamsObj = Object.fromEntries(searchParams);
 
   const handleSubmit = async (values, { setSubmitting }) => {
-    console.log(values);
     setSubmitting(true);
     try {
       const res = await http.post("/token/", {
@@ -33,18 +36,18 @@ export default function Login() {
       setSubmitting(false);
     }
   };
-  const valdiateValues = () => {};
+
   return (
     <main id="login">
       <Breadcrumb>Login</Breadcrumb>
       <div className="container">
         <Formik
           initialValues={{
-            email: "",
+            email: searchParamsObj.email || "",
             password: "",
-            remember: false,
+            remember: true,
           }}
-          validate={valdiateValues}
+          validate={validateLoginValues}
           onSubmit={handleSubmit}
         >
           {loginForm}

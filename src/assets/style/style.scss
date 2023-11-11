@@ -98,10 +98,18 @@ img {
     &::placeholder {
       font-size: 14px;
     }
+    &[data-error="true"] {
+      border-color: #cc0000 !important;
+    }
   }
   textarea {
     min-height: 100px;
     resize: vertical;
+  }
+  .error {
+    color: #cc0000;
+    font-size: 14px;
+    margin-top: 5px;
   }
 }
 
