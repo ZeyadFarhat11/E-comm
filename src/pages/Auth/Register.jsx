@@ -3,15 +3,37 @@ import "./auth.scss";
 
 import { Formik } from "formik";
 import { registerForm } from "../../components/Formik/RegisterForm";
+import http from "../../util/http";
+import { message } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const handleSubmit = async (values, { setSubmitting }) => {
-    // setSubmitting(true);
-    console.log("Submit");
-    await new Promise((res) => setTimeout(res, 5000));
-    // console.log(values);
-    // alert('submitted')
+    setSubmitting(true);
+    try {
+      const res = await http.post("/register/", {
+        email: values.email,
+        password: values.password,
+        username: values.username,
+      });
+
+      if (res.status === 201) {
+        message.open({
+          type: "success",
+          content: "An account has been created. Please log in",
+        });
+        navigate("/login", { replace: true });
+      }
+    } catch (err) {
+      handleError(err);
+      console.log(err);
+    } finally {
+      setSubmitting(false);
+    }
   };
+
   const valdiateValues = () => {};
   return (
     <main id="register">
@@ -32,3 +54,15 @@ export default function Register() {
     </main>
   );
 }
+
+const handleError = (err) => {
+  const emailError = err.response?.data?.email?.at(0);
+  const usernameError = err.response.data?.username?.at(0);
+
+  if (emailError && emailError.includes("already exists")) {
+    message.error("This email is already registered");
+  }
+  if (usernameError && usernameError.includes("already exists")) {
+    message.error("This username is already taken");
+  }
+};

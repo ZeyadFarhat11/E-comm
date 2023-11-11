@@ -136,53 +136,6 @@ main#home {
     }
   }
 
-  section.banner {
-    background-color: $primary;
-    .container {
-      display: flex;
-      align-items: center;
-    }
-    .text {
-      color: #fff;
-      h2 {
-        font-size: 50px;
-        font-weight: 500;
-      }
-      p {
-        font-size: 20px;
-        font-weight: 400;
-        margin: 20px 0;
-      }
-      a {
-        color: #fff;
-        position: relative;
-        text-transform: uppercase;
-        font-size: 18px;
-        font-weight: 600;
-        &::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          width: 80%;
-          bottom: -10px;
-          height: 3px;
-          border-radius: 3px;
-          background-color: #fff;
-          transition: 300ms;
-        }
-        &:hover::before {
-          width: 100%;
-        }
-      }
-    }
-    .img {
-      width: 55%;
-      img {
-        transform: rotateY(180deg) translateY(-80px);
-      }
-    }
-  }
-
   section.features {
     padding: 50px 0;
     .container {

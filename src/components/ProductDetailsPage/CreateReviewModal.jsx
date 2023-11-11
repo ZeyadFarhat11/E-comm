@@ -7,7 +7,6 @@ function CreateReviewModal({ active, closeModal }) {
   const [text, setText] = useState("");
   const [rate, setRate] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [messageApi, contextHolder] = message.useMessage();
 
   const createMessage = (status) => {
     if (status === "success") {

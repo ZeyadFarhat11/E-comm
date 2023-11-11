@@ -1,5 +1,4 @@
 import { useState } from "react";
-import RatingStars from "../RatingStars";
 
 import {
   AiOutlineMinus,

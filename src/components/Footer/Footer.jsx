@@ -74,7 +74,7 @@ export default function Footer() {
       <div className="container bottom">
         <hr />
         <div>
-          <p>© 2023 Ecommerce Developed By Zeyad Farhat</p>
+          <p>© 2023 Ecommerce Developed By Zeyad Farhat & Mahmoud Orabi</p>
           <img src={paymentMethods} alt="payment methdos" />
         </div>
       </div>

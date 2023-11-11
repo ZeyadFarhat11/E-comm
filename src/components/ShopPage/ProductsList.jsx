@@ -1,7 +1,21 @@
 import React from "react";
+import useShopContext from "../../context/ShopContext";
+import ProductBox from "../ProductBox/ProductBox";
 
 const ProductsList = () => {
-  return <div>ProductsList</div>;
+  console.log("Products List Render");
+  const { previewMode, products } = useShopContext();
+  if (previewMode === "grid") {
+    return (
+      <div className="products">
+        <div className="products-grid">
+          {products.map((product) => (
+            <ProductBox key={product.id} {...product} />
+          ))}
+        </div>
+      </div>
+    );
+  }
 };
 
 export default ProductsList;

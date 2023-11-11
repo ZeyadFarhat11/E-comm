@@ -5,6 +5,7 @@ import Banner from "../../components/HomePage/Banner";
 import ToolBar from "../../components/ShopPage/ToolBar";
 import ProductsList from "../../components/ShopPage/ProductsList";
 import PaginationBar from "../../components/ShopPage/PaginationBar";
+import "./shop.scss";
 
 const Shop = () => {
   return (

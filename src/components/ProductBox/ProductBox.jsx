@@ -2,7 +2,6 @@ import React from "react";
 import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import "./product-box.scss";
 import { Link } from "react-router-dom";
-import RatingStars from "../../components/RatingStars";
 import { Rate } from "antd";
 
 export default function ProductBox({

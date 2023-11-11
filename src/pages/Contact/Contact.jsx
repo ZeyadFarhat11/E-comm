@@ -1,10 +1,27 @@
-import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import "./contact.scss";
 import img from "../../assets/img/contact.webp";
+import { Button, message } from "antd";
+import { useState } from "react";
 export default function Contact() {
+  const [loading, setLoading] = useState(false);
+  const [fullName, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [messageText, setMessageText] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    await new Promise((res) => setTimeout(res, 1000));
+    // TODO: Send message request
+    setLoading(false);
+    message.open({
+      type: "success",
+      content: "Message has been sent",
+    });
+  };
+
   return (
     <main id="contact">
-      {/* <Breadcrumb currentPage="Contact Us" /> */}
       <div className="contact-container container">
         <div className="wrapper">
           <div className="text-wrapper">
@@ -18,14 +35,26 @@ export default function Contact() {
               <p>20 Prince Hakerem Lekki Phase 1, Lagos.</p>
             </div>
           </div>
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="control">
               <label htmlFor="name">Fullname</label>
-              <input type="text" id="name" placeholder="Your Name" />
+              <input
+                type="text"
+                id="name"
+                placeholder="Your Name"
+                value={fullName}
+                onChange={(e) => setFullname(e.target.value)}
+              />
             </div>
             <div className="control">
               <label htmlFor="email">Email</label>
-              <input type="email" id="email" placeholder="examble@gmail.com" />
+              <input
+                type="email"
+                id="email"
+                placeholder="examble@gmail.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <div className="control">
               <label htmlFor="message">Message</label>
@@ -33,9 +62,13 @@ export default function Contact() {
                 type="text"
                 id="message"
                 placeholder="Type your message"
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
               />
             </div>
-            <button type="submit">Submit</button>
+            <Button htmlType="submit" type="primary" loading={loading}>
+              Submit
+            </Button>
           </form>
         </div>
       </div>
