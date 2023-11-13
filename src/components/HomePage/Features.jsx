@@ -11,8 +11,13 @@ export default function Features() {
   return (
     <section className="features">
       <div className="container">
-        {features.map(({ icon, title }) => (
-          <div className="feature" key={title}>
+        {features.map(({ icon, title }, i) => (
+          <div
+            className="feature"
+            key={title}
+            data-aos="fade-up"
+            data-aos-delay={i * 150}
+          >
             {icon}
             <h3 className="title">{title}</h3>
             <p>

@@ -8,8 +8,8 @@ export default function BestSellerProducts() {
   return (
     <section className="best-seller">
       <h2 className="main-title">best seller</h2>
-      <div className="tabs">
-        {tabs.map((tab) => (
+      <div className="tabs" data-aos="fade-up">
+        {tabs.map((tab, i) => (
           <button
             className="tab"
             key={tab}
@@ -23,7 +23,7 @@ export default function BestSellerProducts() {
       <div className="container">
         <div className="products-grid">
           {products.map((product) => (
-            <ProductBox key={product.id} {...product} />
+            <ProductBox key={product.id} {...product} animated />
           ))}
         </div>
         <button className="load-more">load more</button>

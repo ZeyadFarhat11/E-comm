@@ -1,36 +1,20 @@
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home/Home";
 import Header from "./components/Header/Header";
 import "./assets/style/style.scss";
 import Footer from "./components/Footer/Footer";
-import Contact from "./pages/Contact/Contact";
-import Cart from "./pages/Cart/Cart";
-import Login from "./pages/Auth/Login";
-import Register from "./pages/Auth/Register";
-import ProductDetails from "./pages/ProductDetails/ProductDetails";
-import Shop from "./pages/Shop/Shop";
-import { ShopProvider } from "./context/ShopContext";
+import AppRoutes from "./AppRoutes";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 
 export default function App() {
+  useEffect(() => {
+    AOS.init({ once: false });
+  }, []);
+
   return (
     <>
       <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/cart" element={<Cart />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/shop"
-          element={
-            <ShopProvider>
-              <Shop />
-            </ShopProvider>
-          }
-        />
-        <Route path="/product/:id" element={<ProductDetails />} />
-      </Routes>
+      <AppRoutes />
       <Footer />
     </>
   );

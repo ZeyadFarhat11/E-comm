@@ -12,10 +12,13 @@ export default function ProductBox({
   price,
   id,
   label,
+  animated,
+  ...rest
 }) {
   const oldPrice = (price / ((100 - discount) / 100)).toFixed(2);
+  const animationProps = animated ? { "data-aos": "fade-up" } : {};
   return (
-    <div className="product-box">
+    <div className="product-box" {...animationProps} {...rest}>
       <div className="image" style={{ backgroundImage: `url("${img}")` }}>
         <div className="item-hover">
           <button title="add to wishlist">

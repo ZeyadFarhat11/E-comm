@@ -7,8 +7,11 @@ import { message } from "antd";
 import http from "../../util/http";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { validateLoginValues } from "../../util/validators";
+import { setUserData } from "../../util/auth";
+import useAuthContext from "../../context/AuthContext";
 
 export default function Login() {
+  const { saveUser } = useAuthContext();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
@@ -22,8 +25,12 @@ export default function Login() {
         password: values.password,
       });
       if (res.status === 200) {
-        if (values.remember)
-          localStorage.setItem("loginToken", res.data.access);
+        if (values.remember) {
+          const user = { email: values.email, username: "zeyadfarhat" };
+          const token = res.data.access;
+          saveUser({ user, token });
+        }
+
         message.open({
           type: "success",
           content: "You have been logged in successfully",

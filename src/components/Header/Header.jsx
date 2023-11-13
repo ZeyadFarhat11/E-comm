@@ -5,25 +5,30 @@ import { FaBars } from "react-icons/fa";
 import logo from "../../assets/img/logo.png";
 import "./header.scss";
 import { useState } from "react";
+import { Select } from "antd";
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
 
   const toggleMenu = () => setMenuActive((prev) => !prev);
+
+  const langOptions = [
+    { label: "EN", value: "en" },
+    { label: "AR", value: "ar" },
+  ];
+
+  const currencyOptions = [
+    { label: "USD", value: "usd" },
+    { label: "EUR", value: "eur" },
+    { label: "EGP", value: "egp" },
+  ];
 
   return (
     <header id="header">
       <div className="top">
         <div className="container">
           <div className="wrapper left">
-            <select>
-              <option value="en">EN</option>
-              <option value="ar">AR</option>
-            </select>
-            <select>
-              <option value="usd">USD</option>
-              <option value="egp">EGP</option>
-              <option value="eur">EUR</option>
-            </select>
+            <Select options={langOptions} defaultValue={"en"} />
+            <Select options={currencyOptions} defaultValue={"usd"} />
           </div>
           <div className="wrapper right">
             <Link className="profile" to="/profile">

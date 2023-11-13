@@ -34,8 +34,13 @@ export default function FeaturedProducts() {
     <section className="featured-products">
       <h2>FEATURED PRODUCTS</h2>
       <div className="container">
-        {products.map(({ id, title, price, rating, discount, img }) => (
-          <div className="featured-product" key={id}>
+        {products.map(({ id, title, price, rating, discount, img }, i) => (
+          <div
+            className="featured-product"
+            key={id}
+            data-aos="fade-up"
+            data-aos-delay={i * 150}
+          >
             <img src={img} alt={title} />
             <div className="text">
               <Link to={`/product/${id}`} className="title">
