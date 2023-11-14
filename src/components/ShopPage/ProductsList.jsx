@@ -10,7 +10,7 @@ const ProductsList = () => {
       <div className="products">
         <div className="products-grid">
           {products.map((product) => (
-            <ProductBox key={product.id} {...product} />
+            <ProductBox key={product.id} {...product} animated />
           ))}
         </div>
       </div>

@@ -1,6 +1,6 @@
-import Header from "./components/Header/Header";
+import Header from "./Layout/Header/Header";
 import "./assets/style/style.scss";
-import Footer from "./components/Footer/Footer";
+import Footer from "./Layout/Footer/Footer";
 import AppRoutes from "./AppRoutes";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -8,7 +8,7 @@ import { useEffect } from "react";
 
 export default function App() {
   useEffect(() => {
-    AOS.init({ once: false });
+    AOS.init({ once: true });
   }, []);
 
   return (

@@ -2,6 +2,10 @@
 #header {
   position: relative;
   z-index: 50;
+  background: #fff;
+  position: sticky;
+  top: -52px;
+  box-shadow: 0 3px 10px #0000002d;
   .top {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -36,8 +40,9 @@
           font-size: 22px;
         }
         &:hover {
-          color: #fff;
-          background-color: $primary;
+          text-decoration: underline;
+          // color: #fff;
+          // background-color: $primary;
         }
       }
       .cart {

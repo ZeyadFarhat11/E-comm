@@ -7,11 +7,11 @@ import ProductImagesPreview from "../../components/ProductDetailsPage/ProductIma
 import ProductInfo from "../../components/ProductDetailsPage/ProductInfo";
 import Tabs from "../../components/ProductDetailsPage/Tabs";
 import RelatedProducts from "../../components/ProductDetailsPage/RelatedProducts";
+import Placeholder from "../../components/ProductDetailsPage/Placeholder";
 
 export default function ProductDetails() {
   const { id } = useParams();
   const { product, loading } = useProductData(id);
-  if (loading) return "Loading...";
   return (
     <main id="product">
       <Breadcrumb injected>
@@ -19,14 +19,20 @@ export default function ProductDetails() {
         <span className="seperator">/</span>
         <span className="current">{product?.title}</span>
       </Breadcrumb>
-      <div className="container product">
-        <ProductImagesPreview product={product} />
-        <ProductInfo product={product} />
-      </div>
-      <div className="container">
-        <Tabs product={product} />
-      </div>
-      <RelatedProducts />
+      {loading ? (
+        <Placeholder />
+      ) : (
+        <>
+          <div className="container product">
+            <ProductImagesPreview product={product} />
+            <ProductInfo product={product} />
+          </div>
+          <div className="container">
+            <Tabs product={product} />
+          </div>
+          <RelatedProducts />
+        </>
+      )}
     </main>
   );
 }

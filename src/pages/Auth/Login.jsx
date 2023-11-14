@@ -2,12 +2,11 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import "./auth.scss";
 
 import { Formik } from "formik";
-import { loginForm } from "../../components/Formik/LoginForm";
+import { loginForm } from "../../Formik/loginForm";
 import { message } from "antd";
 import http from "../../util/http";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { validateLoginValues } from "../../util/validators";
-import { setUserData } from "../../util/auth";
 import useAuthContext from "../../context/AuthContext";
 
 export default function Login() {
