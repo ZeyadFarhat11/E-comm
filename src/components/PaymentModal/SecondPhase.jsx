@@ -1,7 +1,6 @@
 import { Formik } from "formik";
 import creditCardImg from "../../assets/img/CreditCard.svg";
 import { Checkbox, DatePicker } from "antd";
-import { PulseLoader } from "react-spinners";
 export default function SecondPhase({ nextPhase }) {
   const validateValues = (values) => {
     const errors = {};
@@ -138,13 +137,7 @@ export default function SecondPhase({ nextPhase }) {
               </div>
             </div>
           </div>
-          <button type="submit">
-            {isSubmitting ? (
-              <PulseLoader speedMultiplier={1.3} color="#fff" />
-            ) : (
-              "Confirm"
-            )}
-          </button>
+          <button type="submit">TODO: ANTD BUTTON</button>
         </form>
       )}
     </Formik>

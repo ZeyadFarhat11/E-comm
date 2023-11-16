@@ -8,6 +8,8 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import { ShopProvider } from "./context/ShopContext";
 import GuestRoute from "./middleware/GuestRoute";
+import Profile from "./pages/Account/Profile/Profile";
+import Addresses from "./pages/Account/Addresses/Addresses";
 
 const AppRoutes = () => {
   return (
@@ -40,6 +42,8 @@ const AppRoutes = () => {
         }
       />
       <Route path="/product/:id" element={<ProductDetails />} />
+      <Route path="/account/profile" element={<Profile />} />
+      <Route path="/account/addresses" element={<Addresses />} />
     </Routes>
   );
 };

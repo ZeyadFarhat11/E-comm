@@ -37,3 +37,26 @@ export const validateLoginValues = (values) => {
   }
   return errors;
 };
+
+export const validateChangePasswordValues = (values) => {
+  const errors = {};
+  if (!values.currentPassword) {
+    errors.currentPassword = "Required";
+  }
+  if (!values.newPassword) {
+    errors.newPassword = "Required";
+  } else if (values.newPassword.trim().length < 6) {
+    errors.newPassword = "Password is too short";
+  } else if (values.newPassword.trim().length > 32) {
+    errors.newPassword = "Password is too long";
+  }
+  if (!values.confirmNewPassword) {
+    errors.confirmNewPassword = "Required";
+  } else if (values.confirmNewPassword.trim().length < 6) {
+    errors.confirmNewPassword = "Password is too short";
+  } else if (values.confirmNewPassword.trim().length > 32) {
+    errors.confirmNewPassword = "Password is too long";
+  }
+
+  return errors;
+};

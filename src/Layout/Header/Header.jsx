@@ -2,12 +2,11 @@ import { Select } from "antd";
 import { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
-import { FiShoppingCart } from "react-icons/fi";
+import { FiLogIn, FiShoppingCart, FiUserPlus } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
-import "./header.scss";
 import useAuthContext from "../../context/AuthContext";
-import { FiLogIn, FiUserPlus } from "react-icons/fi";
+import "./header.scss";
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const { user } = useAuthContext();
@@ -28,7 +27,7 @@ export default function Header() {
   let authBasedContent;
   if (user) {
     authBasedContent = (
-      <Link className="profile" to="/profile">
+      <Link className="profile" to="/account/profile">
         <AiOutlineUser />
         <span>My Profile</span>
       </Link>

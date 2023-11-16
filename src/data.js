@@ -167,3 +167,25 @@ export const products = [
     active: true,
   },
 ];
+
+export const addresses = [
+  {
+    id: 1,
+    firstName: "Zeyad",
+    lastName: "Farhat",
+    phone: "01091815750",
+    email: "zeyad@gmail.com",
+    address1: "Damitta - Snania - 5644",
+    address2: "",
+    defaultAddress: true,
+  },
+  {
+    id: 2,
+    firstName: "Mahmoud",
+    lastName: "Oraby",
+    phone: "01089895467",
+    email: "mahmoud@gmail.com",
+    address1: "Damitta - 3nania - 4564",
+    address2: "",
+  },
+];

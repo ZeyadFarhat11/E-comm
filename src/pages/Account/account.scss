@@ -1,0 +1,40 @@
+@import "../../assets/style/components.scss";
+.account-sidebar {
+  width: 250px;
+  a {
+    display: block;
+    background-color: #f3f3f3;
+    padding: 10px;
+    &:hover {
+      background-color: #e6e6e6;
+    }
+    &:first-child {
+      border-radius: 6px 6px 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 6px 6px;
+    }
+    &[data-active="true"] {
+      font-weight: bold;
+      color: $primary;
+      background-color: #dadada;
+    }
+  }
+}
+
+.account-page {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 50px;
+  .control {
+    width: 250px;
+    max-width: 100%;
+  }
+  h2 {
+    font-weight: 600;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}

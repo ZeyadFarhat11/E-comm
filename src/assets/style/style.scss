@@ -83,7 +83,7 @@ img {
     font-weight: 500;
     text-transform: capitalize;
   }
-  input,
+  input:not(.ant-input),
   textarea {
     border-radius: 5px;
     border: 1px solid $primary;
