@@ -14,13 +14,16 @@ const AddressBox = ({
   const editAddress = async () => {};
   return (
     <div className="address">
-      <h3 className="name">
-        {firstName} {lastName}
-      </h3>
-      <p>{phone}</p>
-      <p>{email}</p>
-      <b>{address1}</b>
-      <b>{address2}</b>
+      {defaultAddress && <p className="badge">Default</p>}
+      <div className="body">
+        <h3 className="name">
+          {firstName} {lastName}
+        </h3>
+        <p>{phone}</p>
+        <p>{email}</p>
+        <b>{address1}</b>
+        {address2 ? <b>{address2}</b> : null}
+      </div>
       <div className="btns">
         {defaultAddress ? (
           <button onClick={editAddress}>Edit</button>
