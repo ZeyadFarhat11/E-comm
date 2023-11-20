@@ -189,3 +189,18 @@ export const addresses = [
     address2: "",
   },
 ];
+
+export const paymentMethods = [
+  {
+    id: 1,
+    type: "visa", // visa || mastercard
+    lastDigits: 5874, // Last 4 Numbers
+    name: "ZEYAD ROSHDY FARHAT",
+  },
+  {
+    id: 2,
+    type: "mastercard",
+    lastDigits: 4971,
+    name: "ZEYAD ROSHDY FARHAT",
+  },
+];

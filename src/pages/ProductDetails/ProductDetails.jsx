@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import "./product-details.scss";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { products } from "../../data";
 import ProductImagesPreview from "../../components/ProductDetailsPage/ProductImagesPreview";
 import ProductInfo from "../../components/ProductDetailsPage/ProductInfo";
 import Tabs from "../../components/ProductDetailsPage/Tabs";
 import RelatedProducts from "../../components/ProductDetailsPage/RelatedProducts";
 import Placeholder from "../../components/ProductDetailsPage/Placeholder";
+import http from "../../util/http";
 
 export default function ProductDetails() {
   const { id } = useParams();
@@ -40,16 +41,19 @@ export default function ProductDetails() {
 const useProductData = (productId) => {
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({});
+  const navigate = useNavigate();
 
   const loadProductData = async () => {
     try {
-      await new Promise((res) => setTimeout(res, 1000));
-      setProduct(products[0]);
+      const res = await http.get(`/store/products/${productId}`);
+      setProduct(res.data);
       setLoading(false);
     } catch (err) {
       console.log(err);
+      navigate("/");
     }
   };
+  console.log("Product =>", product);
 
   useEffect(() => {
     loadProductData();

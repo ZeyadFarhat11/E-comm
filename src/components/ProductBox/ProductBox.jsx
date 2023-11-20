@@ -3,9 +3,10 @@ import { AiOutlineHeart, AiOutlineShoppingCart } from "react-icons/ai";
 import "./product-box.scss";
 import { Link } from "react-router-dom";
 import { Rate } from "antd";
+import { Skeleton } from "@chakra-ui/react";
 
 export default function ProductBox({
-  img,
+  image,
   title,
   rating,
   discount,
@@ -13,13 +14,12 @@ export default function ProductBox({
   id,
   label,
   animated,
-  ...rest
 }) {
   const oldPrice = (price / ((100 - discount) / 100)).toFixed(2);
   const animationProps = animated ? { "data-aos": "fade-up" } : {};
   return (
-    <div className="product-box" {...animationProps} {...rest}>
-      <div className="image" style={{ backgroundImage: `url("${img}")` }}>
+    <div className="product-box" {...animationProps}>
+      <div className="image" style={{ backgroundImage: `url("${image}")` }}>
         <div className="item-hover">
           <button title="add to wishlist">
             <AiOutlineHeart />
@@ -34,7 +34,6 @@ export default function ProductBox({
         <Link className="title" to={`/product/${id}`}>
           {title}
         </Link>
-        {/* <RatingStars rating={rating} /> */}
 
         <Rate value={rating} disabled allowHalf />
         <footer>
@@ -46,3 +45,11 @@ export default function ProductBox({
     </div>
   );
 }
+
+ProductBox.Placeholder = () => {
+  return (
+    <div className="product-placeholder" style={{ aspectRatio: "1 / 1.55" }}>
+      <Skeleton width="100%" height="100%" rounded={10} />
+    </div>
+  );
+};

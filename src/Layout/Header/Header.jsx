@@ -67,25 +67,15 @@ export default function Header() {
       </div>
       <div className="bottom">
         <div className="container">
-          <Link className="logo" to="/" data-aos="fade-right">
+          <Link className="logo" to="/">
             <img src={logo} alt="logo" />
           </Link>
           <nav data-active={menuActive}>
-            <NavLink to="/" data-aos="fade-up" data-aos-delay={0}>
-              home
-            </NavLink>
-            <NavLink to="/shop" data-aos="fade-up" data-aos-delay={100}>
-              shop
-            </NavLink>
-            <NavLink to="/sneakers" data-aos="fade-up" data-aos-delay={200}>
-              sneakers
-            </NavLink>
-            <NavLink to="/belt" data-aos="fade-up" data-aos-delay={300}>
-              belt
-            </NavLink>
-            <NavLink to="/contact" data-aos="fade-up" data-aos-delay={400}>
-              contact
-            </NavLink>
+            <NavLink to="/">home</NavLink>
+            <NavLink to="/shop">shop</NavLink>
+            <NavLink to="/sneakers">sneakers</NavLink>
+            <NavLink to="/belt">belt</NavLink>
+            <NavLink to="/contact">contact</NavLink>
           </nav>
           <button className="menu-toggle" onClick={toggleMenu}>
             <FaBars />

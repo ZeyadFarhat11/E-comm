@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { products as productsData } from "../data";
+import http from "../util/http";
 
 const ShopContext = React.createContext();
 
@@ -21,8 +22,10 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        await new Promise((res) => setTimeout(res, 1000));
-        setProducts(productsData);
+        const res = await http.get("/store/products/?limit=12");
+        setProducts(res.data.slice(0, limit));
+
+        // setProducts(productsData);
         setLoading(false);
       } catch (err) {
         console.log(err);
@@ -30,6 +33,7 @@ export const ShopProvider = ({ children }) => {
     };
     loadProducts();
   }, []);
+  console.log("Shop Products =>", products);
 
   return (
     <ShopContext.Provider

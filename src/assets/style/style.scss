@@ -84,7 +84,7 @@ img {
     text-transform: capitalize;
   }
   input:not(.ant-input),
-  textarea {
+  textarea:not(.ant-input) {
     border-radius: 5px;
     border: 1px solid $primary;
     font-size: 16px;

@@ -1,4 +1,5 @@
 import isEmail from "validator/lib/isEmail";
+import isAlphanumeric from "validator/es/lib/isAlphanumeric";
 
 export const validateRegisterValues = (values) => {
   let errors = {};
@@ -30,7 +31,7 @@ export const validateLoginValues = (values) => {
   if (!values.email) {
     errors.email = "Email is required";
   } else if (!isEmail(values.email)) {
-    errors.email = "Invalid email address!";
+    errors.email = "Invalid email address";
   }
   if (!values.password) {
     errors.password = "Password is required";
@@ -58,5 +59,54 @@ export const validateChangePasswordValues = (values) => {
     errors.confirmNewPassword = "Password is too long";
   }
 
+  return errors;
+};
+
+export const validateAddAddress = (values) => {
+  const errors = {};
+
+  if (!values.firstName) {
+    errors.firstName = "Required";
+  } else if (values.firstName.trim().length < 3) {
+    errors.firstName = "First Name is too short";
+  } else if (values.firstName.trim().length > 32) {
+    errors.firstName = "First Name is too long";
+  }
+  if (!values.lastName) {
+    errors.lastName = "Required";
+  } else if (values.lastName.trim().length < 3) {
+    errors.lastName = "Last Name is too short";
+  } else if (values.lastName.trim().length > 32) {
+    errors.lastName = "Last Name is too long";
+  }
+
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!isEmail(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  if (!values.phone) {
+    errors.phone = "Required";
+  } else if (!isAlphanumeric(values.phone)) {
+    errors.phone = "Phone should only include numbers";
+  } else if (values.phone.length !== 11) {
+    errors.phone = "Phone should contain 11 number";
+  }
+
+  if (!values.address1) {
+    errors.address1 = "Required";
+  } else if (values.address1.trim().length < 10) {
+    errors.address1 = "Address1 is too short";
+  } else if (values.address1.trim().length > 512) {
+    errors.address1 = "Address1 is too long";
+  }
+  if (!values.zipCode) {
+    errors.zipCode = "Required";
+  } else if (values.zipCode.trim().length < 3) {
+    errors.zipCode = "zipCode is too short";
+  } else if (values.zipCode.trim().length > 8) {
+    errors.zipCode = "zipCode is too long";
+  }
   return errors;
 };

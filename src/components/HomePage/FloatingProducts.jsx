@@ -31,8 +31,6 @@ export default function FloatingProducts() {
           return (
             <div
               className="product"
-              data-aos="fade-up"
-              data-aos-delay={i * 200 + 1000}
               style={{ backgroundImage: `url("${img}")` }}
               key={i}
             >

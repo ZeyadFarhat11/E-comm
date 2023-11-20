@@ -8,10 +8,13 @@ import {
 } from "react-icons/ai";
 import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { transparentize } from "polished";
-import { Rate } from "antd";
+import { Rate, message } from "antd";
 import CreateReviewModal from "./CreateReviewModal";
+import useAuthContext from "../../context/AuthContext";
+import http from "../../util/http";
 export default function ProductInfo({ product }) {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
+  const { getAuthConfig } = useAuthContext();
+  const [selectedColor, setSelectedColor] = useState(product.colors[0].name);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
   const [createReviewActive, setCreateReviewActive] = useState(false);
@@ -24,6 +27,18 @@ export default function ProductInfo({ product }) {
   const decreaseQuantity = () => {
     if (quantity <= 1) return;
     setQuantity((prev) => prev - 1);
+  };
+
+  const addToWishlist = async () => {
+    try {
+      await http.post(
+        "/store/wishlists/",
+        { product: product.id },
+        getAuthConfig()
+      );
+    } catch (err) {
+      message.open({ type: "error", content: "Error happened" });
+    }
   };
 
   return (
@@ -42,16 +57,16 @@ export default function ProductInfo({ product }) {
       </div>
       <hr />
       <div className="price-wrapper">
-        <h3 className="price">${product.price.toFixed(2)}</h3>
+        <h3 className="price">${product.price}</h3>
         <del>${oldPrice}</del>
         <span className="discount">{product.discount}% Off</span>
       </div>
       <p className="info">
         <span>Availability:</span>
-        <span>{product.available > 0 ? "In stock" : "Out of stock"}</span>
+        <span>{product.available ? "In stock" : "Out of stock"}</span>
       </p>
       <p className="info">
-        <span>Category:</span> <span>{product.category}</span>
+        <span>Category:</span> <span>{product.category.name}</span>
       </p>
       <p className="info">
         <span>Free shipping:</span>{" "}
@@ -61,7 +76,7 @@ export default function ProductInfo({ product }) {
       <div className="info select-color">
         <span>Select Color:</span>
         <div className="colors">
-          {product.colors.map((color) => (
+          {product.colors.map(({ name: color }) => (
             <button
               className="color"
               key={color}
@@ -81,7 +96,7 @@ export default function ProductInfo({ product }) {
           onChange={(e) => setSelectedSize(e.target.value)}
           value={selectedSize}
         >
-          {product.sizes.map((size) => (
+          {product.sizes.map(({ size }) => (
             <option key={size} value={size}>
               {size}
             </option>
@@ -108,7 +123,7 @@ export default function ProductInfo({ product }) {
             <AiOutlineShoppingCart />
             Add To Cart
           </button>
-          <button className="add-to-wishlist">
+          <button className="add-to-wishlist" onClick={addToWishlist}>
             <AiOutlineHeart />
           </button>
         </div>

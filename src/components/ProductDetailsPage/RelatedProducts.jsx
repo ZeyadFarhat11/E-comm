@@ -40,7 +40,7 @@ const products = [
 function RelatedProducts() {
   return (
     <section className="related-products">
-      <h2>RELATED PRODUCTS</h2>
+      <h2 className="main-title">RELATED PRODUCTS</h2>
       <div className="container products-grid">
         {products.map((product) => (
           <ProductBox {...product} key={product.id} />

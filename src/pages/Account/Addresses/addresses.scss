@@ -7,6 +7,7 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     position: relative;
+    overflow: hidden;
     .body {
       padding: 20px;
       padding-top: 30px;
@@ -63,6 +64,7 @@
     border: 1px dashed #ccc;
     border-radius: 10px;
     height: 187.5px;
+
     svg {
       color: #ccc;
       font-size: 50px;
@@ -71,6 +73,24 @@
     h3 {
       font-weight: 500;
       font-size: 20px;
+    }
+  }
+}
+
+main#add-address {
+  form {
+    width: 520px;
+    margin: 0 auto;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  form {
+    .control.address {
+      grid-column: span 2;
+      width: auto;
     }
   }
 }

@@ -21,8 +21,16 @@ export const AuthProvider = ({ children }) => {
     auth.setUserData(data.token, data.user);
   };
 
+  const getAuthConfig = () => ({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
   return (
-    <AuthContext.Provider value={{ user, setUser, token, setToken, saveUser }}>
+    <AuthContext.Provider
+      value={{ user, setUser, token, setToken, saveUser, getAuthConfig }}
+    >
       {children}
     </AuthContext.Provider>
   );
