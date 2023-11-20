@@ -110,3 +110,31 @@ export const validateAddAddress = (values) => {
   }
   return errors;
 };
+
+export const validateContact = (values) => {
+  const errors = {};
+
+  if (!values.fullName) {
+    errors.fullName = "Required";
+  } else if (values.fullName.trim().length < 6) {
+    errors.fullName = "Full Name is too short";
+  } else if (values.fullName.trim().length > 32) {
+    errors.fullName = "Full Name is too long";
+  }
+
+  if (!values.email) {
+    errors.email = "Required";
+  } else if (!isEmail(values.email)) {
+    errors.email = "Invalid email address";
+  }
+
+  if (!values.message) {
+    errors.message = "Required";
+  } else if (values.message.trim().length < 6) {
+    errors.message = "Message is too short";
+  } else if (values.message.trim().length > 512) {
+    errors.message = "Message is too long";
+  }
+
+  return errors;
+};

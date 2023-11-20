@@ -14,14 +14,16 @@ import useAuthContext from "../../context/AuthContext";
 import http from "../../util/http";
 export default function ProductInfo({ product }) {
   const { getAuthConfig } = useAuthContext();
-  const [selectedColor, setSelectedColor] = useState(product.colors[0].name);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
   const [createReviewActive, setCreateReviewActive] = useState(false);
-  const oldPrice = (145).toFixed(2);
+  const oldPrice = (product.price / ((100 - product.discount) / 100)).toFixed(
+    2
+  );
 
   const increateQuantity = () => {
-    if (quantity >= product.available) return;
+    if (!product.available) return;
     setQuantity((prev) => prev + 1);
   };
   const decreaseQuantity = () => {
@@ -45,14 +47,15 @@ export default function ProductInfo({ product }) {
     <div className="product-info">
       <h3 className="title">{product.title}</h3>
       <div>
-        <Rate value={product.rating} disabled />
-        <p className="reviews">{product.reviewsCount} reviews</p>
+        <Rate value={product.evaluation} disabled />
+        <p className="reviews">{product.reviews.length} reviews</p>
         <button onClick={() => setCreateReviewActive(true)}>
           Submit a review
         </button>
         <CreateReviewModal
           active={createReviewActive}
           closeModal={() => setCreateReviewActive(false)}
+          productId={product.id}
         />
       </div>
       <hr />
@@ -66,7 +69,7 @@ export default function ProductInfo({ product }) {
         <span>{product.available ? "In stock" : "Out of stock"}</span>
       </p>
       <p className="info">
-        <span>Category:</span> <span>{product.category.name}</span>
+        <span>Category:</span> <span>{product.category}</span>
       </p>
       <p className="info">
         <span>Free shipping:</span>{" "}
@@ -76,7 +79,7 @@ export default function ProductInfo({ product }) {
       <div className="info select-color">
         <span>Select Color:</span>
         <div className="colors">
-          {product.colors.map(({ name: color }) => (
+          {product.colors.map((color) => (
             <button
               className="color"
               key={color}
@@ -96,7 +99,7 @@ export default function ProductInfo({ product }) {
           onChange={(e) => setSelectedSize(e.target.value)}
           value={selectedSize}
         >
-          {product.sizes.map(({ size }) => (
+          {product.sizes.map((size) => (
             <option key={size} value={size}>
               {size}
             </option>
@@ -113,7 +116,7 @@ export default function ProductInfo({ product }) {
           <button
             className="increase"
             onClick={increateQuantity}
-            disabled={quantity >= product.available}
+            disabled={!product.available}
           >
             <AiOutlinePlus />
           </button>

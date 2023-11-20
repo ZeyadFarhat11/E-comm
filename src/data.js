@@ -175,8 +175,9 @@ export const addresses = [
     lastName: "Farhat",
     phone: "01091815750",
     email: "zeyad@gmail.com",
-    address1: "Damitta - Snania - 5644",
+    address1: "Damitta - Snania",
     address2: "",
+    zipCode: "794811",
     defaultAddress: true,
   },
   {
@@ -186,6 +187,7 @@ export const addresses = [
     phone: "01089895467",
     email: "mahmoud@gmail.com",
     address1: "Damitta - 3nania - 4564",
+    zipCode: "794811",
     address2: "",
   },
 ];

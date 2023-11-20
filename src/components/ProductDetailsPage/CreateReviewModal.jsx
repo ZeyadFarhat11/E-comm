@@ -3,7 +3,9 @@ import Overlay from "../Overlay/Overlay";
 import { useState } from "react";
 import { Input } from "antd";
 import { Rate, Button, message } from "antd";
-function CreateReviewModal({ active, closeModal }) {
+import http from "../../util/http";
+import useAuthContext from "../../context/AuthContext";
+function CreateReviewModal({ active, closeModal, productId }) {
   const [text, setText] = useState("");
   const [rate, setRate] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -30,9 +32,21 @@ function CreateReviewModal({ active, closeModal }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((res) => setTimeout(res, 1000));
+    try {
+      await http.post(
+        "/store/evaluations/",
+        {
+          content: text,
+          rate,
+          product: productId,
+        },
+        { sendToken: true }
+      );
+      createMessage("success");
+    } catch (err) {
+      createMessage("error");
+    }
     setLoading(false);
-    createMessage("success");
     closeModal();
     resetForm();
   };

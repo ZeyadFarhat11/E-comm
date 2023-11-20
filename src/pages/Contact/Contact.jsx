@@ -1,19 +1,16 @@
 import "./contact.scss";
 import img from "../../assets/img/contact.webp";
-import { Button, message } from "antd";
-import { useState } from "react";
+import { message } from "antd";
+import { Formik } from "formik";
+import contactForm from "../../Formik/contactForm";
+import { validateContact } from "../../util/validators";
 export default function Contact() {
-  const [loading, setLoading] = useState(false);
-  const [fullName, setFullname] = useState("");
-  const [email, setEmail] = useState("");
-  const [messageText, setMessageText] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await new Promise((res) => setTimeout(res, 1000));
     // TODO: Send message request
-    setLoading(false);
+
+    setSubmitting(false);
+    resetForm();
     message.open({
       type: "success",
       content: "Message has been sent",
@@ -35,41 +32,13 @@ export default function Contact() {
               <p>20 Prince Hakerem Lekki Phase 1, Lagos.</p>
             </div>
           </div>
-          <form onSubmit={handleSubmit}>
-            <div className="control">
-              <label htmlFor="name">Fullname</label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Your Name"
-                value={fullName}
-                onChange={(e) => setFullname(e.target.value)}
-              />
-            </div>
-            <div className="control">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                id="email"
-                placeholder="examble@gmail.com"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div className="control">
-              <label htmlFor="message">Message</label>
-              <textarea
-                type="text"
-                id="message"
-                placeholder="Type your message"
-                value={messageText}
-                onChange={(e) => setMessageText(e.target.value)}
-              />
-            </div>
-            <Button htmlType="submit" type="primary" loading={loading}>
-              Submit
-            </Button>
-          </form>
+          <Formik
+            initialValues={{ fullName: "", email: "", message: "" }}
+            onSubmit={handleSubmit}
+            validate={validateContact}
+          >
+            {contactForm}
+          </Formik>
         </div>
       </div>
     </main>

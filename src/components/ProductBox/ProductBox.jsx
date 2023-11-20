@@ -8,7 +8,7 @@ import { Skeleton } from "@chakra-ui/react";
 export default function ProductBox({
   image,
   title,
-  rating,
+  evaluation,
   discount,
   price,
   id,
@@ -19,7 +19,7 @@ export default function ProductBox({
   const animationProps = animated ? { "data-aos": "fade-up" } : {};
   return (
     <div className="product-box" {...animationProps}>
-      <div className="image" style={{ backgroundImage: `url("${image}")` }}>
+      <div className="image" style={{ backgroundImage: `url(${image})` }}>
         <div className="item-hover">
           <button title="add to wishlist">
             <AiOutlineHeart />
@@ -35,7 +35,7 @@ export default function ProductBox({
           {title}
         </Link>
 
-        <Rate value={rating} disabled allowHalf />
+        <Rate value={evaluation} disabled allowHalf />
         <footer>
           <span className="price">${price}</span>
           <del>${oldPrice}</del>
