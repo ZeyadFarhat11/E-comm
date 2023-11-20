@@ -27,10 +27,17 @@ export default function Header() {
   let authBasedContent;
   if (user) {
     authBasedContent = (
-      <Link className="profile" to="/account/profile">
-        <AiOutlineUser />
-        <span>My Profile</span>
-      </Link>
+      <>
+        <Link className="cart" to="/cart">
+          <FiShoppingCart />
+          <span className="items-count">3</span>
+          <span>My Cart</span>
+        </Link>
+        <Link className="profile" to="/account/profile">
+          <AiOutlineUser />
+          <span>My Profile</span>
+        </Link>
+      </>
     );
   } else {
     authBasedContent = (
@@ -55,14 +62,7 @@ export default function Header() {
             <Select options={langOptions} defaultValue={"en"} />
             <Select options={currencyOptions} defaultValue={"usd"} />
           </div>
-          <div className="wrapper right">
-            <Link className="cart" to="/cart">
-              <FiShoppingCart />
-              <span className="items-count">3</span>
-              <span>My Cart</span>
-            </Link>
-            {authBasedContent}
-          </div>
+          <div className="wrapper right">{authBasedContent}</div>
         </div>
       </div>
       <div className="bottom">

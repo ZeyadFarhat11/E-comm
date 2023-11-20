@@ -13,6 +13,11 @@ import http from "../../util/http";
 export default function ProductDetails() {
   const { id } = useParams();
   const { product, loading } = useProductData(id);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <main id="product">
       <Breadcrumb injected>

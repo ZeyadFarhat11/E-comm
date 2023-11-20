@@ -8,7 +8,7 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState();
 
   useEffect(() => {
-    setUser(auth.getUser() || {});
+    setUser(auth.getUser() || null);
   }, []);
 
   useEffect(() => {

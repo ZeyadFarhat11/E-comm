@@ -9,12 +9,14 @@ export default function BestSellerProducts() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [products, setProducts] = useState([]);
 
+  let category = currentTab === "all" ? "" : currentTab;
+
   const loadProducts = async () => {
     try {
       const res = await http.get(
         `/store/product/best_seller/?limit=${products.length ? 4 : 8}&offset=${
           products.length
-        }`
+        }&category=${category}`
       );
       setProducts((prev) => [...prev, ...res.data.results]);
     } catch (err) {
@@ -28,7 +30,10 @@ export default function BestSellerProducts() {
 
   const handleTabChange = async () => {
     try {
-      const res = await http.get(`/store/product/best_seller/?limit=8`);
+      const res = await http.get(
+        `/store/product/best_seller/?limit=8&category=${category}`
+      );
+      console.log(res);
       setProducts(res.data.results);
     } catch (err) {
       console.log(err);
@@ -37,7 +42,11 @@ export default function BestSellerProducts() {
 
   let firstRender = useRef(true);
   useEffect(() => {
-    if (!firstRender.current) handleTabChange();
+    if (firstRender.current) {
+      firstRender.current = false;
+    } else {
+      handleTabChange();
+    }
   }, [currentTab]);
 
   return (
