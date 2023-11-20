@@ -10,23 +10,19 @@ const ChangePassword = () => {
       return message.open({ content: "Passwords didn't match", type: "error" });
     }
     try {
-      try {
-        await http.post(
-          "/change_password/",
-          {
-            old_password: values.currentPassword,
-            new_password: values.newPassword,
-          },
-          { sendToken: true }
-        );
-        setSubmitting(false);
-        message.open({
-          type: "success",
-          content: "The password has been changed",
-        });
-      } catch (err) {
-        console.log(err);
-      }
+      await http.post(
+        "/change_password/",
+        {
+          old_password: values.currentPassword,
+          new_password: values.newPassword,
+        },
+        { sendToken: true }
+      );
+      setSubmitting(false);
+      message.open({
+        type: "success",
+        content: "The password has been changed",
+      });
       resetForm();
     } catch (err) {
       console.log(err);

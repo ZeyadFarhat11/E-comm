@@ -16,10 +16,15 @@ function CreateReviewModal({ active, closeModal, productId }) {
         type: "success",
         content: "Create review success.",
       });
-    } else {
+    } else if (status === "error") {
       message.open({
         type: "error",
         content: "Error creating review! Please try again.",
+      });
+    } else if (status === "empty") {
+      message.open({
+        type: "warning",
+        content: "Review text field must not be empty",
       });
     }
   };
@@ -31,6 +36,11 @@ function CreateReviewModal({ active, closeModal, productId }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (text.trim().length === 0) {
+      return createMessage("empty");
+    }
+
     setLoading(true);
     try {
       await http.post(
