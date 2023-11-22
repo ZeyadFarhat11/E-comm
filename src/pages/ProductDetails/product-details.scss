@@ -257,6 +257,36 @@
         font-size: 15px;
         line-height: 1.7;
       }
+      .review {
+        .wrapper {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding-top: 10px;
+          .username {
+            font-weight: 500;
+            font-size: 18px;
+          }
+
+          li.ant-rate-star {
+            margin-inline-end: 5px;
+            svg {
+              width: 15px;
+              height: 15px;
+            }
+          }
+        }
+        .content {
+          margin: 10px 0;
+        }
+        button {
+          font-size: 15px;
+          padding: 2px 5px;
+          color: #fff;
+          background-color: rgb(209, 0, 0);
+          border-radius: 3px;
+        }
+      }
     }
   }
 

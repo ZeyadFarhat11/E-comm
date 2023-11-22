@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Link, useParams } from "react-router-dom";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
-import "./product-details.scss";
-import { Link, useNavigate, useParams } from "react-router-dom";
-import { products } from "../../data";
+import Placeholder from "../../components/ProductDetailsPage/Placeholder";
 import ProductImagesPreview from "../../components/ProductDetailsPage/ProductImagesPreview";
 import ProductInfo from "../../components/ProductDetailsPage/ProductInfo";
-import Tabs from "../../components/ProductDetailsPage/Tabs";
 import RelatedProducts from "../../components/ProductDetailsPage/RelatedProducts";
-import Placeholder from "../../components/ProductDetailsPage/Placeholder";
-import http from "../../util/http";
+import Tabs from "../../components/ProductDetailsPage/Tabs";
+import useProductDetailsContext from "../../context/ProductDetailsContext";
+import "./product-details.scss";
 
 export default function ProductDetails() {
   const { id } = useParams();
-  const { product, loading } = useProductData(id);
+  // const { product, loading } = useProductData(id);
+  const { product, loading } = useProductDetailsContext();
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -42,27 +42,3 @@ export default function ProductDetails() {
     </main>
   );
 }
-
-const useProductData = (productId) => {
-  const [loading, setLoading] = useState(true);
-  const [product, setProduct] = useState({});
-  const navigate = useNavigate();
-
-  const loadProductData = async () => {
-    try {
-      const res = await http.get(`/store/products/${productId}`);
-      setProduct(res.data);
-      setLoading(false);
-    } catch (err) {
-      console.log(err);
-      navigate("/");
-    }
-  };
-  console.log("Product =>", product);
-
-  useEffect(() => {
-    loadProductData();
-  }, []);
-
-  return { loading, setLoading, product, setProduct, loadProductData };
-};

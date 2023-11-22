@@ -2,12 +2,16 @@ import "./contact.scss";
 import img from "../../assets/img/contact.webp";
 import { message } from "antd";
 import { Formik } from "formik";
-import contactForm from "../../Formik/contactForm";
+import contactForm from "../../formik/contactForm";
 import { validateContact } from "../../util/validators";
+import http from "../../util/http";
 export default function Contact() {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
-    await new Promise((res) => setTimeout(res, 1000));
-    // TODO: Send message request
+    await http.post("/contact/", {
+      full_name: values.fullName,
+      email: values.email,
+      message: values.message,
+    });
 
     setSubmitting(false);
     resetForm();

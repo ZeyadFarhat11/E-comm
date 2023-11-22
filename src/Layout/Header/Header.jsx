@@ -2,27 +2,36 @@ import { Select } from "antd";
 import { useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaBars } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa6";
 import { FiLogIn, FiShoppingCart, FiUserPlus } from "react-icons/fi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import useAuthContext from "../../context/AuthContext";
 import "./header.scss";
+
+const langOptions = [
+  { label: "EN", value: "en" },
+  { label: "AR", value: "ar" },
+];
+
+const currencyOptions = [
+  { label: "USD", value: "usd" },
+  { label: "EUR", value: "eur" },
+  { label: "EGP", value: "egp" },
+];
+
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
-  const { user } = useAuthContext();
+  const [profileDropDownActive, setProfileDropDownActive] = useState(false);
+  const { user, logout } = useAuthContext();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setMenuActive((prev) => !prev);
 
-  const langOptions = [
-    { label: "EN", value: "en" },
-    { label: "AR", value: "ar" },
-  ];
-
-  const currencyOptions = [
-    { label: "USD", value: "usd" },
-    { label: "EUR", value: "eur" },
-    { label: "EGP", value: "egp" },
-  ];
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   let authBasedContent;
   if (user) {
@@ -33,10 +42,33 @@ export default function Header() {
           <span className="items-count">3</span>
           <span>My Cart</span>
         </Link>
-        <Link className="profile" to="/account/profile">
-          <AiOutlineUser />
-          <span>My Profile</span>
-        </Link>
+        <div className="profile">
+          <button
+            onClick={() => {
+              setProfileDropDownActive((p) => !p);
+            }}
+            className="profile"
+            to="/account/profile"
+            style={{ textDecoration: "none" }}
+          >
+            <AiOutlineUser />
+            <span>My Profile</span>
+            <FaAngleDown style={{ fontSize: "14px" }} />
+          </button>
+          <div
+            className="profile-dropdown"
+            data-active={profileDropDownActive}
+            onClick={() => setProfileDropDownActive(false)}
+          >
+            <Link to="/account/profile">Profile</Link>
+            <Link to="/account/orders">Orders</Link>
+            <Link to="/account/addresses">Addresses</Link>
+            <Link to="/account/payment-methods">Payment methods</Link>
+            <button onClick={handleLogout} className="logout">
+              logout
+            </button>
+          </div>
+        </div>
       </>
     );
   } else {
@@ -73,8 +105,9 @@ export default function Header() {
           <nav data-active={menuActive}>
             <NavLink to="/">home</NavLink>
             <NavLink to="/shop">shop</NavLink>
-            <NavLink to="/sneakers">sneakers</NavLink>
-            <NavLink to="/belt">belt</NavLink>
+            <Link to="/shop?category=shoes">shoes</Link>
+            <Link to="/shop?category=belts">belts</Link>
+            <Link to="/shop?category=bags">bags</Link>
             <NavLink to="/contact">contact</NavLink>
           </nav>
           <button className="menu-toggle" onClick={toggleMenu}>

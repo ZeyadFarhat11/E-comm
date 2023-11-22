@@ -2,6 +2,7 @@ import axios from "axios";
 import { userTokenKey, userKey } from "./auth";
 
 const http = axios.create({ baseURL: "http://127.0.0.1:8000/api" });
+window.http = http;
 
 http.interceptors.request.use(
   function (config) {

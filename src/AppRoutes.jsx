@@ -13,6 +13,7 @@ import Addresses from "./pages/Account/Addresses/Addresses";
 import AddAddress from "./pages/Account/Addresses/AddAddress";
 import PaymentMethods from "./pages/Account/PaymentMethods/PaymentMethods";
 import AddPaymentMethod from "./pages/Account/PaymentMethods/AddPaymentMethod";
+import { ProductDetailsProvider } from "./context/ProductDetailsContext";
 
 const AppRoutes = () => {
   return (
@@ -44,7 +45,14 @@ const AppRoutes = () => {
           </ShopProvider>
         }
       />
-      <Route path="/product/:id" element={<ProductDetails />} />
+      <Route
+        path="/product/:id"
+        element={
+          <ProductDetailsProvider>
+            <ProductDetails />
+          </ProductDetailsProvider>
+        }
+      />
       <Route path="/account/profile" element={<Profile />} />
       <Route path="/account/addresses" element={<Addresses />} />
       <Route path="/account/addresses/add" element={<AddAddress />} />

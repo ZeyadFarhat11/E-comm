@@ -4,11 +4,12 @@ import { useState } from "react";
 import { Input } from "antd";
 import { Rate, Button, message } from "antd";
 import http from "../../util/http";
-import useAuthContext from "../../context/AuthContext";
+import useProductDetailsContext from "../../context/ProductDetailsContext";
 function CreateReviewModal({ active, closeModal, productId }) {
   const [text, setText] = useState("");
   const [rate, setRate] = useState(1);
   const [loading, setLoading] = useState(false);
+  const { loadProductData } = useProductDetailsContext();
 
   const createMessage = (status) => {
     if (status === "success") {
@@ -53,6 +54,7 @@ function CreateReviewModal({ active, closeModal, productId }) {
         { sendToken: true }
       );
       createMessage("success");
+      loadProductData();
     } catch (err) {
       createMessage("error");
     }

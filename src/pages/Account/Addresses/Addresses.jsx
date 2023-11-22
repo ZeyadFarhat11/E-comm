@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import "./addresses.scss";
-import "../account.scss";
-import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import { Link } from "react-router-dom";
-import Sidebar from "../../../components/AccountPages/Sidebar";
-import { addresses } from "../../../data";
-import AddressBox from "../../../components/AccountPages/AddressBox";
 import { CiSquarePlus } from "react-icons/ci";
+import { Link } from "react-router-dom";
+import AddressBox from "../../../components/AccountPages/AddressBox";
 import AddressesPlaceholder from "../../../components/AccountPages/AddressesPlaceholder";
+import Sidebar from "../../../components/AccountPages/Sidebar";
+import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+import { addresses } from "../../../data";
+import "../account.scss";
+import "./addresses.scss";
 
 const Addresses = () => {
   const { userAddresses, loading } = useUserAddresses();
@@ -49,7 +49,7 @@ const useUserAddresses = () => {
 
   const loadAddresses = async () => {
     try {
-      await new Promise((res) => setTimeout(res, 1000));
+      await new Promise((res) => setTimeout(res, 300));
       setLoading(false);
       setUserAddresses(addresses);
     } catch (err) {

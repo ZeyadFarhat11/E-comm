@@ -1,0 +1,75 @@
+.payment-methods-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  .payment-method {
+    border: solid 1px #ccc;
+    border-radius: 10px;
+    .body {
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      .img {
+        width: 90px;
+      }
+      .text {
+        h3 {
+          text-transform: capitalize;
+          font-weight: bold;
+          font-size: 25px;
+        }
+        .name {
+          font-weight: 500;
+          margin: 5px 0;
+          text-transform: uppercase;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+          max-width: 200px;
+        }
+        p {
+          color: hwb(0 0% 100% / 0.7) 000;
+          max-width: 150px;
+          font-size: 14px;
+        }
+      }
+    }
+    .cta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 1px solid #ccc;
+      button {
+        padding: 5px;
+        font-size: 15px;
+        font-weight: 500;
+        &:first-child {
+          border-right: 1px solid #ccc;
+        }
+        &:hover {
+          background-color: #ececec;
+        }
+      }
+    }
+  }
+  .add-payment-method {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px dashed #ccc;
+    border-radius: 10px;
+    height: 187.5px;
+
+    svg {
+      color: #ccc;
+      font-size: 50px;
+      //   margin: auto;
+    }
+    h3 {
+      font-weight: 500;
+      font-size: 20px;
+    }
+  }
+}

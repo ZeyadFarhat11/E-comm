@@ -21,15 +21,16 @@ export const AuthProvider = ({ children }) => {
     auth.setUserData(data.token, data.user);
   };
 
-  const getAuthConfig = () => ({
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
+  const logout = () => {
+    localStorage.removeItem(auth.userKey);
+    localStorage.removeItem(auth.userTokenKey);
+    setToken(null);
+    setUser(null);
+  };
 
   return (
     <AuthContext.Provider
-      value={{ user, setUser, token, setToken, saveUser, getAuthConfig }}
+      value={{ user, setUser, token, setToken, saveUser, logout }}
     >
       {children}
     </AuthContext.Provider>

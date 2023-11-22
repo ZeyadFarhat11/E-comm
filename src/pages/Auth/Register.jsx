@@ -2,7 +2,7 @@ import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import "./auth.scss";
 
 import { Formik } from "formik";
-import { registerForm } from "../../Formik/registerForm";
+import { registerForm } from "../../formik/registerForm";
 import http from "../../util/http";
 import { message } from "antd";
 import { useNavigate } from "react-router-dom";

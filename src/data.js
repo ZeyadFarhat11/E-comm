@@ -205,4 +205,10 @@ export const paymentMethods = [
     lastDigits: 4971,
     name: "ZEYAD ROSHDY FARHAT",
   },
+  {
+    id: 3,
+    type: "mastercard",
+    lastDigits: 2998,
+    name: "mahmoud darwish oraby",
+  },
 ];

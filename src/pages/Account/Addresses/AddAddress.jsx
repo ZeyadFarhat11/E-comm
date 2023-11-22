@@ -1,12 +1,12 @@
+import { message } from "antd";
 import { Formik } from "formik";
 import React from "react";
-import addAddressForm from "../../../Formik/addAddressForm";
 import { Link, useNavigate } from "react-router-dom";
-import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+import addAddressForm from "../../../formik/addAddressForm";
 import Sidebar from "../../../components/AccountPages/Sidebar";
-import "./addresses.scss";
+import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import { validateAddAddress } from "../../../util/validators";
-import { message } from "antd";
+import "./addresses.scss";
 
 const AddAddress = () => {
   const navigate = useNavigate();
@@ -15,8 +15,9 @@ const AddAddress = () => {
     try {
       console.log("test");
       setSubmitting(true);
-      await new Promise((res) => setTimeout(res, 1000));
+      await new Promise((res) => setTimeout(res, 300));
       message.open({ type: "success", content: "Address has been added" });
+      navigate("/account/addresses");
     } catch (err) {
       console.log(err);
     }

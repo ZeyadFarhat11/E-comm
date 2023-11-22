@@ -1,12 +1,12 @@
+import { Input } from "antd";
 import React from "react";
-import "./profile.scss";
-import "../account.scss";
+import { Link } from "react-router-dom";
+import ChangePassword from "../../../components/AccountPages/ChangePassword";
 import Sidebar from "../../../components/AccountPages/Sidebar";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import { Link } from "react-router-dom";
 import useAuthContext from "../../../context/AuthContext";
-import { Input } from "antd";
-import ChangePassword from "../../../components/AccountPages/ChangePassword";
+import "../account.scss";
+import "./profile.scss";
 const Profile = () => {
   const { user } = useAuthContext();
   return (
@@ -19,7 +19,7 @@ const Profile = () => {
       <div className="account-page container">
         <Sidebar activeLink={"Profile"} />
         <div className="content">
-          <h2>Profile</h2>
+          <h2>Your Profile</h2>
           <div className="wrapper">
             <div className="control">
               <label htmlFor="username">Username</label>

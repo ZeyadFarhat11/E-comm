@@ -28,7 +28,8 @@
       align-items: center;
       gap: 30px;
 
-      a {
+      a,
+      button {
         display: flex;
         align-items: center;
         gap: 5px;
@@ -61,6 +62,51 @@
           align-items: center;
           justify-content: center;
           line-height: 1;
+        }
+      }
+      .profile {
+        position: relative;
+
+        .profile-dropdown {
+          display: none;
+          position: absolute;
+          top: 50px;
+          right: 0;
+          width: 200px;
+          border-radius: 10px;
+          box-shadow: 0 0 15px #e4e4e4;
+          background-color: #fff;
+          &[data-active="true"] {
+            display: block;
+          }
+          a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            &:hover {
+              background-color: #f3f3f3;
+            }
+          }
+          .logout {
+            $red: rgb(206, 1, 1);
+            display: block;
+            width: fit-content;
+            margin: 20px;
+            padding: 3px 20px;
+            border-radius: 6px;
+            color: $red;
+            background-color: #fff;
+            border: 2px solid $red;
+            text-transform: capitalize;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: 250ms;
+            &:hover {
+              text-decoration: none;
+              background-color: $red;
+              color: #fff;
+            }
+          }
         }
       }
     }

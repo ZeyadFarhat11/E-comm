@@ -6,7 +6,7 @@
     background-color: #f3f3f3;
     padding: 10px;
     &:hover {
-      background-color: #e6e6e6;
+      background-color: #ebebeb;
     }
     &:first-child {
       border-radius: 6px 6px 0 0;
@@ -17,7 +17,7 @@
     &[data-active="true"] {
       font-weight: bold;
       color: $primary;
-      background-color: #dadada;
+      background-color: #e4e4e4;
     }
   }
 }

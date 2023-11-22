@@ -1,15 +1,13 @@
-import React from "react";
-import "./payment-methods.scss";
-import "../account.scss";
-import { useEffect } from "react";
-import { paymentMethods } from "../../../data";
+import React, { useEffect, useState } from "react";
+import { CiSquarePlus } from "react-icons/ci";
+import { Link } from "react-router-dom";
 import PaymentMethodBox from "../../../components/AccountPages/PaymentMethodBox";
 import PaymentMethodsPlaceholder from "../../../components/AccountPages/PaymentMethodsPlaceholder";
-import { Link } from "react-router-dom";
 import Sidebar from "../../../components/AccountPages/Sidebar";
-import { CiSquarePlus } from "react-icons/ci";
-import { useState } from "react";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+import { paymentMethods } from "../../../data";
+import "../account.scss";
+import "./payment-methods.scss";
 
 const PaymentMethods = () => {
   const { loading, userPaymentMethods } = usePaymentMethods();
@@ -52,7 +50,7 @@ const usePaymentMethods = () => {
 
   const loadData = async () => {
     try {
-      await new Promise((res) => setTimeout(res, 1000));
+      await new Promise((res) => setTimeout(res, 500));
       setUserPaymentMethods(paymentMethods);
       setLoading(false);
     } catch (err) {

@@ -3,7 +3,6 @@ import useShopContext from "../../context/ShopContext";
 import ProductBox from "../ProductBox/ProductBox";
 
 const ProductsList = () => {
-  console.log("Products List Render");
   const { previewMode, products, loading } = useShopContext();
   if (previewMode === "grid") {
     return (

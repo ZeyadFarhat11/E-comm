@@ -22,8 +22,11 @@ export const ShopProvider = ({ children }) => {
   useEffect(() => {
     const loadProducts = async () => {
       try {
-        const res = await http.get("/store/products/?limit=12");
-        setProducts(res.data.slice(0, limit));
+        const res = await http.get(
+          `/store/products/?limit=${limit}&offset=${(page - 1) * limit}`
+        );
+        setProducts(res.data.results);
+        setTotalProducts(res.data.count);
 
         // setProducts(productsData);
         setLoading(false);
@@ -32,8 +35,11 @@ export const ShopProvider = ({ children }) => {
       }
     };
     loadProducts();
-  }, []);
-  console.log("Shop Products =>", products);
+  }, [limit, page]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [page]);
 
   return (
     <ShopContext.Provider
