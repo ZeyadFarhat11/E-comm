@@ -31,7 +31,7 @@ export default function ProductDetails() {
         <>
           <div className="container product">
             <ProductImagesPreview product={product} />
-            <ProductInfo product={product} />
+            <ProductInfo />
           </div>
           <div className="container">
             <Tabs product={product} />

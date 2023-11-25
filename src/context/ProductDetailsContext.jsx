@@ -1,17 +1,22 @@
 import React, { useContext, useEffect, useState } from "react";
 import http from "../util/http";
 import { useParams } from "react-router-dom";
+import useAuthContext from "./AuthContext";
+import { getToken } from "../util/auth";
 
 const ProductDetails = React.createContext();
 
 export const ProductDetailsProvider = ({ children }) => {
+  const { token } = useAuthContext();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
   const loadProductData = async () => {
     try {
-      const res = await http.get(`/store/products/${id}`);
+      const res = await http.get(`/store/products/${id}`, {
+        sendToken: !!getToken(),
+      });
       setProduct(res.data);
       setLoading(false);
     } catch (err) {

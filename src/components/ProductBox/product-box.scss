@@ -109,3 +109,137 @@
     }
   }
 }
+
+.product-landscape {
+  display: grid;
+  align-items: center;
+  grid-template-columns: 250px 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid #dfdfdf;
+  .image {
+    position: relative;
+    img {
+      border-radius: 10px;
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    .label {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: $danger;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 400;
+      border-radius: 3px;
+      padding: 2px 12px;
+      z-index: 5;
+    }
+  }
+  .title {
+    display: block;
+    color: #22262a;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 150%;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .title + div {
+    margin-top: 10px;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+
+    > .ant-rate {
+      li {
+        margin-inline-end: 5px;
+      }
+      svg {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    p.reviews {
+      color: #c1c8ce;
+      white-space: nowrap;
+    }
+    > button {
+      color: $primary;
+      background-color: transparent;
+      border: none;
+      outline: transparent;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
+  hr {
+    border: none;
+    height: 1px;
+    background-color: #dfdfdf;
+    margin: 10px 0;
+  }
+  .price-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .price {
+      font-weight: bold;
+      font-size: 20px;
+      color: $primary;
+    }
+    del {
+      color: $old-price-color;
+      text-decoration: line-through;
+    }
+    .discount {
+      color: $discount-color;
+      font-weight: bold;
+    }
+  }
+  .description {
+    font-size: 15px;
+    margin: 15px 0;
+  }
+  .cta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    button {
+      color: #33a0ff;
+      background-color: rgba(51, 160, 255, 0.1);
+      border: none;
+      outline: transparent;
+      border-radius: 6px;
+      padding: 10px;
+      transition: 400ms;
+      cursor: pointer;
+      &:hover,
+      &[data-active="true"] {
+        background-color: rgba(51, 160, 255, 1);
+        color: #fff;
+      }
+      &.add-to-cart {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        svg {
+          font-size: 25px;
+        }
+      }
+      &.add-to-wishlist {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+      }
+    }
+  }
+}

@@ -4,20 +4,21 @@ import {
   AiOutlineMinus,
   AiOutlinePlus,
   AiOutlineShoppingCart,
-  AiOutlineHeart,
 } from "react-icons/ai";
 import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import { transparentize } from "polished";
-import { Rate, message } from "antd";
-import CreateReviewModal from "./CreateReviewModal";
-import useAuthContext from "../../context/AuthContext";
-import http from "../../util/http";
-export default function ProductInfo({ product }) {
-  const { getAuthConfig } = useAuthContext();
+import { Rate } from "antd";
+import CreateReviewModal from "../CreateReviewModal/CreateReviewModal.jsx";
+
+import WishlistButton from "./WishlistButton";
+import useProductDetailsContext from "../../context/ProductDetailsContext";
+export default function ProductInfo() {
+  const { setProduct, product } = useProductDetailsContext();
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
   const [createReviewActive, setCreateReviewActive] = useState(false);
+
   const oldPrice = (product.price / ((100 - product.discount) / 100)).toFixed(
     2
   );
@@ -29,18 +30,6 @@ export default function ProductInfo({ product }) {
   const decreaseQuantity = () => {
     if (quantity <= 1) return;
     setQuantity((prev) => prev - 1);
-  };
-
-  const addToWishlist = async () => {
-    try {
-      await http.post(
-        "/store/wishlists/",
-        { product: product.id },
-        getAuthConfig()
-      );
-    } catch (err) {
-      message.open({ type: "error", content: "Error happened" });
-    }
   };
 
   return (
@@ -126,9 +115,7 @@ export default function ProductInfo({ product }) {
             <AiOutlineShoppingCart />
             Add To Cart
           </button>
-          <button className="add-to-wishlist" onClick={addToWishlist}>
-            <AiOutlineHeart />
-          </button>
+          <WishlistButton setProduct={setProduct} product={product} />
         </div>
       </div>
       <hr />

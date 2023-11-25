@@ -5,11 +5,12 @@ import { Input } from "antd";
 import { Rate, Button, message } from "antd";
 import http from "../../util/http";
 import useProductDetailsContext from "../../context/ProductDetailsContext";
-function CreateReviewModal({ active, closeModal, productId }) {
+import "./create-review-modal.scss";
+function CreateReviewModal({ active, closeModal, productId, loadData }) {
   const [text, setText] = useState("");
   const [rate, setRate] = useState(1);
   const [loading, setLoading] = useState(false);
-  const { loadProductData } = useProductDetailsContext();
+  const { loadProductData } = useProductDetailsContext() || {};
 
   const createMessage = (status) => {
     if (status === "success") {
@@ -54,7 +55,11 @@ function CreateReviewModal({ active, closeModal, productId }) {
         { sendToken: true }
       );
       createMessage("success");
-      loadProductData();
+      if (loadProductData) {
+        loadProductData();
+      } else {
+        loadData();
+      }
     } catch (err) {
       createMessage("error");
     }

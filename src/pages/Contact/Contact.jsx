@@ -1,10 +1,10 @@
-import "./contact.scss";
-import img from "../../assets/img/contact.webp";
 import { message } from "antd";
 import { Formik } from "formik";
+import img from "../../assets/img/contact.webp";
 import contactForm from "../../formik/contactForm";
-import { validateContact } from "../../util/validators";
 import http from "../../util/http";
+import { validateContact } from "../../util/validators";
+import "./contact.scss";
 export default function Contact() {
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await http.post("/contact/", {

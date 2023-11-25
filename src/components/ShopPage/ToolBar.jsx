@@ -3,15 +3,10 @@ import useShopContext from "../../context/ShopContext";
 import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { Select } from "antd";
 const ToolBar = () => {
-  const {
-    sortBy,
-    setSortBy,
-    limit,
-    setLimit,
-    previewMode,
-    setPreviewMode,
-    totalProducts,
-  } = useShopContext();
+  const { setSortBy, setLimit, previewMode, setPreviewMode, totalProducts } =
+    useShopContext();
+
+  console.log({ previewMode, setPreviewMode });
 
   const sortOptions = [
     { label: "Name", value: "name" },

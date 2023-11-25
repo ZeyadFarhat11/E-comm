@@ -47,12 +47,17 @@
     padding-top: 30px;
     padding-bottom: 30px;
     .wrapper {
-      button {
+      button,
+      a {
         display: block;
         background-color: transparent;
         border: none;
         padding: 4px 0;
         cursor: pointer;
+        text-transform: capitalize;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

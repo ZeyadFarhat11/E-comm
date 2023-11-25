@@ -16,6 +16,14 @@ main#home {
       letter-spacing: 1px;
       max-width: 600px;
       line-height: 1.5;
+      font-weight: bold;
+      span {
+        background: #fff;
+        color: transparent;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -webkit-background-clip: text;
+      }
     }
   }
   .floating-products {

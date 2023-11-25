@@ -58,10 +58,10 @@ export default function Footer() {
         </div>
         <div className="wrapper">
           <h3>My Account</h3>
-          <button>About Us</button>
-          <button>Infomation</button>
-          <button>Privacy Policy</button>
-          <button>Terms & Conditions</button>
+          <Link to="/account/profile">profile</Link>
+          <Link to="/account/orders">orders</Link>
+          <Link to="/account/payment-methods">payment methods</Link>
+          <Link to="/account/addresses">addresses</Link>
         </div>
         <div className="wrapper">
           <h3>Our Offers</h3>
