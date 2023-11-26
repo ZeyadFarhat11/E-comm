@@ -7,7 +7,6 @@
     margin-bottom: 20px;
     .title {
       text-transform: uppercase;
-      // letter-spacing: 1px;
       font-size: 18px;
       font-weight: 500;
       color: #22262a;
@@ -22,6 +21,7 @@
       justify-content: space-between;
       padding: 2px 0;
       cursor: pointer;
+      user-select: none;
       &[data-active="true"] {
         color: $primary;
         .number {
@@ -30,8 +30,6 @@
       }
       &:not([data-active="true"]) {
         cursor: pointer;
-      }
-      .label {
       }
       .number {
         color: rgba(33, 37, 41, 0.35);

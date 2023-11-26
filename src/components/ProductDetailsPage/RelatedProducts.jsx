@@ -1,49 +1,30 @@
-import React from "react";
-import img from "../../assets/img/featured-product.png";
+import React, { useEffect } from "react";
 import ProductBox from "../ProductBox/ProductBox";
-
-const products = [
-  {
-    id: 1,
-    title: "Blue Swade Nike Sneakers",
-    rating: 4,
-    price: 499,
-    discount: 20,
-    img,
-  },
-  {
-    id: 2,
-    title: "Blue Swade Nike Sneakers",
-    rating: 4,
-    price: 499,
-    discount: 20,
-    img,
-  },
-  {
-    id: 3,
-    title: "Blue Swade Nike Sneakers",
-    rating: 4,
-    price: 499,
-    discount: 20,
-    img,
-  },
-  {
-    id: 4,
-    title: "Blue Swade Nike Sneakers",
-    rating: 4,
-    price: 499,
-    discount: 20,
-    img,
-  },
-];
+import useProductDetailsContext from "../../context/ProductDetailsContext";
+import { useState } from "react";
 
 function RelatedProducts() {
+  const { product } = useProductDetailsContext();
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    http
+      .get(`/store/products/?category=${product?.category}&limit=5`)
+      .then((res) => {
+        const products = res.data.results;
+        setProducts(products.filter((p) => p.id !== product.id).slice(0, 4));
+      })
+      .catch(console.log);
+  }, []);
+
+  console.log(product);
+
   return (
     <section className="related-products">
       <h2 className="main-title">RELATED PRODUCTS</h2>
       <div className="container products-grid">
         {products.map((product) => (
-          <ProductBox {...product} key={product.id} />
+          <ProductBox {...product} key={product.id} animated />
         ))}
       </div>
     </section>

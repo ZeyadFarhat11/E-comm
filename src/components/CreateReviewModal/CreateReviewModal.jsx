@@ -28,6 +28,11 @@ function CreateReviewModal({ active, closeModal, productId, loadData }) {
         type: "warning",
         content: "Review text field must not be empty",
       });
+    } else if (status === "wasCreated") {
+      message.open({
+        type: "error",
+        content: "You have already reviewed this product",
+      });
     }
   };
 
@@ -61,11 +66,16 @@ function CreateReviewModal({ active, closeModal, productId, loadData }) {
         loadData();
       }
     } catch (err) {
-      createMessage("error");
+      if (err.response?.data?.at(0)?.startsWith("You have")) {
+        createMessage("wasCreated");
+      } else {
+        createMessage("error");
+      }
+    } finally {
+      setLoading(false);
+      closeModal();
+      resetForm();
     }
-    setLoading(false);
-    closeModal();
-    resetForm();
   };
 
   if (!active) return;

@@ -7,7 +7,6 @@ import { getToken } from "../util/auth";
 const ProductDetails = React.createContext();
 
 export const ProductDetailsProvider = ({ children }) => {
-  const { token } = useAuthContext();
   const [loading, setLoading] = useState(true);
   const [product, setProduct] = useState({});
   const { id } = useParams();
@@ -27,7 +26,8 @@ export const ProductDetailsProvider = ({ children }) => {
 
   useEffect(() => {
     loadProductData();
-  }, []);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [id]);
 
   return (
     <ProductDetails.Provider

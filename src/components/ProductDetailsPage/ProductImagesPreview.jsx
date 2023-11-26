@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Image from "rc-image";
+import { useEffect } from "react";
 
 export default function ProductImagesPreview({ product }) {
   const [activeImage, setActiveImage] = useState(product.image);
+
+  useEffect(() => {
+    setActiveImage(product.image);
+  }, [product]);
 
   return (
     <div className="images-preview">

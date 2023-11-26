@@ -12,8 +12,10 @@ import CreateReviewModal from "../CreateReviewModal/CreateReviewModal.jsx";
 
 import WishlistButton from "./WishlistButton";
 import useProductDetailsContext from "../../context/ProductDetailsContext";
+import useAuthContext from "../../context/AuthContext.jsx";
 export default function ProductInfo() {
   const { setProduct, product } = useProductDetailsContext();
+  const { user } = useAuthContext();
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [quantity, setQuantity] = useState(1);
@@ -32,15 +34,21 @@ export default function ProductInfo() {
     setQuantity((prev) => prev - 1);
   };
 
+  const hasReviewedBefore = !!product.reviews.find(
+    (review) => review.customer == user?.username
+  );
+
   return (
     <div className="product-info">
       <h3 className="title">{product.title}</h3>
       <div>
         <Rate value={product.evaluation} disabled />
         <p className="reviews">{product.reviews.length} reviews</p>
-        <button onClick={() => setCreateReviewActive(true)}>
-          Submit a review
-        </button>
+        {!hasReviewedBefore && (
+          <button onClick={() => setCreateReviewActive(true)}>
+            Submit a review
+          </button>
+        )}
         <CreateReviewModal
           active={createReviewActive}
           closeModal={() => setCreateReviewActive(false)}
