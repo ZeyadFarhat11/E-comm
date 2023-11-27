@@ -1,13 +1,13 @@
 import React from "react";
 import http from "../../util/http";
 import { message } from "antd";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 
 const WishlistButton = ({ product, loadData, setProduct }) => {
   const addToWishlist = async () => {
     try {
       await http.post(
-        "/store/wishlists/",
+        "/wishlist/item/",
         { product: product.id },
         { sendToken: true }
       );
@@ -25,14 +25,31 @@ const WishlistButton = ({ product, loadData, setProduct }) => {
       message.open({ type: "error", content: "Error happened" });
     }
   };
+  const removeFromWishlist = async () => {
+    try {
+      await http.delete(`/wishlist/item/${product.id}`, { sendToken: true });
+      message.open({
+        type: "success",
+        content: `${product.title} has been removed from wishlist`,
+      });
+
+      if (setProduct) {
+        setProduct((prev) => ({ ...prev, is_in_wishlist: false }));
+      } else {
+        loadData();
+      }
+    } catch (err) {
+      message.open({ type: "error", content: "Error happened" });
+    }
+  };
 
   return (
     <button
       className="add-to-wishlist"
       data-active={product.is_in_wishlist}
-      onClick={addToWishlist}
+      onClick={product.is_in_wishlist ? removeFromWishlist : addToWishlist}
     >
-      <AiOutlineHeart />
+      {product.is_in_wishlist ? <AiFillHeart /> : <AiOutlineHeart />}
     </button>
   );
 };

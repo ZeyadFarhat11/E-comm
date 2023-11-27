@@ -6,6 +6,7 @@ import CreateReviewModal from "../CreateReviewModal/CreateReviewModal.jsx";
 import WishlistButton from "../ProductDetailsPage/WishlistButton";
 import "./product-box.scss";
 import { Link } from "react-router-dom";
+import CartButton from "../ProductDetailsPage/CartButton.jsx";
 
 const LandscapeProductBox = ({
   label,
@@ -59,10 +60,7 @@ const LandscapeProductBox = ({
             : description}
         </p>
         <div className="cta">
-          <button className="add-to-cart">
-            <AiOutlineShoppingCart />
-            Add To Cart
-          </button>
+          <CartButton productId={id} loadData={loadProducts} />
           <WishlistButton
             product={{ title, id, is_in_wishlist }}
             loadData={loadProducts}

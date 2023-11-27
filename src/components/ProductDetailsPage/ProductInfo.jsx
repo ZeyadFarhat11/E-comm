@@ -1,18 +1,15 @@
 import { useState } from "react";
 
-import {
-  AiOutlineMinus,
-  AiOutlinePlus,
-  AiOutlineShoppingCart,
-} from "react-icons/ai";
-import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
-import { transparentize } from "polished";
 import { Rate } from "antd";
+import { transparentize } from "polished";
+import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
+import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import CreateReviewModal from "../CreateReviewModal/CreateReviewModal.jsx";
 
-import WishlistButton from "./WishlistButton";
-import useProductDetailsContext from "../../context/ProductDetailsContext";
 import useAuthContext from "../../context/AuthContext.jsx";
+import useProductDetailsContext from "../../context/ProductDetailsContext";
+import CartButton from "./CartButton.jsx";
+import WishlistButton from "./WishlistButton";
 export default function ProductInfo() {
   const { setProduct, product } = useProductDetailsContext();
   const { user } = useAuthContext();
@@ -119,10 +116,7 @@ export default function ProductInfo() {
           </button>
         </div>
         <div className="wrapper">
-          <button className="add-to-cart">
-            <AiOutlineShoppingCart />
-            Add To Cart
-          </button>
+          <CartButton />
           <WishlistButton setProduct={setProduct} product={product} />
         </div>
       </div>

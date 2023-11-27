@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import useAuthContext from "../../context/AuthContext";
 import useProductDetailsContext from "../../context/ProductDetailsContext";
 import http from "../../util/http";
+import { FaTrash } from "react-icons/fa6";
 const UserReview = ({ id, rating, customer, comment }) => {
   const { user } = useAuthContext();
   const [loading, setLoading] = useState(false);
@@ -34,9 +35,9 @@ const UserReview = ({ id, rating, customer, comment }) => {
       </div>
       <p className="content">{comment}</p>
       {customer === user.username && (
-        <Button loading={loading} onClick={deleteReview}>
-          delete
-        </Button>
+        <button className="delete" onClick={deleteReview}>
+          <FaTrash /> delete
+        </button>
       )}
       <hr />
     </div>

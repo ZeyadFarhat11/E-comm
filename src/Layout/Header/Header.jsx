@@ -105,9 +105,9 @@ export default function Header() {
           <nav data-active={menuActive}>
             <NavLink to="/">home</NavLink>
             <NavLink to="/shop">shop</NavLink>
-            <Link to="/shop?category=shoes">shoes</Link>
-            <Link to="/shop?category=belts">belts</Link>
-            <Link to="/shop?category=bags">bags</Link>
+            <Link to="/shop?category=Shoes">shoes</Link>
+            <Link to="/shop?category=Belts">belts</Link>
+            <Link to="/shop?category=Bags">bags</Link>
             <NavLink to="/contact">contact</NavLink>
           </nav>
           <button className="menu-toggle" onClick={toggleMenu}>
