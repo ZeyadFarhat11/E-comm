@@ -2,14 +2,14 @@ import React from "react";
 import useShopContext from "../../context/ShopContext";
 import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { Select } from "antd";
+import { useSearchParams } from "react-router-dom";
 const ToolBar = () => {
-  const { setSortBy, setLimit, previewMode, setPreviewMode, totalProducts } =
+  const { previewMode, setPreviewMode, totalProducts, loadProducts } =
     useShopContext();
-
-  console.log({ previewMode, setPreviewMode });
+  const [searchParams, setSearchParams] = useSearchParams();
 
   const sortOptions = [
-    { label: "Name", value: "name" },
+    { label: "Name", value: "title" },
     { label: "Rating", value: "rating" },
     { label: "Price", value: "price" },
   ];
@@ -28,9 +28,12 @@ const ToolBar = () => {
         <div>
           Sort By
           <Select
-            defaultValue={"name"}
+            defaultValue={searchParams.get("sort_by")?.slice(1) || "rating"}
             options={sortOptions}
-            onChange={(val) => setSortBy(val)}
+            onChange={(val) => {
+              searchParams.set("sort", val);
+              setSearchParams(searchParams);
+            }}
           />
         </div>
         <div>
@@ -38,7 +41,11 @@ const ToolBar = () => {
           <Select
             defaultValue={"12"}
             options={limitOptions}
-            onChange={(val) => setLimit(val)}
+            onChange={(val) => {
+              searchParams.set("limit", val);
+              searchParams.set("page", 1);
+              setSearchParams(searchParams);
+            }}
           />
         </div>
       </div>

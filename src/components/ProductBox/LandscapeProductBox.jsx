@@ -38,9 +38,11 @@ const LandscapeProductBox = ({
         <div>
           <Rate value={evaluation} disabled />
           <p className="reviews">{reviewsCount} reviews</p>
-          <button onClick={() => setIsCreatingReview(true)}>
-            Submit a review
-          </button>
+          {!is_in_wishlist && (
+            <button onClick={() => setIsCreatingReview(true)}>
+              Submit a review
+            </button>
+          )}
           <CreateReviewModal
             active={isCreatingReview}
             closeModal={() => setIsCreatingReview(false)}

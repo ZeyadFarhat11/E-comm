@@ -1,29 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
 import http from "../util/http";
+import useShopUrl from "../hooks/useShopUrl";
+import { useSearchParams } from "react-router-dom";
 
 const ShopContext = React.createContext();
 
+const defaults = {
+  limit: 12,
+  page: 1,
+  sort: "rating",
+};
+
 export const ShopProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
-  const [sortBy, setSortBy] = useState("Name");
-  const [limit, setLimit] = useState(12);
   const [previewMode, setPreviewMode] = useState("grid");
   const [totalProducts, setTotalProducts] = useState(120);
   const [priceFilterRange, setPriceFilterRange] = useState([0, 10000]);
-
   const [filterData, setFilterData] = useState({});
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const getShopUrl = useShopUrl(defaults);
+
+  useEffect(() => {
+    getShopUrl();
+  });
 
   const loadProducts = async () => {
     try {
-      const res = await http.get(
-        `/store/products/?limit=${limit}&offset=${(page - 1) * limit}`
-      );
+      const res = await http.get(getShopUrl(), { sendToken: true });
       setProducts(res.data.results);
       setTotalProducts(res.data.count);
-
-      // setProducts(productsData);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -31,7 +38,7 @@ export const ShopProvider = ({ children }) => {
   };
   useEffect(() => {
     loadProducts();
-  }, [limit, page]);
+  }, [searchParams]);
 
   const loadFilterData = async () => {
     try {
@@ -52,21 +59,15 @@ export const ShopProvider = ({ children }) => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-  }, [page]);
+  }, [searchParams.get("page")]);
 
   return (
     <ShopContext.Provider
       value={{
         products,
         setProducts,
-        page,
-        setPage,
         loading,
         setLoading,
-        sortBy,
-        setSortBy,
-        limit,
-        setLimit,
         previewMode,
         setPreviewMode,
         totalProducts,
@@ -76,6 +77,7 @@ export const ShopProvider = ({ children }) => {
         filterData,
         setFilterData,
         loadProducts,
+        defaults,
       }}
     >
       {children}
