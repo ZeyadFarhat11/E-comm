@@ -1,4 +1,3 @@
-import React from "react";
 import { useSearchParams } from "react-router-dom";
 import http from "../util/http";
 
@@ -21,6 +20,9 @@ const useShopUrl = (defaults) => {
     const colors = searchParams.getAll("color");
     colors.forEach((color) => url.searchParams.append("color", color));
 
+    const sizes = searchParams.getAll("size");
+    sizes.forEach((size) => url.searchParams.append("size", size));
+
     url.searchParams.set(
       "sort_by",
       "-" + (searchParams.get("sort") || defaults.sort)
@@ -29,7 +31,6 @@ const useShopUrl = (defaults) => {
     url.searchParams.set("limit", limit);
     url.searchParams.set("offset", (page - 1) * limit);
 
-    console.log("URL =>", url.toString());
     return url.toString();
   };
 

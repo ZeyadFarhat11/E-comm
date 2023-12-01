@@ -1,4 +1,6 @@
 import { useState } from "react";
+import http from "../../util/http";
+import { Button, message } from "antd";
 
 export default function CouponInput() {
   const [coupon, setCoupon] = useState("");
@@ -8,11 +10,35 @@ export default function CouponInput() {
     e.preventDefault();
     if (loading) return;
 
+    if (coupon.length < 4) {
+      return message.open({
+        type: "error",
+        content: "Coupon is not valid",
+      });
+    }
+
     try {
       setLoading(true);
-      // TODO: Send coupon request
+
+      const res = await http.post(
+        "/coupon/apply_coupon/",
+        { coupon_code: coupon },
+        { sendToken: true }
+      );
+
+      message.open({
+        type: res.status === 200 ? "success" : "error",
+        content: res.data.message,
+      });
     } catch (err) {
+      message.open({
+        type: "error",
+        content: "Coupon is not valid",
+      });
       console.log(err);
+    } finally {
+      setCoupon("");
+      setLoading(false);
     }
   };
 
@@ -24,9 +50,9 @@ export default function CouponInput() {
         value={coupon}
         onChange={(e) => setCoupon(e.target.value)}
       />
-      <button type="submit" disabled={loading}>
+      <Button loading={loading} htmlType="submit">
         Redeem
-      </button>
+      </Button>
     </form>
   );
 }

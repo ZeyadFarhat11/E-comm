@@ -46,7 +46,6 @@ export const ShopProvider = ({ children }) => {
       setFilterData({
         ...res.data,
         colors: res.data.colors.map((color) => color.name),
-        sizes: res.data.sizes.map((size) => size.size),
       });
     } catch (err) {
       console.log("Load Filter Data Failed", err);

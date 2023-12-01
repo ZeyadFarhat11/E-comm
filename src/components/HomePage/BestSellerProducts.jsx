@@ -4,7 +4,7 @@ import ProductBox from "../ProductBox/ProductBox";
 import http from "../../util/http";
 import { useEffect } from "react";
 import { useRef } from "react";
-const tabs = ["all", "bags", "shoes", "belts"];
+const tabs = ["all", "Bags", "Shoes", "Belts"];
 export default function BestSellerProducts() {
   const [currentTab, setCurrentTab] = useState(tabs[0]);
   const [products, setProducts] = useState([]);

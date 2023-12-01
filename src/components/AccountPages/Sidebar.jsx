@@ -5,7 +5,6 @@ const links = [
   { text: "Profile", path: "/account/profile" },
   { text: "Orders", path: "/account/orders" },
   { text: "Addresses", path: "/account/addresses" },
-  { text: "Payment Methods", path: "/account/payment-methods" },
 ];
 
 function Sidebar({ activeLink }) {

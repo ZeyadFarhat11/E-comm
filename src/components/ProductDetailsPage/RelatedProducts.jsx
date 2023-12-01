@@ -17,8 +17,6 @@ function RelatedProducts() {
       .catch(console.log);
   }, []);
 
-  console.log(product);
-
   return (
     <section className="related-products">
       <h2 className="main-title">RELATED PRODUCTS</h2>

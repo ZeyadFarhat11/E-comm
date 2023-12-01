@@ -4,6 +4,7 @@ import PriceFilter from "./PriceFilter";
 import ColorFilter from "./ColorFilter";
 import CategoriesFilter from "./CategoriesFilter";
 import "./filters.scss";
+import SizeFilter from "./SizeFilter";
 
 const ShopFilters = () => {
   return (
@@ -12,6 +13,7 @@ const ShopFilters = () => {
       <BrandFilter />
       <PriceFilter />
       <ColorFilter />
+      <SizeFilter />
     </div>
   );
 };
