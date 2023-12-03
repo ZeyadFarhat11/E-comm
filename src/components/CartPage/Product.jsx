@@ -1,13 +1,39 @@
-import {
-  AiOutlineCloseCircle,
-  AiOutlineMinus,
-  AiOutlinePlus,
-} from "react-icons/ai";
+import { message } from "antd";
 import Image from "rc-image";
 import "rc-image/assets/index.css";
-export default function Product({ id, title, quantity, price, img }) {
-  const deleteProduct = () => {
-    // TODO: DELETE PRODUCT
+import { useState } from "react";
+import { AiOutlineCloseCircle } from "react-icons/ai";
+import { Link } from "react-router-dom";
+import useCartContext from "../../context/CartContext";
+import http from "../../util/http";
+import QuantityController from "./QuantityController";
+export default function Product({
+  id: itemId,
+  total_price: totalPrice,
+  quantity,
+  product: { price, image, title, id: productId },
+}) {
+  const { setCartItems } = useCartContext();
+  const [loading, setLoading] = useState();
+  const deleteProduct = async () => {
+    if (loading) return;
+    setLoading(true);
+    try {
+      await http.delete(`/cart/cart_item/${itemId}`);
+      message.open({
+        type: "success",
+        content: `Removed ${title} from cart.`,
+      });
+      setCartItems((prevItems) =>
+        prevItems.filter((item) => item.id !== itemId)
+      );
+    } catch (err) {
+      console.log(err);
+      message.open({
+        type: "error",
+        content: `Error removing ${title} from cart.`,
+      });
+    }
   };
   return (
     <tr className="product">
@@ -15,22 +41,20 @@ export default function Product({ id, title, quantity, price, img }) {
         <button className="delete" onClick={deleteProduct}>
           <AiOutlineCloseCircle />
         </button>
-        <Image src={img} alt={title} preview={{ toolbarRender: () => null }} />
-        <h4>{title}</h4>
+        <Image
+          src={image}
+          alt={title}
+          preview={{ toolbarRender: () => null }}
+        />
+        <Link to={`/product/${productId}`} className="title">
+          {title}
+        </Link>
       </td>
-      <td>${(price * quantity).toFixed(2)}</td>
+      <td>${Number(totalPrice).toFixed(2)}</td>
       <td>
-        <div className="qty-control">
-          <button className="decrease">
-            <AiOutlineMinus />
-          </button>
-          <span className="qty">{quantity}</span>
-          <button className="increase">
-            <AiOutlinePlus />
-          </button>
-        </div>
+        <QuantityController quantity={quantity} itemId={itemId} />
       </td>
-      <td>${price.toFixed(2)}</td>
+      <td>${Number(price).toFixed(2)}</td>
     </tr>
   );
 }

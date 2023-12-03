@@ -27,14 +27,18 @@ const UserReview = ({ id, rating, customer, comment }) => {
       setLoading(false);
     }
   };
+  const isMine = customer === user.username;
   return (
     <div className="review">
       <div className="wrapper">
-        <h4 className="username">{customer}</h4>
+        <h4 className="username">
+          {customer}
+          {isMine && " (You)"}
+        </h4>
         <Rate value={rating} disabled />
       </div>
       <p className="content">{comment}</p>
-      {customer === user.username && (
+      {isMine && (
         <button className="delete" onClick={deleteReview}>
           <FaTrash /> delete
         </button>

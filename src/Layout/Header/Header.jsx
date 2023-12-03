@@ -8,6 +8,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import useAuthContext from "../../context/AuthContext";
 import "./header.scss";
+import useCartContext from "../../context/CartContext";
 
 const langOptions = [
   { label: "EN", value: "en" },
@@ -24,6 +25,7 @@ export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const [profileDropDownActive, setProfileDropDownActive] = useState(false);
   const { user, logout } = useAuthContext();
+  const { cartItems } = useCartContext();
   const navigate = useNavigate();
 
   const toggleMenu = () => setMenuActive((prev) => !prev);
@@ -39,7 +41,9 @@ export default function Header() {
       <>
         <Link className="cart" to="/cart">
           <FiShoppingCart />
-          <span className="items-count">3</span>
+          {!!cartItems && (
+            <span className="items-count">{cartItems?.length}</span>
+          )}
           <span>My Cart</span>
         </Link>
         <div className="profile">

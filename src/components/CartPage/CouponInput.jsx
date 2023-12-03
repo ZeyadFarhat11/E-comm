@@ -1,10 +1,12 @@
 import { useState } from "react";
 import http from "../../util/http";
 import { Button, message } from "antd";
+import useCartContext from "../../context/CartContext";
 
 export default function CouponInput() {
   const [coupon, setCoupon] = useState("");
   const [loading, setLoading] = useState(false);
+  const { loadCart } = useCartContext();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +32,8 @@ export default function CouponInput() {
         type: res.status === 200 ? "success" : "error",
         content: res.data.message,
       });
+
+      loadCart();
     } catch (err) {
       message.open({
         type: "error",

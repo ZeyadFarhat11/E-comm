@@ -11,9 +11,9 @@ const ShopFilters = () => {
     <div className="filters">
       <CategoriesFilter />
       <BrandFilter />
+      <SizeFilter />
       <PriceFilter />
       <ColorFilter />
-      <SizeFilter />
     </div>
   );
 };

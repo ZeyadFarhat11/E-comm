@@ -1,7 +1,9 @@
+import useCartContext from "../../context/CartContext";
 import Product from "./Product";
 import ProductPlaceholder from "./ProductPlaceholder";
 
-export default function ProductsTable({ products, loading }) {
+export default function ProductsTable() {
+  const { cartItems, loading } = useCartContext();
   return (
     <table className="cart-products">
       <thead>
@@ -17,7 +19,7 @@ export default function ProductsTable({ products, loading }) {
           ? Array(3)
               .fill(0)
               .map((p, i) => <ProductPlaceholder key={i} />)
-          : products.map((product) => (
+          : cartItems?.map((product) => (
               <Product key={product.id} {...product} />
             ))}
       </tbody>

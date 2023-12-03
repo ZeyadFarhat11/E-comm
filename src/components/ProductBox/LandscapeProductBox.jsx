@@ -19,6 +19,7 @@ const LandscapeProductBox = ({
   image,
   evaluation,
   is_in_wishlist,
+  is_in_cart,
 }) => {
   const [isCreatingReview, setIsCreatingReview] = useState(false);
   const { loadProducts } = useShopContext();
@@ -62,7 +63,10 @@ const LandscapeProductBox = ({
             : description}
         </p>
         <div className="cta">
-          <CartButton productId={id} loadData={loadProducts} />
+          <CartButton
+            product={{ id, title, is_in_cart }}
+            loadData={loadProducts}
+          />
           <WishlistButton
             product={{ title, id, is_in_wishlist }}
             loadData={loadProducts}

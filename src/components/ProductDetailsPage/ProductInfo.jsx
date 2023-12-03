@@ -3,13 +3,14 @@ import { useState } from "react";
 import { Rate } from "antd";
 import { transparentize } from "polished";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { FaFacebookF, FaXTwitter } from "react-icons/fa6";
 import CreateReviewModal from "../CreateReviewModal/CreateReviewModal.jsx";
 
 import useAuthContext from "../../context/AuthContext.jsx";
 import useProductDetailsContext from "../../context/ProductDetailsContext";
 import CartButton from "./CartButton.jsx";
 import WishlistButton from "./WishlistButton";
+import XShareButton from "./XShareButton.jsx";
+import FacebookShareButton from "./FacebookShareButton.jsx";
 export default function ProductInfo() {
   const { setProduct, product } = useProductDetailsContext();
   const { user } = useAuthContext();
@@ -58,6 +59,10 @@ export default function ProductInfo() {
         <del>${oldPrice}</del>
         <span className="discount">{product.discount}% Off</span>
       </div>
+      <p className="info">
+        <span>Brand:</span>
+        <span>{product.brand}</span>
+      </p>
       <p className="info">
         <span>Availability:</span>
         <span>{product.available ? "In stock" : "Out of stock"}</span>
@@ -116,18 +121,18 @@ export default function ProductInfo() {
           </button>
         </div>
         <div className="wrapper">
-          <CartButton />
+          <CartButton
+            setProduct={setProduct}
+            product={product}
+            quantity={quantity}
+          />
           <WishlistButton setProduct={setProduct} product={product} />
         </div>
       </div>
       <hr />
       <div className="share-btns">
-        <button style={{ backgroundColor: "#385C8E" }}>
-          <FaFacebookF /> Share on Facebook
-        </button>
-        <button style={{ backgroundColor: "#000" }}>
-          <FaXTwitter /> Share on X
-        </button>
+        <FacebookShareButton />
+        <XShareButton />
       </div>
     </div>
   );
