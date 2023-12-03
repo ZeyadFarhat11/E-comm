@@ -8,9 +8,10 @@ import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import { addresses } from "../../../data";
 import "../account.scss";
 import "./addresses.scss";
+import http from "../../../util/http";
 
 const Addresses = () => {
-  const { userAddresses, loading } = useUserAddresses();
+  const { userAddresses, loading, loadAddresses } = useUserAddresses();
   return (
     <main id="addresses">
       <Breadcrumb injected>
@@ -27,7 +28,11 @@ const Addresses = () => {
           ) : (
             <div className="addresses-list">
               {userAddresses.map((address) => (
-                <AddressBox key={address.id} {...address} />
+                <AddressBox
+                  key={address.id}
+                  {...address}
+                  loadAddresses={loadAddresses}
+                />
               ))}
               <Link className="add-address" to="add">
                 <CiSquarePlus />
@@ -49,9 +54,9 @@ const useUserAddresses = () => {
 
   const loadAddresses = async () => {
     try {
-      await new Promise((res) => setTimeout(res, 300));
+      const res = await http.get("/shipping/", { sendToken: true });
       setLoading(false);
-      setUserAddresses(addresses);
+      setUserAddresses(res.data);
     } catch (err) {
       console.log(err);
     }

@@ -1,16 +1,34 @@
 import React from "react";
+import http from "../../util/http";
+import { message } from "antd";
 
 const AddressBox = ({
-  firstName,
-  lastName,
+  id,
+  first_name: firstName,
+  last_name: lastName,
   phone,
   email,
   address1,
   address2,
-  defaultAddress,
+  default_address: defaultAddress,
+  loadAddresses,
 }) => {
-  const deleteAddress = async () => {};
-  const setAsDefault = async () => {};
+  const deleteAddress = async () => {
+    try {
+      await http.delete(`/shipping/${id}/`, { sendToken: true });
+      loadAddresses();
+    } catch (err) {
+      message.open({
+        type: "error",
+        content: "Error happened! Please try again.",
+      });
+      console.log(err);
+    }
+  };
+  const setAsDefault = async () => {
+    try {
+    } catch (err) {}
+  };
   const editAddress = async () => {};
   return (
     <div className="address">

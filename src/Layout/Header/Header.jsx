@@ -67,7 +67,6 @@ export default function Header() {
             <Link to="/account/profile">Profile</Link>
             <Link to="/account/orders">Orders</Link>
             <Link to="/account/addresses">Addresses</Link>
-            <Link to="/account/payment-methods">Payment methods</Link>
             <button onClick={handleLogout} className="logout">
               logout
             </button>

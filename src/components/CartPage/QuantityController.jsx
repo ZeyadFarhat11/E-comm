@@ -9,9 +9,13 @@ const QuantityController = ({ quantity, itemId }) => {
     if (type === "decrease" && quantity <= 1) return;
 
     try {
-      const res = await http.patch(`/cart/cart_item/${itemId}/`, {
-        quantity: type === "increase" ? quantity + 1 : quantity - 1,
-      });
+      const res = await http.patch(
+        `/cart/cart_item/${itemId}/`,
+        {
+          quantity: type === "increase" ? quantity + 1 : quantity - 1,
+        },
+        { sendToken: true }
+      );
       setCartItems((prevItems) =>
         prevItems.map((item) => (item.id === itemId ? res.data : item))
       );

@@ -20,10 +20,6 @@ export default function Product({
     setLoading(true);
     try {
       await http.delete(`/cart/cart_item/${itemId}`);
-      message.open({
-        type: "success",
-        content: `Removed ${title} from cart.`,
-      });
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.id !== itemId)
       );
