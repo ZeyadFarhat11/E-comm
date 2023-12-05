@@ -1,23 +1,26 @@
 @import "../../assets/style/components.scss";
 .account-sidebar {
-  width: 250px;
+  width: 220px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   a {
     display: block;
-    background-color: #f3f3f3;
-    padding: 10px;
+    color: #000;
+    border: 2px solid rgb(100 116 139/0.1);
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: 200ms;
     &:hover {
-      background-color: #ebebeb;
-    }
-    &:first-child {
-      border-radius: 6px 6px 0 0;
-    }
-    &:last-child {
-      border-radius: 0 0 6px 6px;
-    }
-    &[data-active="true"] {
-      font-weight: bold;
       color: $primary;
-      background-color: #e4e4e4;
+      border-color: $primary;
+    }
+
+    &[data-active="true"] {
+      // font-weight: bold;
+      color: #fff;
+      background-color: $primary;
+      border-color: $primary;
     }
   }
 }
@@ -27,7 +30,7 @@
   padding-bottom: 50px;
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 50px;
+  gap: 30px;
   .control {
     width: 250px;
     max-width: 100%;

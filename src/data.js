@@ -192,23 +192,75 @@ export const addresses = [
   },
 ];
 
-export const paymentMethods = [
+export const orders = [
   {
     id: 1,
-    type: "visa", // visa || mastercard
-    lastDigits: 5874, // Last 4 Numbers
-    name: "ZEYAD ROSHDY FARHAT",
+    address: {
+      firstName: "zeyad",
+      lastName: "Farhat",
+      email: "zeyad@gmail.com",
+      address1: "Damitta - Snania",
+    },
+    date: "2023/08/22 - 06:32",
+    status: "pending", // pending || processing || shipped || delivered || canceled,
+    products: [
+      {
+        id: 124,
+        title: "Adidas New Hope",
+        quantity: 2,
+        price: "280.00",
+        image:
+          "http://127.0.0.1:8000/media/uploads/images_product/11_NPkZXEE.png",
+      },
+      {
+        id: 135,
+        title: "Nike Hermanoi",
+        quantity: 1,
+        price: "360.00",
+        image:
+          "http://127.0.0.1:8000/media/uploads/images_product/3_SydcW7F.png",
+      },
+    ],
+    total_cost: "920.00",
+    payment: {
+      type: "Visa", // Visa || Creditcard
+      name: "ZEYAD ROSHDY FARHAT",
+      lastDigits: "2546",
+    },
   },
   {
     id: 2,
-    type: "mastercard",
-    lastDigits: 4971,
-    name: "ZEYAD ROSHDY FARHAT",
-  },
-  {
-    id: 3,
-    type: "mastercard",
-    lastDigits: 2998,
-    name: "mahmoud darwish oraby",
+    address: {
+      firstName: "Zeyad",
+      lastName: "Farhat",
+      email: "zeyad@gmail.com",
+      address1: "Damitta - Snania",
+    },
+    date: "2023/08/21 - 04:39",
+    status: "shipped", // pending || processing || shipped || delivered || canceled,
+    products: [
+      {
+        id: 135,
+        title: "Nike Hermanoi",
+        quantity: 1,
+        price: "360.00",
+        image:
+          "http://127.0.0.1:8000/media/uploads/images_product/3_SydcW7F.png",
+      },
+      {
+        id: 124,
+        title: "Adidas New Hope",
+        quantity: 2,
+        price: "280.00",
+        image:
+          "http://127.0.0.1:8000/media/uploads/images_product/11_NPkZXEE.png",
+      },
+    ],
+    total_cost: "920.00",
+    payment: {
+      type: "Creditcard", // Visa || Creditcard
+      name: "ZEYAD ROSHDY FARHAT",
+      lastDigits: "9487",
+    },
   },
 ];
