@@ -31,6 +31,15 @@ const useShopUrl = (defaults) => {
     url.searchParams.set("limit", limit);
     url.searchParams.set("offset", (page - 1) * limit);
 
+    let priceRange = searchParams
+      .get("priceRange")
+      ?.split(",")
+      .map((e) => +e);
+    if (priceRange) {
+      url.searchParams.set("price_min", priceRange[0]);
+      url.searchParams.set("price_max", priceRange[1]);
+    }
+
     return url.toString();
   };
 

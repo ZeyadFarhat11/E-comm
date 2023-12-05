@@ -12,6 +12,8 @@ import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
+import Wishlist from "./pages/Account/Wishlist/Wishlist";
+import Orders from "./pages/Account/Orders/Orders";
 
 const AppRoutes = () => {
   return (
@@ -52,8 +54,10 @@ const AppRoutes = () => {
         }
       />
       <Route path="/account/profile" element={<Profile />} />
+      <Route path="/account/orders" element={<Orders />} />
       <Route path="/account/addresses" element={<Addresses />} />
       <Route path="/account/addresses/add" element={<AddAddress />} />
+      <Route path="/account/wishlist" element={<Wishlist />} />
     </Routes>
   );
 };

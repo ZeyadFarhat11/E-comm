@@ -6,10 +6,9 @@ window.http = http;
 
 http.interceptors.request.use(
   function (config) {
-    if (config.sendToken) {
-      config.headers.Authorization = `Bearer ${localStorage.getItem(
-        userTokenKey
-      )}`;
+    let token = localStorage.getItem(userTokenKey);
+    if (config.sendToken && token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
   },
@@ -22,10 +21,13 @@ http.interceptors.response.use(
     return res;
   },
   function (error) {
+    let { redirect = true } = error.config;
     if (error.response?.data?.code === "token_not_valid") {
       localStorage.removeItem(userTokenKey);
       localStorage.removeItem(userKey);
-      window.location.href = "/login";
+      if (redirect) {
+        window.location.href = "/login";
+      }
     }
     return Promise.reject(error);
   }

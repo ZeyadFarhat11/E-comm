@@ -19,7 +19,7 @@ export default function Product({
     if (loading) return;
     setLoading(true);
     try {
-      await http.delete(`/cart/cart_item/${itemId}`);
+      await http.delete(`/cart/cart_item/${itemId}`, { sendToken: true });
       setCartItems((prevItems) =>
         prevItems.filter((item) => item.id !== itemId)
       );

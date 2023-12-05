@@ -11,7 +11,10 @@ export const CartProvider = ({ children }) => {
 
   const loadCart = async () => {
     try {
-      const res = await http.get("/cart/cart_item", { sendToken: true });
+      const res = await http.get("/cart/cart_item", {
+        sendToken: true,
+        redirect: false,
+      });
       setCartItems(res.data.cart_item);
       setCouponData(res.data.coupon_data);
     } catch (error) {

@@ -7,6 +7,7 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     position: relative;
+    padding-bottom: 30px;
     overflow: hidden;
     .body {
       padding: 20px;
@@ -20,9 +21,10 @@
       background-color: $primary;
       color: #fff;
       border-radius: 3px;
-      padding: 3px 6px;
+      padding: 2px 6px;
       text-align: center;
       margin-bottom: 10px;
+      font-size: 12px;
     }
 
     .name {
@@ -42,6 +44,10 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       border-top: 1px solid #ccc;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
       button {
         padding: 5px;
         font-size: 15px;
@@ -63,7 +69,7 @@
     flex-direction: column;
     border: 1px dashed #ccc;
     border-radius: 10px;
-    height: 187.5px;
+    min-height: 187.5px;
 
     svg {
       color: #ccc;
@@ -88,9 +94,44 @@ main#add-address {
     gap: 20px;
   }
   form {
-    .control.address {
+    .control.address-control {
       grid-column: span 2;
       width: auto;
+    }
+  }
+}
+
+.edit-address-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 80;
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 600px;
+  max-width: calc(100% - 30px);
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  form {
+    width: 520px;
+    margin: 0 auto;
+    .control.address-control {
+      grid-column: span 2;
+      width: auto;
+      textarea {
+        min-height: 50px;
+      }
+    }
+    .control {
+      margin: 0;
+    }
+    button[type="submit"] {
+      margin-top: 20px;
     }
   }
 }

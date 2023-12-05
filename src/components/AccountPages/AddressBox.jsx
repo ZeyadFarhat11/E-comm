@@ -1,35 +1,45 @@
 import React from "react";
 import http from "../../util/http";
-import { message } from "antd";
+import { showUnexpectedError } from "../../util/error";
+import { useState } from "react";
+import EditAddressModal from "./EditAddressModal";
 
-const AddressBox = ({
-  id,
-  first_name: firstName,
-  last_name: lastName,
-  phone,
-  email,
-  address1,
-  address2,
-  default_address: defaultAddress,
-  loadAddresses,
-}) => {
+const AddressBox = (props) => {
+  const [isEditing, setIsEditing] = useState(false);
   const deleteAddress = async () => {
     try {
       await http.delete(`/shipping/${id}/`, { sendToken: true });
       loadAddresses();
     } catch (err) {
-      message.open({
-        type: "error",
-        content: "Error happened! Please try again.",
-      });
-      console.log(err);
+      showUnexpectedError();
     }
   };
   const setAsDefault = async () => {
     try {
-    } catch (err) {}
+      await http.post(`/shipping/set/${id}/`, {}, { sendToken: true });
+      loadAddresses();
+    } catch (err) {
+      showUnexpectedError();
+    }
   };
-  const editAddress = async () => {};
+
+  if (isEditing) {
+    const closeModal = () => setIsEditing(false);
+    return <EditAddressModal {...props} closeModal={closeModal} />;
+  }
+
+  const {
+    id,
+    first_name: firstName,
+    last_name: lastName,
+    phone,
+    email,
+    address1,
+    address2,
+    default_address: defaultAddress,
+    loadAddresses,
+  } = props;
+
   return (
     <div className="address">
       {defaultAddress && <p className="badge">Default</p>}
@@ -44,7 +54,7 @@ const AddressBox = ({
       </div>
       <div className="btns">
         {defaultAddress ? (
-          <button onClick={editAddress}>Edit</button>
+          <button onClick={() => setIsEditing(true)}>Edit</button>
         ) : (
           <button onClick={setAsDefault}>Set as Default</button>
         )}

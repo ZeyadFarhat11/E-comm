@@ -42,11 +42,11 @@ export default function ProductInfo() {
       <div>
         <Rate value={product.evaluation} disabled />
         <p className="reviews">{product.reviews.length} reviews</p>
-        {!hasReviewedBefore && (
+        {user && !hasReviewedBefore ? (
           <button onClick={() => setCreateReviewActive(true)}>
             Submit a review
           </button>
-        )}
+        ) : null}
         <CreateReviewModal
           active={createReviewActive}
           closeModal={() => setCreateReviewActive(false)}

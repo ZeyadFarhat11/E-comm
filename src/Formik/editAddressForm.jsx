@@ -1,7 +1,7 @@
 import { Button, Input } from "antd";
 import React from "react";
 
-const addAddressForm = ({
+const editAddressForm = ({
   values,
   isSubmitting,
   handleChange,
@@ -9,6 +9,7 @@ const addAddressForm = ({
   touched,
   errors,
   handleBlur,
+  closeModal,
 }) => {
   const firstNameError =
     errors.firstName && touched.firstName ? errors.firstName : null;
@@ -25,7 +26,7 @@ const addAddressForm = ({
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Add Address</h2>
+      <h2>Edit Address</h2>
       <div className="grid">
         <div className="control">
           <label htmlFor="firstName">First Name</label>
@@ -124,10 +125,18 @@ const addAddressForm = ({
         </div>
       </div>
       <Button htmlType="submit" loading={isSubmitting} type="primary">
-        Add Address
+        Save Changes
+      </Button>
+      <Button
+        htmlType="button"
+        type="default"
+        style={{ marginLeft: "15px" }}
+        onClick={closeModal}
+      >
+        Cancel
       </Button>
     </form>
   );
 };
 
-export default addAddressForm;
+export default editAddressForm;
