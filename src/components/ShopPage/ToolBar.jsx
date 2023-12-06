@@ -4,8 +4,7 @@ import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { Select } from "antd";
 import { useSearchParams } from "react-router-dom";
 const ToolBar = () => {
-  const { previewMode, setPreviewMode, totalProducts, loadProducts } =
-    useShopContext();
+  const { totalProducts } = useShopContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sortOptions = [
@@ -51,14 +50,20 @@ const ToolBar = () => {
       </div>
       <div className="right">
         <button
-          onClick={() => setPreviewMode("grid")}
-          data-active={previewMode === "grid"}
+          onClick={() => {
+            searchParams.delete("previewMode");
+            setSearchParams(searchParams);
+          }}
+          data-active={searchParams.get("previewMode") !== "list"}
         >
           <BsFillGrid3X3GapFill />
         </button>
         <button
-          onClick={() => setPreviewMode("list")}
-          data-active={previewMode === "list"}
+          onClick={() => {
+            searchParams.set("previewMode", "list");
+            setSearchParams(searchParams);
+          }}
+          data-active={searchParams.get("previewMode") === "list"}
         >
           <BsListUl />
         </button>

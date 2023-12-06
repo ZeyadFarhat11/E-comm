@@ -3,6 +3,17 @@ main#cart {
   > .container:nth-child(2) {
     overflow-x: auto;
   }
+  .empty-cart {
+    display: flex;
+    padding: 30px 15px 0;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    h1 {
+      font-weight: 600;
+      font-size: 25px;
+    }
+  }
   .cart-products {
     width: 100%;
     padding: 30px 0;
@@ -120,11 +131,16 @@ main#cart {
       border-right: none;
       border-radius: 3px 0 0 3px;
       font-size: 18px;
+      outline: transparent;
+      transition: border-color 200ms;
 
       &::placeholder {
         color: #acacac;
         font-size: 18px;
         font-weight: 300;
+      }
+      &:focus {
+        border-color: #d1d1d1;
       }
     }
     @include tablet {

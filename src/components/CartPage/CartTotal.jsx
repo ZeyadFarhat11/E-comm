@@ -14,7 +14,7 @@ export default function CartTotal({ openPaymentModal }) {
       total -= (couponData.discount_amount * total) / 100;
     }
   }
-  // console.log(couponData);
+  if (total < 0) total = 0;
   return (
     <div className="cart-total">
       <p>

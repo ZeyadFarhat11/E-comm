@@ -41,7 +41,7 @@ export default function Header() {
       <>
         <Link className="cart" to="/cart">
           <FiShoppingCart />
-          {!!cartItems && (
+          {!!cartItems && cartItems?.length > 0 && (
             <span className="items-count">{cartItems?.length}</span>
           )}
           <span>My Cart</span>

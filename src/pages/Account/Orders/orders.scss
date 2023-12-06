@@ -1,26 +1,41 @@
-span.status {
-  padding: 1px 10px;
-  border-radius: 999px;
-  text-transform: capitalize;
-  border: 2px solid;
-  &.pending {
-    color: #fcd12a;
-    border-color: #fcd12a;
+$pending: #d0ab1c;
+$processing: #ffa500;
+$shipped: #4caf50;
+$delivered: #1976d2;
+$canceled: #d82a0c;
+
+#orders {
+  span.status {
+    padding: 1px 10px;
+    border-radius: 999px;
+    text-transform: capitalize;
+    border: 2px solid;
+    white-space: nowrap;
+    &.pending {
+      color: $pending;
+      border-color: $pending;
+    }
+    &.processing {
+      color: $processing;
+      border-color: $processing;
+    }
+    &.shipped {
+      color: $shipped;
+      border-color: $shipped;
+    }
+    &.delivered {
+      color: $delivered;
+      border-color: $delivered;
+    }
+    &.canceled {
+      color: $canceled;
+      border-color: $canceled;
+    }
   }
-  &.processing {
-    color: #ffa500;
-    border-color: #ffa500;
-  }
-  &.shipped {
-    color: #4caf50;
-    border-color: #4caf50;
-  }
-  &.delivered {
-    color: #1976d2;
-    border-color: #1976d2;
-  }
-  &.canceled {
-    color: #d82a0c;
-    border-color: #d82a0c;
+
+  .products {
+    span {
+      color: #777777;
+    }
   }
 }

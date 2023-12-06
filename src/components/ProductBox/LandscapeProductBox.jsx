@@ -1,12 +1,12 @@
 import { Rate } from "antd";
 import React, { useState } from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
 import useShopContext from "../../context/ShopContext";
 import CreateReviewModal from "../CreateReviewModal/CreateReviewModal.jsx";
 import WishlistButton from "../ProductDetailsPage/WishlistButton";
 import "./product-box.scss";
 import { Link } from "react-router-dom";
 import CartButton from "../ProductDetailsPage/CartButton.jsx";
+import { Skeleton } from "@chakra-ui/react";
 
 const LandscapeProductBox = ({
   label,
@@ -20,14 +20,16 @@ const LandscapeProductBox = ({
   evaluation,
   is_in_wishlist,
   is_in_cart,
+  animated,
 }) => {
   const [isCreatingReview, setIsCreatingReview] = useState(false);
   const { loadProducts } = useShopContext();
 
   const oldPrice = (price / ((100 - discount) / 100)).toFixed(2);
 
+  const animationProps = animated ? { "data-aos": "fade-up" } : {};
   return (
-    <div className="product-landscape">
+    <div className="product-landscape" {...animationProps}>
       <div className="image">
         {label ? <span className="label">{label}</span> : null}
         <img src={image} alt={title} />
@@ -78,3 +80,11 @@ const LandscapeProductBox = ({
 };
 
 export default LandscapeProductBox;
+
+LandscapeProductBox.Placeholder = () => {
+  return (
+    <div style={{ height: "320px", padding: "20px" }}>
+      <Skeleton width="100%" height="100%" rounded={10} />
+    </div>
+  );
+};

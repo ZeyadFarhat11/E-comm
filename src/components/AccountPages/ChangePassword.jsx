@@ -72,6 +72,7 @@ const ChangePassword = () => {
                 style={{
                   borderColor: currentPasswordError ? "#cc0000" : undefined,
                 }}
+                autoComplete="new-password"
               />
               {!!currentPasswordError && (
                 <p className="error">{currentPasswordError}</p>

@@ -10,8 +10,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 const columns = [
   {
-    name: "ID",
-    selector: (row) => row.id,
+    name: "#",
+    selector: (row) => "#" + row.id,
     width: "100px",
   },
   {
@@ -38,12 +38,18 @@ const columns = [
         <h3 style={{ fontWeight: "bold", fontSize: "16px" }}>
           {row.payment.type}
         </h3>
-        <h4 style={{ fontWeight: "500", fontSize: "15px" }}>
-          {row.payment.name.length > 12
-            ? row.payment.name.slice(0, 12) + "..."
-            : row.payment.name}
-        </h4>
         <p>**** {row.payment.lastDigits}</p>
+      </div>
+    ),
+  },
+  {
+    name: "Products",
+    cell: (row) => (
+      <div className="products">
+        <p>{row.products[0].title}</p>
+        {row.products.length > 1 ? (
+          <span>+{row.products.length - 1} More</span>
+        ) : null}
       </div>
     ),
   },
@@ -86,7 +92,7 @@ const Orders = () => {
   }, []);
 
   return (
-    <main id="profile">
+    <main id="orders">
       <Breadcrumb injected>
         <Link to="/account/profile">Account</Link>
         <span className="seperator">/</span>

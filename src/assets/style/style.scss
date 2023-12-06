@@ -168,3 +168,13 @@ img {
     max-width: 1140px;
   }
 }
+@media (min-width: 1300px) {
+  .container {
+    max-width: 1240px;
+  }
+}
+@media (min-width: 1400px) {
+  .container {
+    max-width: 1340px;
+  }
+}
