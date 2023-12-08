@@ -1,12 +1,12 @@
 import { message } from "antd";
 import React from "react";
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import { AiFillShopping, AiOutlineShoppingCart } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../../context/AuthContext";
 import useCartContext from "../../context/CartContext";
 import http from "../../util/http";
 
-const CartButton = ({ product, setProduct, loadData, quantity }) => {
+const CartButton = ({ product, setProduct, loadData, quantity, mini }) => {
   const { user } = useAuthContext();
   const { loadCart, setCartItems } = useCartContext();
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ const CartButton = ({ product, setProduct, loadData, quantity }) => {
       });
 
       if (setProduct) {
-        setProduct((prev) => ({ ...prev, is_in_cart: true }));
+        setProduct({ ...product, is_in_cart: true });
       } else {
         loadData();
       }
@@ -51,7 +51,7 @@ const CartButton = ({ product, setProduct, loadData, quantity }) => {
         content: `Removed ${product.title} from cart`,
       });
       if (setProduct) {
-        setProduct((prev) => ({ ...prev, is_in_cart: false }));
+        setProduct({ ...product, is_in_cart: false });
       } else {
         loadData();
       }
@@ -66,6 +66,18 @@ const CartButton = ({ product, setProduct, loadData, quantity }) => {
       });
     }
   };
+
+  if (mini) {
+    return (
+      <button
+        className="add-to-cart"
+        onClick={product.is_in_cart ? removeFromCart : addToCart}
+        data-active={product.is_in_cart}
+      >
+        <AiOutlineShoppingCart />
+      </button>
+    );
+  }
   return (
     <button
       className="add-to-cart"

@@ -4,6 +4,7 @@ import useAuthContext from "../../context/AuthContext";
 import useProductDetailsContext from "../../context/ProductDetailsContext";
 import http from "../../util/http";
 import { FaTrash } from "react-icons/fa6";
+import { showUnexpectedError } from "../../util/error";
 const UserReview = ({ id, rating, customer, comment }) => {
   const { user } = useAuthContext();
   const [loading, setLoading] = useState(false);
@@ -19,10 +20,7 @@ const UserReview = ({ id, rating, customer, comment }) => {
       });
       loadProductData();
     } catch (err) {
-      message.open({
-        type: "error",
-        content: "Error deleting review",
-      });
+      showUnexpectedError();
     } finally {
       setLoading(false);
     }

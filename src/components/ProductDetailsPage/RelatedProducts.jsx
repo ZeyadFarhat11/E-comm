@@ -22,7 +22,7 @@ function RelatedProducts() {
       <h2 className="main-title">RELATED PRODUCTS</h2>
       <div className="container products-grid">
         {products.map((product) => (
-          <ProductBox {...product} key={product.id} animated />
+          <ProductBox product={product} key={product.id} animated />
         ))}
       </div>
     </section>

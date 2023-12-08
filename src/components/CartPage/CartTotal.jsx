@@ -27,7 +27,14 @@ export default function CartTotal({ openPaymentModal }) {
       </p>
       <p>
         <span>Coupon</span>
-        <span>{couponData?.code || "No"}</span>
+        <span>
+          {couponData?.code || "No"}
+          {couponData
+            ? ` (${couponData.discount_amount}${
+                couponData.discount_type === "F" ? "$" : "%"
+              })`
+            : null}
+        </span>
       </p>
       <hr />
       <p>

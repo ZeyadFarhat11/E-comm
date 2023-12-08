@@ -13,11 +13,10 @@ export default function BestSellerProducts() {
 
   const loadProducts = async () => {
     try {
-      const res = await http.get(
-        `/store/product/best_seller/?limit=${products.length ? 4 : 8}&offset=${
-          products.length
-        }&category=${category}`
-      );
+      const url = `/store/product/best_seller/?limit=${
+        products.length ? 4 : 8
+      }&offset=${products.length}&category=${category}`;
+      const res = await http.get(url, { sendToken: true });
       setProducts((prev) => [...prev, ...res.data.results]);
     } catch (err) {
       console.log(err);
@@ -31,9 +30,9 @@ export default function BestSellerProducts() {
   const handleTabChange = async () => {
     try {
       const res = await http.get(
-        `/store/product/best_seller/?limit=8&category=${category}`
+        `/store/product/best_seller/?limit=8&category=${category}`,
+        { sendToken: true }
       );
-      console.log(res);
       setProducts(res.data.results);
     } catch (err) {
       console.log(err);
@@ -67,7 +66,12 @@ export default function BestSellerProducts() {
       <div className="container">
         <div className="products-grid">
           {products.map((product) => (
-            <ProductBox key={product.id} {...product} animated />
+            <ProductBox
+              key={product.id}
+              animated={true}
+              setProducts={setProducts}
+              product={product}
+            />
           ))}
         </div>
         <button className="load-more" onClick={loadProducts}>

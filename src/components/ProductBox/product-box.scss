@@ -34,7 +34,8 @@
         transition: 250ms;
         transform: translateY(20px);
         cursor: pointer;
-        &:hover {
+        &:hover,
+        &[data-active="true"] {
           background-color: $primary;
           border-color: $primary;
           color: #fff;

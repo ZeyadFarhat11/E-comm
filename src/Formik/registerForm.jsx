@@ -59,6 +59,7 @@ export const registerForm = ({
           onChange={handleChange}
           onBlur={handleBlur}
           data-error={!!passwordError}
+          autoComplete="new-password"
         />
         {!!passwordError && <p className="error">{passwordError}</p>}
       </div>

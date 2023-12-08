@@ -42,7 +42,7 @@ export default function Login() {
         content: "You have been logged in successfully",
       });
 
-      navigate("/", { replace: true });
+      navigate(searchParams.get("redirect") || "/", { replace: true });
     } catch (err) {
       message.open({
         type: "error",

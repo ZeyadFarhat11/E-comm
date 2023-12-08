@@ -43,6 +43,7 @@ export const loginForm = ({
           onChange={handleChange}
           onBlur={handleBlur}
           data-error={!!passwordError}
+          autoComplete="new-password"
         />
         {!!passwordError && <p className="error">{errors.password}</p>}
       </div>

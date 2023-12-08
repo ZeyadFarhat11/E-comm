@@ -2,9 +2,14 @@ import React from "react";
 import http from "../../util/http";
 import { message } from "antd";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import useAuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const WishlistButton = ({ product, loadData, setProduct }) => {
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
   const addToWishlist = async () => {
+    if (!user) return navigate(`/login?redirect=${window.location.pathname}`);
     try {
       await http.post(
         "/wishlist/item/",
@@ -17,7 +22,7 @@ const WishlistButton = ({ product, loadData, setProduct }) => {
       });
 
       if (setProduct) {
-        setProduct((prev) => ({ ...prev, is_in_wishlist: true }));
+        setProduct({ ...product, is_in_wishlist: true });
       } else {
         loadData();
       }
@@ -34,7 +39,7 @@ const WishlistButton = ({ product, loadData, setProduct }) => {
       });
 
       if (setProduct) {
-        setProduct((prev) => ({ ...prev, is_in_wishlist: false }));
+        setProduct({ ...product, is_in_wishlist: false });
       } else {
         loadData();
       }
@@ -49,7 +54,8 @@ const WishlistButton = ({ product, loadData, setProduct }) => {
       data-active={product.is_in_wishlist}
       onClick={product.is_in_wishlist ? removeFromWishlist : addToWishlist}
     >
-      {product.is_in_wishlist ? <AiFillHeart /> : <AiOutlineHeart />}
+      {/* {product.is_in_wishlist ? <AiFillHeart /> : <AiOutlineHeart />} */}
+      <AiOutlineHeart />
     </button>
   );
 };
