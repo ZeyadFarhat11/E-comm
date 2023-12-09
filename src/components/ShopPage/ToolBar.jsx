@@ -1,10 +1,11 @@
-import React from "react";
-import useShopContext from "../../context/ShopContext";
-import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
 import { Select } from "antd";
+import React from "react";
+import { BsFillGrid3X3GapFill, BsListUl } from "react-icons/bs";
+import { TbFilter } from "react-icons/tb";
 import { useSearchParams } from "react-router-dom";
+import useShopContext from "../../context/ShopContext";
 const ToolBar = () => {
-  const { totalProducts } = useShopContext();
+  const { totalProducts, setFilterMenuActive } = useShopContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sortOptions = [
@@ -46,6 +47,10 @@ const ToolBar = () => {
               setSearchParams(searchParams);
             }}
           />
+        </div>
+        <div className="filter-btn" onClick={() => setFilterMenuActive(true)}>
+          <TbFilter />
+          Filter
         </div>
       </div>
       <div className="right">

@@ -18,6 +18,7 @@ export const ShopProvider = ({ children }) => {
   const [totalProducts, setTotalProducts] = useState(120);
   const [priceFilterRange, setPriceFilterRange] = useState([0, 10000]);
   const [filterData, setFilterData] = useState({});
+  const [filterMenuActive, setFilterMenuActive] = useState(false);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const getShopUrl = useShopUrl(defaults);
@@ -57,7 +58,7 @@ export const ShopProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, left: 0 });
   }, [searchParams.get("page")]);
 
   return (
@@ -77,6 +78,8 @@ export const ShopProvider = ({ children }) => {
         setFilterData,
         loadProducts,
         defaults,
+        filterMenuActive,
+        setFilterMenuActive,
       }}
     >
       {children}

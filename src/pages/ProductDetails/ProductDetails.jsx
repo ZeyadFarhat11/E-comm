@@ -12,10 +12,6 @@ import "./product-details.scss";
 export default function ProductDetails() {
   const { product, loading } = useProductDetailsContext();
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, left: 0 });
-  }, []);
-
   return (
     <main id="product">
       <Breadcrumb injected>

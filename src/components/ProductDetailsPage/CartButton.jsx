@@ -13,7 +13,7 @@ const CartButton = ({ product, setProduct, loadData, quantity, mini }) => {
 
   const addToCart = async () => {
     if (!user) {
-      return navigate("/login");
+      return navigate(`/login?redirect=/product/${product.id}`);
     }
 
     try {

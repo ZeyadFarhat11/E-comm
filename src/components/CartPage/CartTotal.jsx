@@ -1,7 +1,18 @@
 import useCartContext from "../../context/CartContext";
+import { showUnexpectedError } from "../../util/error";
+import http from "../../util/http";
 
 export default function CartTotal({ openPaymentModal }) {
-  const { couponData, cartItems } = useCartContext();
+  const { couponData, setCouponData, cartItems } = useCartContext();
+
+  const removeCoupon = async () => {
+    try {
+      await http.delete(`/`);
+      setCouponData(null);
+    } catch (err) {
+      showUnexpectedError();
+    }
+  };
 
   const subTotal =
     cartItems?.map((item) => +item.total_price)?.reduce((a, b) => a + b, 0) ||
@@ -25,15 +36,22 @@ export default function CartTotal({ openPaymentModal }) {
         <span>Shipping fee</span>
         <span>$20</span>
       </p>
-      <p>
-        <span>Coupon</span>
+      <p className="coupon">
         <span>
-          {couponData?.code || "No"}
-          {couponData
-            ? ` (${couponData.discount_amount}${
-                couponData.discount_type === "F" ? "$" : "%"
-              })`
-            : null}
+          Coupon
+          <button className="remove-coupon" onClick={removeCoupon}>
+            remove
+          </button>
+        </span>
+        <span>
+          {couponData ? (
+            <>
+              {couponData.code} ({couponData.discount_amount}
+              {couponData.discount_type === "F" ? "$" : "%"})
+            </>
+          ) : (
+            "No"
+          )}
         </span>
       </p>
       <hr />
@@ -41,7 +59,9 @@ export default function CartTotal({ openPaymentModal }) {
         <b>TOTAL</b>
         <b>${total.toFixed(2)}</b>
       </p>
-      <button onClick={openPaymentModal}>Check out</button>
+      <button onClick={openPaymentModal} className="check-out">
+        Check out
+      </button>
     </div>
   );
 }

@@ -5,6 +5,9 @@
     grid-template-columns: 200px 1fr;
     gap: 30px;
     padding-top: 30px;
+    @include laptop {
+      display: block;
+    }
   }
   .banner {
     padding: 20px 50px;
@@ -56,6 +59,18 @@
         font-size: 14px;
         padding: 3px;
         cursor: pointer;
+      }
+      .filter-btn {
+        display: none;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        svg {
+          font-size: 20px;
+        }
+        @include laptop {
+          display: flex;
+        }
       }
     }
     .right {

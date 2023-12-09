@@ -27,7 +27,12 @@ img {
 }
 
 .banner {
-  background-color: $primary;
+  background: rgb(41, 128, 185);
+  background: linear-gradient(
+    45deg,
+    rgba(41, 128, 185, 1) 0%,
+    rgba(109, 213, 250, 1) 100%
+  );
   .container {
     display: flex;
     align-items: center;

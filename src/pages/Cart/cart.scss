@@ -168,13 +168,25 @@ main#cart {
         padding: 5px 0;
       }
     }
+    p.coupon {
+      &:hover .remove-coupon {
+        display: inline;
+      }
+      .remove-coupon {
+        display: none;
+        font-size: 14px;
+        color: gray;
+        text-decoration: underline;
+        margin-left: 5px;
+      }
+    }
     hr {
       margin: 10px 0 5px;
       border: none;
       height: 1px;
       background-color: #ccc;
     }
-    button {
+    .check-out {
       width: 100%;
       border: none;
       cursor: pointer;
