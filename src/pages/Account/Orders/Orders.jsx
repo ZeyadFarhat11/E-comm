@@ -62,7 +62,9 @@ const customStyles = {
   },
   headCells: {
     style: {
-      fontSize: "20px",
+      fontSize: "18px",
+      textTransform: "uppercase",
+      fontWeight: 600,
     },
   },
   cells: {

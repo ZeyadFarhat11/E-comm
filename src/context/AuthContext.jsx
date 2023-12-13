@@ -4,16 +4,8 @@ import * as auth from "../util/auth";
 const AuthContext = React.createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState();
-  const [token, setToken] = useState();
-
-  useEffect(() => {
-    setUser(auth.getUser() || null);
-  }, []);
-
-  useEffect(() => {
-    setToken(auth.getToken());
-  }, [user]);
+  const [user, setUser] = useState(auth.getUser());
+  const [token, setToken] = useState(auth.getToken());
 
   const saveUser = (data) => {
     setUser(data.user);

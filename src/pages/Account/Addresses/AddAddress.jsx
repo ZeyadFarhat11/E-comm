@@ -1,7 +1,7 @@
 import { message } from "antd";
 import { Formik } from "formik";
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import addAddressForm from "../../../formik/addAddressForm";
 import Sidebar from "../../../components/AccountPages/Sidebar";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
@@ -11,6 +11,7 @@ import http from "../../../util/http";
 
 const AddAddress = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
 
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
@@ -29,7 +30,7 @@ const AddAddress = () => {
         { sendToken: true }
       );
       message.open({ type: "success", content: "Address has been added" });
-      navigate("/account/addresses");
+      navigate(searchParams.get("redirect") || "/account/addresses");
     } catch (err) {
       message.open({ type: "error", content: "Error addding your address" });
       console.log(err);

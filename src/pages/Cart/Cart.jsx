@@ -1,22 +1,15 @@
-import { useState } from "react";
 import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 import "./cart.scss";
 
 import CartTotal from "../../components/CartPage/CartTotal";
 import CouponInput from "../../components/CartPage/CouponInput";
 import ProductsTable from "../../components/CartPage/ProductsTable";
-import Overlay from "../../components/Overlay/Overlay";
-import PaymentModal from "../../components/PaymentModal/PaymentModal";
+import useAuthContext from "../../context/AuthContext";
+import { Link } from "react-router-dom";
+import { Button } from "antd";
 
 export default function Cart() {
-  const [paymentModalActive, setPaymentModalActive] = useState(false);
-
-  const openPaymentModal = () => {
-    setPaymentModalActive(true);
-  };
-  const closePaymentModal = () => {
-    setPaymentModalActive(false);
-  };
+  const { user } = useAuthContext();
 
   return (
     <main id="cart">
@@ -27,14 +20,9 @@ export default function Cart() {
       <div className="container">
         <div className="cart-footer">
           <CouponInput />
-          <CartTotal openPaymentModal={openPaymentModal} />
+          <CartTotal />
         </div>
       </div>
-      <Overlay active={paymentModalActive} onClick={closePaymentModal} />
-      <PaymentModal
-        active={paymentModalActive}
-        closeModal={closePaymentModal}
-      />
     </main>
   );
 }

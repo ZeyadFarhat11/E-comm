@@ -1,0 +1,16 @@
+#wishlist {
+  .product-details {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    img {
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .delete {
+      color: red;
+      font-size: 20px;
+    }
+  }
+}

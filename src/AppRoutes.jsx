@@ -14,13 +14,21 @@ import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
 import Wishlist from "./pages/Account/Wishlist/Wishlist";
 import Orders from "./pages/Account/Orders/Orders";
+import UserRoute from "./middleware/UserRoute";
 
 const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/cart" element={<Cart />} />
+      <Route
+        path="/cart"
+        element={
+          <UserRoute redirect="/login?redirect=/cart">
+            <Cart />
+          </UserRoute>
+        }
+      />
       <Route
         path="/login"
         element={

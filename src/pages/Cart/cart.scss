@@ -3,12 +3,14 @@ main#cart {
   > .container:nth-child(2) {
     overflow-x: auto;
   }
-  .empty-cart {
+  .empty-cart,
+  .no-user {
     display: flex;
     padding: 30px 15px 0;
     align-items: center;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 30px;
     h1 {
       font-weight: 600;
       font-size: 25px;
@@ -199,6 +201,7 @@ main#cart {
       font-size: 22px;
       margin-top: 10px;
       transition: 300ms;
+      height: auto;
       &:hover {
         background-color: $primary;
       }

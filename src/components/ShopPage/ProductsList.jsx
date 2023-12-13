@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 const ProductsList = () => {
   const { products, loading, setProducts } = useShopContext();
   const [searchParams] = useSearchParams();
-  console.log(products);
+
   if (searchParams.get("previewMode") !== "list") {
     return (
       <div className="products">
@@ -28,6 +28,7 @@ const ProductsList = () => {
       </div>
     );
   }
+
   return (
     <div className="products">
       <div className="products-list">

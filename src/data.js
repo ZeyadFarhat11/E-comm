@@ -207,24 +207,15 @@ export const orders = [
       {
         id: 124,
         title: "Adidas New Hope",
-        quantity: 2,
-        price: "280.00",
-        image:
-          "http://127.0.0.1:8000/media/uploads/images_product/11_NPkZXEE.png",
       },
       {
         id: 135,
         title: "Nike Hermanoi",
-        quantity: 1,
-        price: "360.00",
-        image:
-          "http://127.0.0.1:8000/media/uploads/images_product/3_SydcW7F.png",
       },
     ],
     total_cost: "920.00",
     payment: {
       type: "Visa", // Visa || Creditcard
-      name: "ZEYAD ROSHDY FARHAT",
       lastDigits: "2546",
     },
   },
@@ -242,25 +233,31 @@ export const orders = [
       {
         id: 135,
         title: "Nike Hermanoi",
-        quantity: 1,
-        price: "360.00",
-        image:
-          "http://127.0.0.1:8000/media/uploads/images_product/3_SydcW7F.png",
       },
       {
         id: 124,
         title: "Adidas New Hope",
-        quantity: 2,
-        price: "280.00",
-        image:
-          "http://127.0.0.1:8000/media/uploads/images_product/11_NPkZXEE.png",
       },
     ],
     total_cost: "920.00",
     payment: {
       type: "Creditcard", // Visa || Creditcard
-      name: "ZEYAD ROSHDY FARHAT",
       lastDigits: "9487",
     },
+  },
+];
+
+export const wishlist = [
+  {
+    id: "120",
+    title: "Converse Chuck Taylor All Star 2377",
+    price: "1200.00",
+    image: "http://127.0.0.1:8000/media/uploads/images_product/6_KETGDOm.png",
+  },
+  {
+    id: "125",
+    title: "Vans Timu Lara 4144",
+    price: "920.00",
+    image: "http://127.0.0.1:8000/media/uploads/images_product/2_ZEWk2RZ.png",
   },
 ];

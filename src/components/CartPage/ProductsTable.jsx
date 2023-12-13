@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 export default function ProductsTable() {
   const { cartItems, loading } = useCartContext();
 
-  if (!loading && !cartItems.length) {
+  if (!loading && !cartItems?.length) {
     return (
       <div className="empty-cart">
         <h1>There is no items in your cart</h1>

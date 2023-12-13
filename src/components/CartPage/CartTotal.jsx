@@ -1,13 +1,14 @@
 import useCartContext from "../../context/CartContext";
 import { showUnexpectedError } from "../../util/error";
 import http from "../../util/http";
+import CheckoutButton from "./CheckoutButton";
 
 export default function CartTotal({ openPaymentModal }) {
   const { couponData, setCouponData, cartItems } = useCartContext();
 
   const removeCoupon = async () => {
     try {
-      await http.delete(`/`);
+      await http.delete(`/coupon/delete_coupon/`, { sendToken: true });
       setCouponData(null);
     } catch (err) {
       showUnexpectedError();
@@ -59,9 +60,7 @@ export default function CartTotal({ openPaymentModal }) {
         <b>TOTAL</b>
         <b>${total.toFixed(2)}</b>
       </p>
-      <button onClick={openPaymentModal} className="check-out">
-        Check out
-      </button>
+      <CheckoutButton />
     </div>
   );
 }

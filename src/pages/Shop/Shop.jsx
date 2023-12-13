@@ -6,6 +6,7 @@ import ToolBar from "../../components/ShopPage/ToolBar";
 import ProductsList from "../../components/ShopPage/ProductsList";
 import PaginationBar from "../../components/ShopPage/PaginationBar";
 import "./shop.scss";
+import FiltersButton from "../../components/ShopPage/FiltersButton";
 
 const Shop = () => {
   return (
@@ -20,6 +21,7 @@ const Shop = () => {
           <PaginationBar />
         </div>
       </div>
+      <FiltersButton />
     </main>
   );
 };

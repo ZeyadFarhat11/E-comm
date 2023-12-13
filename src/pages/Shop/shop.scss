@@ -9,6 +9,27 @@
       display: block;
     }
   }
+  .filter-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: $primary;
+    color: #fff;
+    right: 20px;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    border-radius: 10px;
+    padding: 5px 15px;
+    font-size: 18px;
+    svg {
+      font-size: 22px;
+    }
+    @include laptop {
+      display: flex;
+    }
+  }
   .banner {
     padding: 20px 50px;
     border-radius: 8px;
@@ -60,16 +81,16 @@
         padding: 3px;
         cursor: pointer;
       }
-      .filter-btn {
-        display: none;
-        align-items: center;
-        gap: 6px;
-        cursor: pointer;
-        svg {
-          font-size: 20px;
+
+      @include laptop {
+        font-size: 14px;
+        span {
+          font-size: 14px;
         }
-        @include laptop {
-          display: flex;
+        div {
+          flex-direction: column;
+          gap: 2px;
+          align-items: start;
         }
       }
     }

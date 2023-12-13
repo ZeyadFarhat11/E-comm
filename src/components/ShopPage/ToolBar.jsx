@@ -5,7 +5,7 @@ import { TbFilter } from "react-icons/tb";
 import { useSearchParams } from "react-router-dom";
 import useShopContext from "../../context/ShopContext";
 const ToolBar = () => {
-  const { totalProducts, setFilterMenuActive } = useShopContext();
+  const { totalProducts } = useShopContext();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const sortOptions = [
@@ -47,10 +47,6 @@ const ToolBar = () => {
               setSearchParams(searchParams);
             }}
           />
-        </div>
-        <div className="filter-btn" onClick={() => setFilterMenuActive(true)}>
-          <TbFilter />
-          Filter
         </div>
       </div>
       <div className="right">
