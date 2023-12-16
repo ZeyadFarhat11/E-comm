@@ -1,14 +1,13 @@
 import { Select } from "antd";
-import { useEffect, useRef, useState } from "react";
-import { AiOutlineUser } from "react-icons/ai";
+import { useState } from "react";
 import { FaBars } from "react-icons/fa";
-import { FaAngleDown } from "react-icons/fa6";
 import { FiLogIn, FiShoppingCart, FiUserPlus } from "react-icons/fi";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import useAuthContext from "../../context/AuthContext";
-import "./header.scss";
 import useCartContext from "../../context/CartContext";
+import "./header.scss";
+import Submenu from "./Submenu";
 
 const langOptions = [
   { label: "EN", value: "en" },
@@ -47,31 +46,13 @@ export default function Header() {
           <span>My Cart</span>
         </Link>
         <div className="profile">
-          <button
-            onClick={() => {
-              setProfileDropDownActive((p) => !p);
-            }}
-            className="profile"
-            to="/account/profile"
-            style={{ textDecoration: "none" }}
-          >
-            <AiOutlineUser />
-            <span>My Profile</span>
-            <FaAngleDown style={{ fontSize: "14px" }} />
-          </button>
-          <div
-            className="profile-dropdown"
-            data-active={profileDropDownActive}
-            onClick={() => setProfileDropDownActive(false)}
-          >
-            <Link to="/account/profile">Profile</Link>
-            <Link to="/account/orders">Orders</Link>
-            <Link to="/account/addresses">Addresses</Link>
-            <Link to="/account/wishlist">Wishlist</Link>
-            <button onClick={handleLogout} className="logout">
-              logout
-            </button>
-          </div>
+          <Submenu.Button setMenuActive={setProfileDropDownActive}>
+            <Submenu
+              handleLogout={handleLogout}
+              menuActive={profileDropDownActive}
+              setMenuActive={setProfileDropDownActive}
+            />
+          </Submenu.Button>
         </div>
       </>
     );

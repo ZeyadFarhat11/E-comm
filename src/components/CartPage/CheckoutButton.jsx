@@ -15,7 +15,9 @@ const CheckoutButton = () => {
     setLoading(true);
     try {
       const res = await http.get("/checkout/", { sendToken: true });
-      window.open(res.data.url, "_blank");
+
+      const url = res.data.checkout_url;
+      window.location.href = url;
     } catch (err) {
       showUnexpectedError();
     } finally {

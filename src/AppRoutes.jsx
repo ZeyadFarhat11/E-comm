@@ -15,6 +15,7 @@ import Shop from "./pages/Shop/Shop";
 import Wishlist from "./pages/Account/Wishlist/Wishlist";
 import Orders from "./pages/Account/Orders/Orders";
 import UserRoute from "./middleware/UserRoute";
+import CheckoutStatus from "./pages/CheckoutStatus/CheckoutStatus";
 
 const AppRoutes = () => {
   return (
@@ -66,6 +67,14 @@ const AppRoutes = () => {
       <Route path="/account/addresses" element={<Addresses />} />
       <Route path="/account/addresses/add" element={<AddAddress />} />
       <Route path="/account/wishlist" element={<Wishlist />} />
+      <Route
+        path="/checkout-success"
+        element={<CheckoutStatus status="success" />}
+      />
+      <Route
+        path="/checkout-cancel"
+        element={<CheckoutStatus status="cancel" />}
+      />
     </Routes>
   );
 };
