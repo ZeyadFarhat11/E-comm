@@ -7,7 +7,7 @@ main#register {
     padding: 20px;
     max-width: 100%;
     a {
-      color: #4944f5;
+      color: #4d5ebf;
     }
     h1 {
       font-size: 40px;
@@ -18,25 +18,16 @@ main#register {
       margin-top: 5px;
       margin-bottom: 30px;
     }
-    .control {
+    .input-control {
       width: 400px;
       max-width: 100%;
-      label {
-        font-weight: bold;
-      }
-      input {
-        border-color: #ccc;
-        padding: 7px 10px;
-        width: 100%;
-        &::placeholder {
-          color: #bdbdbd;
-        }
-      }
     }
     .wrapper {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      row-gap: 10px;
+      flex-wrap: wrap;
       .checkbox {
         display: flex;
         align-items: center;

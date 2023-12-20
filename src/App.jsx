@@ -1,12 +1,13 @@
-import Header from "./Layout/Header/Header";
-import "./assets/style/style.scss";
-import Footer from "./Layout/Footer/Footer";
-import AppRoutes from "./AppRoutes";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import "rc-image/assets/index.css";
 import { useEffect } from "react";
-import http from "./util/http";
 import { useLocation } from "react-router-dom";
+import AppRoutes from "./AppRoutes";
+import Footer from "./Layout/Footer/Footer";
+import Header from "./Layout/Header/Header";
+import "./assets/style/style.scss";
+import http from "./util/http";
 
 export default function App() {
   const location = useLocation();

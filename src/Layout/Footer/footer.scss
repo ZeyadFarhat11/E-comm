@@ -72,6 +72,13 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 0;
+      @include tablet {
+        flex-direction: column;
+        gap: 20px;
+        p {
+          text-align: center;
+        }
+      }
     }
   }
 }

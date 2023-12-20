@@ -1,5 +1,6 @@
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import InputControl from "../components/InputControl/InputControl";
 
 export const registerForm = ({
   values,
@@ -20,49 +21,36 @@ export const registerForm = ({
     <form onSubmit={handleSubmit}>
       <h1 style={{ marginBottom: "20px" }}>Register</h1>
 
-      <div className="control">
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Enter your username"
-          value={values.username}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          data-error={!!usernameError}
-        />
-        {!!usernameError && <p className="error">{usernameError}</p>}
-      </div>
-      <div className="control">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="E.g: johndoe@email.com"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          data-error={!!emailError}
-        />
-        {!!emailError && <p className="error">{emailError}</p>}
-      </div>
-      <div className="control">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          data-error={!!passwordError}
-          autoComplete="new-password"
-        />
-        {!!passwordError && <p className="error">{passwordError}</p>}
-      </div>
+      <InputControl
+        label="Username"
+        type="text"
+        name="username"
+        placeholder="Enter your username"
+        value={values.username}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={usernameError}
+      />
+      <InputControl
+        label="email"
+        type="email"
+        name="email"
+        placeholder="E.g: johndoe@email.com"
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={emailError}
+      />
+      <InputControl
+        label="password"
+        inputType="password"
+        name="password"
+        placeholder="Enter your password"
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={passwordError}
+      />
       <Button htmlType="submit" loading={isSubmitting}>
         Create Account
       </Button>

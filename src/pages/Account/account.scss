@@ -1,9 +1,11 @@
 @import "../../assets/style/components.scss";
 .account-sidebar {
-  width: 220px;
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-bottom: 30px;
+  position: sticky;
+  top: 100px;
   a {
     display: block;
     color: #000;
@@ -29,7 +31,7 @@
   padding-top: 50px;
   padding-bottom: 50px;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 220px minmax(0, 1fr);
   gap: 30px;
   .control {
     width: 250px;
@@ -39,5 +41,8 @@
     font-weight: 600;
     font-size: 30px;
     margin-bottom: 20px;
+  }
+  @include tablet {
+    display: block;
   }
 }

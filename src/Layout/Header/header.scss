@@ -17,16 +17,21 @@
     .left {
       display: flex;
       gap: 10px;
-      select {
-        border: none;
-        font-size: 17px;
-        cursor: pointer;
+      @include mobile {
+        .ant-select-selector {
+          padding: 0 6px;
+          font-size: 12px;
+        }
       }
     }
     .right {
       display: flex;
       align-items: center;
       gap: 30px;
+
+      @include mobile {
+        gap: 5px;
+      }
 
       a,
       button {
@@ -35,15 +40,22 @@
         gap: 5px;
         color: #000;
         border-radius: 5px;
-
         padding: 3px 7px;
+        span {
+          white-space: nowrap;
+        }
         svg {
           font-size: 22px;
         }
         &:hover {
           text-decoration: underline;
-          // color: #fff;
-          // background-color: $primary;
+        }
+        @include mobile {
+          font-size: 13px;
+          gap: 3px;
+          svg {
+            font-size: 18px;
+          }
         }
       }
       .cart {

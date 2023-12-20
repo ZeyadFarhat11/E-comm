@@ -125,6 +125,8 @@ export default function ProductInfo() {
             setProduct={setProduct}
             product={product}
             quantity={quantity}
+            selectedColor={selectedColor}
+            selectedSize={selectedSize}
           />
           <WishlistButton setProduct={setProduct} product={product} />
         </div>

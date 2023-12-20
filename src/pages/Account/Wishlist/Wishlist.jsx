@@ -3,9 +3,8 @@ import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
 import Sidebar from "../../../components/AccountPages/Sidebar";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import { wishlist } from "../../../data";
 import "./wishlist.scss";
-import Image from "rc-image";
+import Image from "../../../components/Image.jsx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 const columns = [
   {
@@ -16,19 +15,26 @@ const columns = [
 
   {
     name: "Product",
+    width: "500px",
     cell: (row) => (
       <div className="product-details">
-        <button className="delete">
+        <button className="delete" onClick={() => row.deleteProduct(row.id)}>
           <AiOutlineCloseCircle />
         </button>
-        <Image src={row.image} width={130} height={80} />
-        <h3 className="title">{row.title}</h3>
+        <Image src={row.product.image} width={130} height={80} />
+        <Link className="title" to={`/product/${row.product.id}`}>
+          {row.product.title}
+        </Link>
       </div>
     ),
   },
   {
     name: "Price",
-    selector: (row) => "$" + row.price,
+    selector: (row) => "$" + row.product.price,
+  },
+  {
+    name: "Adding date",
+    selector: (row) => new Date().getFullYear(),
   },
 ];
 const customStyles = {
@@ -57,9 +63,8 @@ const Wishlist = () => {
 
   const loadWishlist = async () => {
     try {
-      // const res = await http.get('')
-      await new Promise((res) => setTimeout(res, 500));
-      setData(wishlist);
+      const res = await http.get("/wishlist/item", { sendToken: true });
+      setData(res.data);
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -85,6 +90,7 @@ const Wishlist = () => {
             progressPending={loading}
             columns={columns}
             data={data}
+            responsive
             customStyles={customStyles}
             noDataComponent={
               <div

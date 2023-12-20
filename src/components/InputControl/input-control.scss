@@ -1,0 +1,43 @@
+@import "../../assets/style/components.scss";
+.input-control {
+  margin-bottom: 15px;
+  label {
+    display: block;
+    margin-bottom: 3px;
+    color: $dark;
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  input,
+  textarea {
+    border-radius: 5px;
+    border: 1px solid $primary;
+    font-size: 16px !important;
+    max-width: 100%;
+    border-color: #ccc;
+    padding: 8px 15px !important;
+    outline: transparent;
+    &::placeholder {
+      color: #bdbdbd;
+      font-size: 16px;
+    }
+  }
+  .ant-input-affix-wrapper {
+    padding: 0;
+    padding-right: 15px;
+    .ant-input-suffix {
+      font-size: 19px;
+    }
+  }
+
+  textarea {
+    min-height: 100px;
+    resize: vertical;
+  }
+  .error {
+    color: #cc0000;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+}

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Image from "rc-image";
+import Image from "../Image.jsx";
 import { useEffect } from "react";
 
 export default function ProductImagesPreview({ product }) {

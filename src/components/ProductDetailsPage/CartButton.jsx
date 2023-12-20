@@ -6,7 +6,15 @@ import useAuthContext from "../../context/AuthContext";
 import useCartContext from "../../context/CartContext";
 import http from "../../util/http";
 
-const CartButton = ({ product, setProduct, loadData, quantity, mini }) => {
+const CartButton = ({
+  product,
+  setProduct,
+  loadData,
+  quantity,
+  mini,
+  selectedColor,
+  selectedSize,
+}) => {
   const { user } = useAuthContext();
   const { loadCart, setCartItems } = useCartContext();
   const navigate = useNavigate();
@@ -19,7 +27,12 @@ const CartButton = ({ product, setProduct, loadData, quantity, mini }) => {
     try {
       await http.post(
         "/cart/cart_item/",
-        { product: product.id, quantity },
+        {
+          product: product.id,
+          quantity,
+          color: selectedColor,
+          size: selectedSize,
+        },
         { sendToken: true }
       );
       message.open({

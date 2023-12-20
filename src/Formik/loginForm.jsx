@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Button, Checkbox } from "antd";
+import { Button, Checkbox, Input } from "antd";
+import InputControl from "../components/InputControl/InputControl";
 
 export const loginForm = ({
   values,
@@ -18,35 +19,26 @@ export const loginForm = ({
       <h1>Login</h1>
       <h4>Hi, Welcome back 👋</h4>
 
-      <div className="control">
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="E.g: johndoe@email.com"
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          data-error={!!emailError}
-        />
-        {!!emailError && <p className="error">{errors.email}</p>}
-      </div>
-      <div className="control">
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          placeholder="Enter your password"
-          value={values.password}
-          onChange={handleChange}
-          onBlur={handleBlur}
-          data-error={!!passwordError}
-          autoComplete="new-password"
-        />
-        {!!passwordError && <p className="error">{errors.password}</p>}
-      </div>
+      <InputControl
+        label="email"
+        name="email"
+        placeholder="E.g: johndoe@email.com"
+        value={values.email}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={emailError}
+      />
+      <InputControl
+        label="password"
+        name="password"
+        placeholder="Enter your password"
+        value={values.password}
+        onChange={handleChange}
+        onBlur={handleBlur}
+        error={passwordError}
+        autoComplete="new-password"
+        inputType="password"
+      />
       <div className="wrapper">
         <div className="checkbox">
           <Checkbox

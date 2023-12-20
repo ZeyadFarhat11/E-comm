@@ -7,12 +7,10 @@ import { FaTrash } from "react-icons/fa6";
 import { showUnexpectedError } from "../../util/error";
 const UserReview = ({ id, rating, customer, comment }) => {
   const { user } = useAuthContext();
-  const [loading, setLoading] = useState(false);
   const { loadProductData } = useProductDetailsContext();
 
   const deleteReview = async () => {
     try {
-      setLoading(true);
       await http.delete(`/store/evaluations/${id}`, { sendToken: true });
       message.open({
         type: "success",
@@ -21,8 +19,6 @@ const UserReview = ({ id, rating, customer, comment }) => {
       loadProductData();
     } catch (err) {
       showUnexpectedError();
-    } finally {
-      setLoading(false);
     }
   };
   const isMine = customer === user.username;
@@ -35,7 +31,7 @@ const UserReview = ({ id, rating, customer, comment }) => {
         </h4>
         <Rate value={rating} disabled />
       </div>
-      <p className="content">{comment}</p>
+      <q className="content">{comment}</q>
       {isMine && (
         <button className="delete" onClick={deleteReview}>
           <FaTrash /> delete

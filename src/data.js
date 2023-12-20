@@ -203,16 +203,7 @@ export const orders = [
     },
     date: "2023/08/22 - 06:32",
     status: "pending", // pending || processing || shipped || delivered || canceled,
-    products: [
-      {
-        id: 124,
-        title: "Adidas New Hope",
-      },
-      {
-        id: 135,
-        title: "Nike Hermanoi",
-      },
-    ],
+    products: ["Nike Hermanoi", "Nike Hermanoi", "Adidas New Hope"],
     total_cost: "920.00",
     payment: {
       type: "Visa", // Visa || Creditcard
@@ -229,16 +220,7 @@ export const orders = [
     },
     date: "2023/08/21 - 04:39",
     status: "shipped", // pending || processing || shipped || delivered || canceled,
-    products: [
-      {
-        id: 135,
-        title: "Nike Hermanoi",
-      },
-      {
-        id: 124,
-        title: "Adidas New Hope",
-      },
-    ],
+    products: ["Adidas New Hope", "Nike Hermanoi", "Adidas New Hope"],
     total_cost: "920.00",
     payment: {
       type: "Creditcard", // Visa || Creditcard

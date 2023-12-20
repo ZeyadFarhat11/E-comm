@@ -235,6 +235,7 @@
       gap: 50px;
       padding: 0 30px;
       border-bottom: 4px solid #ddd;
+      position: relative;
       button {
         font-size: 20px;
         padding: 20px 0;
@@ -243,16 +244,27 @@
         outline: transparent;
         cursor: pointer;
         position: relative;
-        &[data-active="true"]::before {
-          content: "";
-          position: absolute;
-          left: 0;
-          width: 100%;
-          background-color: $primary;
-          height: 4px;
-          bottom: -4px;
-          border-radius: 10px;
+      }
+      .underline {
+        position: absolute;
+        background-color: $primary;
+        height: 4px;
+        bottom: -4px;
+        border-radius: 10px;
+        left: 30px;
+        width: 195.7px;
+        transition: 300ms;
+      }
+      @include tablet {
+        button {
+          font-size: 16px;
         }
+        .underline {
+          left: 20px;
+          width: 156.5px;
+        }
+        gap: 20px;
+        padding: 0 20px;
       }
     }
     .tab-body {
@@ -282,7 +294,8 @@
           }
         }
         .content {
-          margin: 10px 0;
+          margin: 7px 0;
+          display: block;
         }
         .delete {
           font-size: 16px;

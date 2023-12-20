@@ -4,7 +4,6 @@ import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import Sidebar from "../../../components/AccountPages/Sidebar";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import http from "../../../util/http";
 import { orders as ordersData } from "../../../data";
 import { useEffect } from "react";
 import { useState } from "react";
@@ -12,7 +11,7 @@ const columns = [
   {
     name: "#",
     selector: (row) => "#" + row.id,
-    width: "100px",
+    width: "80px",
   },
   {
     name: "Date",
@@ -46,9 +45,11 @@ const columns = [
     name: "Products",
     cell: (row) => (
       <div className="products">
-        <p>{row.products[0].title}</p>
+        <p>{row.products[0]}</p>
         {row.products.length > 1 ? (
-          <span>+{row.products.length - 1} More</span>
+          <span title={row.products.slice(1).join("\n")}>
+            +{row.products.length - 1} More
+          </span>
         ) : null}
       </div>
     ),
@@ -70,6 +71,7 @@ const customStyles = {
   cells: {
     style: {
       fontSize: "16px",
+      width: "150px",
     },
   },
 };
@@ -109,6 +111,7 @@ const Orders = () => {
             progressPending={loading}
             data={orders}
             customStyles={customStyles}
+            responsive
             noDataComponent={
               <div
                 style={{

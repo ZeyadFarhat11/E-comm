@@ -1,6 +1,5 @@
 import { message } from "antd";
-import Image from "rc-image";
-import "rc-image/assets/index.css";
+import Image from "../Image.jsx";
 import { useState } from "react";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -37,11 +36,7 @@ export default function Product({
         <button className="delete" onClick={deleteProduct}>
           <AiOutlineCloseCircle />
         </button>
-        <Image
-          src={image}
-          alt={title}
-          preview={{ toolbarRender: () => null }}
-        />
+        <Image src={image} alt={title} />
         <Link to={`/product/${productId}`} className="title">
           {title}
         </Link>
