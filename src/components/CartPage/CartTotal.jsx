@@ -19,7 +19,7 @@ export default function CartTotal({ openPaymentModal }) {
     cartItems?.map((item) => +item.total_price)?.reduce((a, b) => a + b, 0) ||
     0;
   let total = subTotal + 20;
-  if (couponData) {
+  if (couponData.code) {
     if (couponData.discount_type === "F") {
       total -= couponData.discount_amount;
     } else {
@@ -45,7 +45,7 @@ export default function CartTotal({ openPaymentModal }) {
           </button>
         </span>
         <span>
-          {couponData ? (
+          {couponData.code ? (
             <>
               {couponData.code} ({couponData.discount_amount}
               {couponData.discount_type === "F" ? "$" : "%"})

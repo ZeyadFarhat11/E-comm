@@ -1,24 +1,33 @@
-import React, { useRef } from "react";
+import React, { useLayoutEffect, useRef } from "react";
 import { useState } from "react";
 import ReviewsTab from "./ReviewsTab";
 
 function Tabs({ product }) {
   const [currentTab, setCurrentTab] = useState("description");
+  const [underlineStyles, setUnderlineStyles] = useState({});
   let descriptionButtonRef = useRef();
   let reviewsButtonRef = useRef();
   let containerRef = useRef();
 
-  let activeButton =
-    currentTab === "description"
-      ? descriptionButtonRef.current
-      : reviewsButtonRef.current;
+  useLayoutEffect(() => {
+    let activeButton =
+      currentTab === "reviews"
+        ? reviewsButtonRef.current
+        : descriptionButtonRef.current;
 
-  const underlineStyles = {
-    left:
-      activeButton?.getBoundingClientRect().left -
-      containerRef.current?.getBoundingClientRect().left,
-    width: activeButton?.getBoundingClientRect().width,
-  };
+    const handler = () =>
+      setUnderlineStyles({
+        left:
+          activeButton.getBoundingClientRect().left -
+          containerRef.current.getBoundingClientRect().left,
+        width: activeButton.getBoundingClientRect().width,
+      });
+
+    window.addEventListener("resize", handler);
+    handler();
+
+    return () => window.removeEventListener("resize", handler);
+  }, [currentTab]);
 
   return (
     <div className="product-tabs" ref={containerRef}>

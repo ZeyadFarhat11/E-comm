@@ -45,14 +45,15 @@ export default function Header() {
           )}
           <span>My Cart</span>
         </Link>
-        <div className="profile">
-          <Submenu.Button setMenuActive={setProfileDropDownActive}>
-            <Submenu
-              handleLogout={handleLogout}
-              menuActive={profileDropDownActive}
-              setMenuActive={setProfileDropDownActive}
-            />
-          </Submenu.Button>
+        <div className="profile-wrapper">
+          <Submenu.Button
+            setMenuActive={setProfileDropDownActive}
+          ></Submenu.Button>
+          <Submenu
+            handleLogout={handleLogout}
+            menuActive={profileDropDownActive}
+            setMenuActive={setProfileDropDownActive}
+          />
         </div>
       </>
     );

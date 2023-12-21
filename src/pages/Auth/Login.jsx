@@ -20,6 +20,7 @@ export default function Login() {
     const res = await http.get("/user_details/", {
       headers: { Authorization: `Bearer ${token}` },
     });
+    console.log(res);
     if (remember) {
       saveUser({ user: res.data, token });
     } else {

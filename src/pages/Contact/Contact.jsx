@@ -5,7 +5,9 @@ import contactForm from "../../formik/contactForm";
 import http from "../../util/http";
 import { validateContact } from "../../util/validators";
 import "./contact.scss";
+import useAuthContext from "../../context/AuthContext";
 export default function Contact() {
+  const { user } = useAuthContext();
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     await http.post("/contact/", {
       full_name: values.fullName,
@@ -37,7 +39,11 @@ export default function Contact() {
             </div>
           </div>
           <Formik
-            initialValues={{ fullName: "", email: "", message: "" }}
+            initialValues={{
+              fullName: "",
+              email: user ? user.email : "",
+              message: "",
+            }}
             onSubmit={handleSubmit}
             validate={validateContact}
           >

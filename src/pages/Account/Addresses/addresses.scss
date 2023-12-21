@@ -85,17 +85,23 @@
 
 main#add-address {
   form {
-    width: 520px;
     max-width: 100%;
     margin: 0 auto;
   }
   .grid {
+    max-width: 800px;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
   form {
-    .control.address-control {
+    .input-control {
+      width: 100%;
+      input {
+        padding: 5px 12px !important;
+      }
+    }
+    .address-control {
       grid-column: span 2;
       width: auto;
     }
@@ -104,10 +110,10 @@ main#add-address {
     .grid {
       grid-template-columns: 1fr;
     }
-    form .control {
+    form .input-control {
       width: 100%;
     }
-    form .control.address-control {
+    form .address-control {
       grid-column: auto;
     }
   }

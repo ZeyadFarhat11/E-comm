@@ -1,5 +1,6 @@
 import { Button, Input } from "antd";
 import React from "react";
+import InputControl from "../components/InputControl/InputControl";
 
 const addAddressForm = ({
   values,
@@ -27,101 +28,74 @@ const addAddressForm = ({
     <form onSubmit={handleSubmit}>
       <h2>Add Address</h2>
       <div className="grid">
-        <div className="control">
-          <label htmlFor="firstName">First Name</label>
-          <Input
-            value={values.firstName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="firstName"
-            id="firstName"
-            placeholder="First Name"
-            style={{ borderColor: firstNameError ? "#cc0000" : undefined }}
-          />
-          {!!firstNameError && <p className="error">{firstNameError}</p>}
-        </div>
-        <div className="control">
-          <label htmlFor="lastName">Last Name</label>
-          <Input
-            value={values.lastName}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="lastName"
-            id="lastName"
-            placeholder="Last Name"
-            style={{ borderColor: lastNameError ? "#cc0000" : undefined }}
-          />
-          {!!lastNameError && <p className="error">{lastNameError}</p>}
-        </div>
-        <div className="control">
-          <label htmlFor="email">Email</label>
-          <Input
-            value={values.email}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="email"
-            id="email"
-            placeholder="Email"
-            style={{ borderColor: emailError ? "#cc0000" : undefined }}
-          />
-          {!!emailError && <p className="error">{emailError}</p>}
-        </div>
-        <div className="control">
-          <label htmlFor="phone">Phone</label>
-          <Input
-            value={values.phone}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="phone"
-            id="phone"
-            placeholder="Phone"
-            style={{ borderColor: phoneError ? "#cc0000" : undefined }}
-          />
-          {!!phoneError && <p className="error">{phoneError}</p>}
-        </div>
-        <div className="control">
-          <label htmlFor="zipCode">zip Code</label>
-          <Input
-            value={values.zipCode}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="zipCode"
-            id="zipCode"
-            placeholder="Zip Code"
-            style={{ borderColor: zipCodeError ? "#cc0000" : undefined }}
-          />
-          {!!zipCodeError && <p className="error">{zipCodeError}</p>}
-        </div>
-        <div className="control address-control">
-          <label htmlFor="address1">Address 1</label>
-          <Input.TextArea
-            value={values.address1}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="address1"
-            id="address1"
-            placeholder="Address 1"
-            style={{
-              borderColor: address1Error ? "#cc0000" : undefined,
-            }}
-          />
-          {!!address1Error && <p className="error">{address1Error}</p>}
-        </div>
-        <div className="control address-control">
-          <label htmlFor="address2">Address 2</label>
-          <Input.TextArea
-            value={values.address2}
-            onChange={handleChange}
-            onBlur={handleBlur}
-            name="address2"
-            id="address2"
-            placeholder="Address 2"
-            style={{
-              borderColor: address2Error ? "#cc0000" : undefined,
-            }}
-          />
-          {!!address2Error && <p className="error">{address2Error}</p>}
-        </div>
+        <InputControl
+          label="First Name"
+          value={values.firstName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="firstName"
+          placeholder="First Name"
+          error={firstNameError}
+        />
+        <InputControl
+          label="Last Name"
+          value={values.lastName}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="lastName"
+          placeholder="Last Name"
+          error={lastNameError}
+        />
+        <InputControl
+          label="Email"
+          value={values.email}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="email"
+          placeholder="Email"
+          error={emailError}
+          type="email"
+        />
+        <InputControl
+          label="Phone"
+          value={values.phone}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="phone"
+          placeholder="Phone"
+          error={phoneError}
+        />
+        <InputControl
+          label="Zip Code"
+          value={values.zipCode}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="zipCode"
+          placeholder="Zip Code"
+          error={zipCodeError}
+        />
+        <InputControl
+          label="Address 1"
+          value={values.address1}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="address1"
+          placeholder="Address 1"
+          error={address1Error}
+          inputType="textarea"
+          className="address-control"
+        />
+        <InputControl
+          label="Address 2"
+          value={values.address2}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          name="address2"
+          placeholder="Address 2"
+          error={address2Error}
+          inputType="textarea"
+          className="address-control"
+        />
       </div>
       <Button htmlType="submit" loading={isSubmitting} type="primary">
         Add Address

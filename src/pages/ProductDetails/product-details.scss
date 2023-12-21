@@ -251,18 +251,18 @@
         height: 4px;
         bottom: -4px;
         border-radius: 10px;
-        left: 30px;
-        width: 195.7px;
+        // left: 30px;
+        // width: 195.7px;
         transition: 300ms;
       }
       @include tablet {
         button {
           font-size: 16px;
         }
-        .underline {
-          left: 20px;
-          width: 156.5px;
-        }
+        // .underline {
+        //   left: 20px;
+        //   width: 156.5px;
+        // }
         gap: 20px;
         padding: 0 20px;
       }

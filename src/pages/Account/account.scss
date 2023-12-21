@@ -1,11 +1,18 @@
 @import "../../assets/style/components.scss";
 .account-sidebar {
-  display: flex;
+  display: inline-flex;
+  vertical-align: top;
   flex-direction: column;
   gap: 10px;
   margin-bottom: 30px;
+  width: 220px;
   position: sticky;
   top: 100px;
+  @include tablet {
+    display: flex;
+    width: 100%;
+    position: static;
+  }
   a {
     display: block;
     color: #000;
@@ -30,12 +37,14 @@
 .account-page {
   padding-top: 50px;
   padding-bottom: 50px;
-  display: grid;
-  grid-template-columns: 220px minmax(0, 1fr);
-  gap: 30px;
   .control {
     width: 250px;
     max-width: 100%;
+  }
+  > .content {
+    display: inline-block;
+    width: calc(100% - 250px);
+    margin-left: 30px;
   }
   h2 {
     font-weight: 600;
@@ -44,5 +53,9 @@
   }
   @include tablet {
     display: block;
+    > .content {
+      margin-left: 0;
+      width: 100%;
+    }
   }
 }

@@ -16,8 +16,8 @@ const previewOptions = {
     flipY: <LuFlipVertical2 />,
   },
 };
-const Image = ({ src, ...props }) => {
-  return <RCImage src={src} preview={previewOptions} {...props} />;
+const Image = ({ src, alt, ...props }) => {
+  return <RCImage src={src} alt={alt} preview={previewOptions} {...props} />;
 };
 
 export default Image;

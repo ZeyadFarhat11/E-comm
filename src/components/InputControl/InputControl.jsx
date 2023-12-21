@@ -2,7 +2,13 @@ import React, { useId } from "react";
 import { Input } from "antd";
 import "./input-control.scss";
 
-const InputControl = ({ label, inputType = "text", error, ...props }) => {
+const InputControl = ({
+  label,
+  inputType = "text",
+  error,
+  className = "",
+  ...props
+}) => {
   const id = useId();
   const InputComponent =
     inputType === "text"
@@ -11,7 +17,7 @@ const InputControl = ({ label, inputType = "text", error, ...props }) => {
       ? Input.TextArea
       : Input.Password;
   return (
-    <div className="input-control">
+    <div className={["input-control", className].join(" ")}>
       <label htmlFor={id}>{label}</label>
 
       <InputComponent

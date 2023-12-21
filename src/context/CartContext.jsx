@@ -26,7 +26,9 @@ export const CartProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    loadCart();
+    if (user) {
+      loadCart();
+    }
   }, [user]);
 
   return (

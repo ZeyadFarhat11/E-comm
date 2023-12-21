@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import { FaAngleDown } from "react-icons/fa6";
 import { Link, useLocation } from "react-router-dom";
@@ -10,6 +10,7 @@ const Submenu = ({ setMenuActive, menuActive, handleLogout }) => {
   useEffect(() => {
     setMenuActive(false);
   }, [location]);
+
   useEffect(() => {
     const handler = (e) => {
       const btn = document.querySelector("button.profile");
@@ -25,6 +26,7 @@ const Submenu = ({ setMenuActive, menuActive, handleLogout }) => {
     document.addEventListener("click", handler);
     return () => document.removeEventListener("click", handler);
   }, []);
+
   return (
     <div
       className="profile-dropdown"
