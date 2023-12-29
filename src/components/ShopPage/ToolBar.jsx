@@ -10,7 +10,7 @@ const ToolBar = () => {
 
   const sortOptions = [
     { label: "Name", value: "title" },
-    { label: "Rating", value: "rating" },
+    { label: "Rating", value: "reviews" },
     { label: "Price", value: "price" },
   ];
 

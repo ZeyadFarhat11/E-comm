@@ -8,7 +8,7 @@ const ShopContext = React.createContext();
 const defaults = {
   limit: 12,
   page: 1,
-  sort: "rating",
+  sort: "reviews",
 };
 
 export const ShopProvider = ({ children }) => {

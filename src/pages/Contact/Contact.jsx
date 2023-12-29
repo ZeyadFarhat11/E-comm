@@ -6,6 +6,7 @@ import http from "../../util/http";
 import { validateContact } from "../../util/validators";
 import "./contact.scss";
 import useAuthContext from "../../context/AuthContext";
+import Breadcrumb from "../../components/Breadcrumb/Breadcrumb";
 export default function Contact() {
   const { user } = useAuthContext();
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
@@ -25,6 +26,7 @@ export default function Contact() {
 
   return (
     <main id="contact">
+      <Breadcrumb>Contact</Breadcrumb>
       <div className="contact-container container">
         <div className="wrapper">
           <div className="text-wrapper">

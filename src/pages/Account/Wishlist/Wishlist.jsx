@@ -6,6 +6,8 @@ import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import "./wishlist.scss";
 import Image from "../../../components/Image.jsx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
+import { showUnexpectedError } from "../../../util/error.js";
+import http from "../../../util/http.js";
 const columns = [
   {
     name: "#",
@@ -18,7 +20,10 @@ const columns = [
     width: "500px",
     cell: (row) => (
       <div className="product-details">
-        <button className="delete" onClick={() => row.deleteProduct(row.id)}>
+        <button
+          className="delete"
+          onClick={() => row.removeItem(row.product.id)}
+        >
           <AiOutlineCloseCircle />
         </button>
         <Image src={row.product.image} width={130} height={80} />
@@ -64,7 +69,7 @@ const Wishlist = () => {
   const loadWishlist = async () => {
     try {
       const res = await http.get("/wishlist/item", { sendToken: true });
-      setData(res.data);
+      setData(res.data.map((item) => ({ ...item, removeItem })));
       setLoading(false);
     } catch (err) {
       console.log(err);
@@ -74,6 +79,16 @@ const Wishlist = () => {
   useEffect(() => {
     loadWishlist();
   }, []);
+
+  const removeItem = async (id) => {
+    try {
+      const res = await http.delete(`/wishlist/item/${id}`);
+      loadWishlist();
+    } catch (e) {
+      showUnexpectedError();
+      console.log(e);
+    }
+  };
 
   return (
     <main id="wishlist">

@@ -13,9 +13,11 @@ export default function BestSellerProducts() {
 
   const loadProducts = async () => {
     try {
-      const url = `/store/product/best_seller/?limit=${
+      let url = `/store/product/best_seller/?limit=${
         products.length ? 4 : 8
-      }&offset=${products.length}&category=${category}`;
+      }&offset=${products.length}`;
+      if (category) url += `&category=${category}`;
+
       const res = await http.get(url, { sendToken: true });
       setProducts((prev) => [...prev, ...res.data.results]);
     } catch (err) {
@@ -29,10 +31,9 @@ export default function BestSellerProducts() {
 
   const handleTabChange = async () => {
     try {
-      const res = await http.get(
-        `/store/product/best_seller/?limit=8&category=${category}`,
-        { sendToken: true }
-      );
+      let url = `/store/product/best_seller/?limit=8`;
+      if (category) url += `&category=${category}`;
+      const res = await http.get(url, { sendToken: true });
       setProducts(res.data.results);
     } catch (err) {
       console.log(err);

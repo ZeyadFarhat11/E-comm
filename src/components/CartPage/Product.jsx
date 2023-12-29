@@ -11,6 +11,8 @@ export default function Product({
   total_price: totalPrice,
   quantity,
   product: { price, image, title, id: productId },
+  color,
+  size,
 }) {
   const { setCartItems } = useCartContext();
   const [loading, setLoading] = useState();
@@ -38,7 +40,7 @@ export default function Product({
         </button>
         <Image src={image} alt={title} />
         <Link to={`/product/${productId}`} className="title">
-          {title}
+          {title} ({color} - {size})
         </Link>
       </td>
       <td>${Number(totalPrice).toFixed(2)}</td>

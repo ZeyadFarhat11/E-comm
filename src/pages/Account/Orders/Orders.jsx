@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import { orders as ordersData } from "../../../data";
 import { useEffect } from "react";
 import { useState } from "react";
+import dayjs from "dayjs";
+import http from "../../../util/http";
 const columns = [
   {
     name: "#",
@@ -17,8 +19,8 @@ const columns = [
     name: "Date",
     cell: (row) => (
       <div>
-        <p>{row.date.split(" - ")[0]}</p>
-        <p>{row.date.split(" - ")[1]}</p>
+        <p>{dayjs(row.date).format("YYYY/MM/DD")}</p>
+        <p>{dayjs(row.date).format("hh:mm")}</p>
       </div>
     ),
   },
@@ -28,31 +30,28 @@ const columns = [
   },
   {
     name: "Total Cost",
-    selector: (row) => row.total_cost,
-  },
-  {
-    name: "Payment",
-    cell: (row) => (
-      <div className="payment">
-        <h3 style={{ fontWeight: "bold", fontSize: "16px" }}>
-          {row.payment.type}
-        </h3>
-        <p>**** {row.payment.lastDigits}</p>
-      </div>
-    ),
+    selector: (row) => row.total_price,
   },
   {
     name: "Products",
-    cell: (row) => (
-      <div className="products">
-        <p>{row.products[0]}</p>
-        {row.products.length > 1 ? (
-          <span title={row.products.slice(1).join("\n")}>
-            +{row.products.length - 1} More
-          </span>
-        ) : null}
-      </div>
-    ),
+    cell: (row) => {
+      if (!row.product) return;
+      return (
+        <div className="products">
+          <p>{row.product[0].product_name}</p>
+          {row.product.length > 1 ? (
+            <span
+              title={row.product
+                .slice(1)
+                .map((e) => e.product_name)
+                .join("\n")}
+            >
+              +{row.product.length - 1} More
+            </span>
+          ) : null}
+        </div>
+      );
+    },
   },
 ];
 const customStyles = {
@@ -82,9 +81,8 @@ const Orders = () => {
 
   const loadOrders = async () => {
     try {
-      // const res = await http.get('')
-      await new Promise((res) => setTimeout(res, 500));
-      setOrders(ordersData);
+      const res = await http.get("/order/list", { sendToken: true });
+      setOrders(res.data);
       setLoading(false);
     } catch (err) {
       console.log(err);

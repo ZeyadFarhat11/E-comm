@@ -18,11 +18,17 @@ export default function CartTotal({ openPaymentModal }) {
   const subTotal =
     cartItems?.map((item) => +item.total_price)?.reduce((a, b) => a + b, 0) ||
     0;
-  let total = subTotal + 20;
+  let total = subTotal;
+  if (cartItems?.length) {
+    total += 20;
+  }
   if (couponData.code) {
-    if (couponData.discount_type === "F") {
-      total -= couponData.discount_amount;
-    } else {
+    if (couponData.discount_type === "fixed" && couponData.min_total < total) {
+      total -= couponData.discount_amount / 100;
+    } else if (
+      couponData.discount_type === "percentage" &&
+      couponData.min_total < total
+    ) {
       total -= (couponData.discount_amount * total) / 100;
     }
   }
@@ -47,8 +53,8 @@ export default function CartTotal({ openPaymentModal }) {
         <span>
           {couponData.code ? (
             <>
-              {couponData.code} ({couponData.discount_amount}
-              {couponData.discount_type === "F" ? "$" : "%"})
+              {couponData.code} ({couponData.discount_amount / 100}
+              {couponData.discount_type === "fixed" ? "$" : "%"})
             </>
           ) : (
             "No"

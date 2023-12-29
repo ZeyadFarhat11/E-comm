@@ -26,6 +26,12 @@
     svg {
       font-size: 22px;
     }
+    &:hover {
+      background-color: #3fb4ee;
+    }
+    &:active {
+      transform: scale(0.97);
+    }
     @include laptop {
       display: flex;
     }
@@ -63,6 +69,7 @@
     border-radius: 8px;
     margin-top: 20px;
     overflow: hidden;
+    height: 50px;
     .left {
       display: flex;
       gap: 40px;
@@ -88,10 +95,12 @@
           font-size: 14px;
         }
         div {
-          flex-direction: column;
-          gap: 2px;
-          align-items: start;
+          gap: 5px;
         }
+      }
+      @include tablet {
+        gap: 15px;
+        font-size: 13px;
       }
     }
     .right {
@@ -114,6 +123,9 @@
         &[data-active="true"] {
           background-color: #e6e6e6;
         }
+      }
+      @include tablet {
+        display: none;
       }
     }
     .ant-select-selector {
