@@ -9,7 +9,7 @@ export default function CartTotal({ openPaymentModal }) {
   const removeCoupon = async () => {
     try {
       await http.delete(`/coupon/delete_coupon/`, { sendToken: true });
-      setCouponData(null);
+      setCouponData({});
     } catch (err) {
       showUnexpectedError();
     }
@@ -19,9 +19,9 @@ export default function CartTotal({ openPaymentModal }) {
     cartItems?.map((item) => +item.total_price)?.reduce((a, b) => a + b, 0) ||
     0;
   let total = subTotal;
-  if (cartItems?.length) {
-    total += 20;
-  }
+  // if (cartItems?.length) {
+  //   total += 20;
+  // }
   if (couponData.code) {
     if (couponData.discount_type === "fixed" && couponData.min_total < total) {
       total -= couponData.discount_amount / 100;
@@ -39,10 +39,10 @@ export default function CartTotal({ openPaymentModal }) {
         <span>Subtotal</span>
         <span>${subTotal.toFixed(2)}</span>
       </p>
-      <p>
+      {/* <p>
         <span>Shipping fee</span>
         <span>$20</span>
-      </p>
+      </p> */}
       <p className="coupon">
         <span>
           Coupon

@@ -2,12 +2,12 @@ import { message } from "antd";
 import { Formik } from "formik";
 import React from "react";
 import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import addAddressForm from "../../../formik/addAddressForm";
 import Sidebar from "../../../components/AccountPages/Sidebar";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
+import addAddressForm from "../../../formik/addAddressForm.jsx";
+import http from "../../../util/http";
 import { validateAddAddress } from "../../../util/validators";
 import "./addresses.scss";
-import http from "../../../util/http";
 
 const AddAddress = () => {
   const navigate = useNavigate();

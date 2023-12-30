@@ -19,9 +19,10 @@ const contactForm = ({
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* {JSON.stringify(values)} */}
       <InputControl
         label="Fullname"
-        name="fullname"
+        name="fullName"
         placeholder="Your Name"
         value={values.fullName}
         onChange={handleChange}

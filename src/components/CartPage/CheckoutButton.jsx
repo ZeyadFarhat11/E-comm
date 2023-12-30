@@ -2,7 +2,7 @@ import { Button } from "antd";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../../context/AuthContext";
-import { showUnexpectedError } from "../../util/error";
+import { showError, showUnexpectedError } from "../../util/error";
 import http from "../../util/http";
 
 const CheckoutButton = () => {
@@ -19,7 +19,13 @@ const CheckoutButton = () => {
       const url = res.data.checkout_url;
       window.location.href = url;
     } catch (err) {
-      showUnexpectedError();
+      if (err.response?.data?.message === "Select default address.") {
+        showError("You must have default address to checkout!");
+      } else if (err.response?.data?.message) {
+        showError(err.response?.data?.message);
+      } else {
+        showUnexpectedError();
+      }
     } finally {
       setLoading(false);
     }

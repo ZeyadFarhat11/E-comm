@@ -69,7 +69,7 @@ const CartButton = ({
         loadData();
       }
       setCartItems((prevItems) =>
-        prevItems.filter((item) => item.product.id !== product.id)
+        (prevItems || []).filter((item) => item.product.id !== product.id)
       );
     } catch (err) {
       console.log(err);

@@ -13,12 +13,12 @@ export const CartProvider = ({ children }) => {
 
   const loadCart = async () => {
     try {
-      const res = await http.get("/cart/cart_item", {
+      const res = await http.get("/cart/cart_item/", {
         sendToken: true,
         redirect: false,
       });
       setCartItems(res.data.cart_item);
-      setCouponData(res.data.coupon_data);
+      setCouponData(res.data.coupon_data || {});
     } catch (error) {
       console.error("Error fetching cart data:", error);
     } finally {

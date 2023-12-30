@@ -38,12 +38,14 @@ const columns = [
       if (!row.product) return;
       return (
         <div className="products">
-          <p>{row.product[0].product_name}</p>
+          <p style={{ whiteSpace: "nowrap" }}>
+            {row.product[0].product_name} ({row.product[0].qty})
+          </p>
           {row.product.length > 1 ? (
             <span
               title={row.product
                 .slice(1)
-                .map((e) => e.product_name)
+                .map((e) => `${e.product_name} (${e.qty})`)
                 .join("\n")}
             >
               +{row.product.length - 1} More

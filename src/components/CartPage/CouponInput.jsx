@@ -37,7 +37,7 @@ export default function CouponInput() {
     } catch (err) {
       message.open({
         type: "error",
-        content: "Coupon is not valid",
+        content: err.response.data?.message || "Coupon is not valid",
       });
       console.log(err);
     } finally {

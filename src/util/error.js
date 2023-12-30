@@ -6,3 +6,9 @@ export function showUnexpectedError() {
     content: "Unexpected error happened! Please try again.",
   });
 }
+export function showError(content) {
+  message.open({
+    type: "error",
+    content: content,
+  });
+}

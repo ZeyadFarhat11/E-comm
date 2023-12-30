@@ -8,6 +8,7 @@ import Image from "../../../components/Image.jsx";
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import { showUnexpectedError } from "../../../util/error.js";
 import http from "../../../util/http.js";
+import dayjs from "dayjs";
 const columns = [
   {
     name: "#",
@@ -39,7 +40,7 @@ const columns = [
   },
   {
     name: "Adding date",
-    selector: (row) => new Date().getFullYear(),
+    selector: (row) => dayjs(row.created_at).format("YYYY/MM/DD hh:mm"),
   },
 ];
 const customStyles = {
