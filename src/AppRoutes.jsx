@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { ProductDetailsProvider } from "./context/ProductDetailsContext";
 import { ShopProvider } from "./context/ShopContext";
 import GuestRoute from "./middleware/GuestRoute";
@@ -16,6 +16,30 @@ import Wishlist from "./pages/Account/Wishlist/Wishlist";
 import Orders from "./pages/Account/Orders/Orders";
 import UserRoute from "./middleware/UserRoute";
 import CheckoutStatus from "./pages/CheckoutStatus/CheckoutStatus";
+import { useEffect } from "react";
+
+const NavigateToAdminPanel = () => {
+  const adminUrl = import.meta.env.VITE_API_ORIGIN + "/admin/";
+  useEffect(() => {
+    window.open(adminUrl);
+  }, []);
+  return (
+    <div className="container">
+      <a
+        href={adminUrl}
+        style={{
+          fontSize: "50px",
+          textAlign: "center",
+          fontWeight: "bold",
+          display: "block",
+          padding: "50px 0",
+        }}
+      >
+        Admin Panel
+      </a>
+    </div>
+  );
+};
 
 const AppRoutes = () => {
   return (
@@ -68,6 +92,10 @@ const AppRoutes = () => {
       <Route path="/account/addresses/add" element={<AddAddress />} />
       <Route path="/account/wishlist" element={<Wishlist />} />
       <Route
+        path="/account/*"
+        element={<Navigate replace to="/account/profile" />}
+      />
+      <Route
         path="/checkout-success"
         element={<CheckoutStatus status="success" />}
       />
@@ -75,6 +103,8 @@ const AppRoutes = () => {
         path="/checkout-cancel"
         element={<CheckoutStatus status="cancel" />}
       />
+      <Route path="/admin" element={<NavigateToAdminPanel />} />
+      <Route path="/*" element={<Navigate replace to="/" />} />
     </Routes>
   );
 };

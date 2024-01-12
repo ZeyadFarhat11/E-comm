@@ -1,14 +1,11 @@
-import React from "react";
-import "./orders.scss";
-import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import Sidebar from "../../../components/AccountPages/Sidebar";
+import dayjs from "dayjs";
+import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "react-router-dom";
-import { orders as ordersData } from "../../../data";
-import { useEffect } from "react";
-import { useState } from "react";
-import dayjs from "dayjs";
+import Sidebar from "../../../components/AccountPages/Sidebar";
+import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
 import http from "../../../util/http";
+import "./orders.scss";
 const columns = [
   {
     name: "#",

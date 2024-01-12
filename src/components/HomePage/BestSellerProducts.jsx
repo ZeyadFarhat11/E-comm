@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { products } from "../../data";
 import ProductBox from "../ProductBox/ProductBox";
 import http from "../../util/http";
 import { useEffect } from "react";

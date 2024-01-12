@@ -7,6 +7,7 @@ import "./product-box.scss";
 import { Link } from "react-router-dom";
 import CartButton from "../ProductDetailsPage/CartButton.jsx";
 import { Skeleton } from "@chakra-ui/react";
+import PriceWrapper from "../PriceWrapper.jsx";
 
 const LandscapeProductBox = ({
   label,
@@ -24,8 +25,6 @@ const LandscapeProductBox = ({
 }) => {
   const [isCreatingReview, setIsCreatingReview] = useState(false);
   const { loadProducts } = useShopContext();
-
-  const oldPrice = (price / ((100 - discount) / 100)).toFixed(2);
 
   const animationProps = animated ? { "data-aos": "fade-up" } : {};
   return (
@@ -54,11 +53,12 @@ const LandscapeProductBox = ({
           />
         </div>
         <hr />
-        <div className="price-wrapper">
+        {/* <div className="price-wrapper">
           <h3 className="price">${price}</h3>
           <del>${oldPrice}</del>
           <span className="discount">{discount}% Off</span>
-        </div>
+        </div> */}
+        <PriceWrapper price={price} discount={discount} />
         <p className="description">
           {description.length > 200
             ? description.slice(0, 200) + "..."

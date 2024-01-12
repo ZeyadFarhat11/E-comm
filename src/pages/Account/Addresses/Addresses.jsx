@@ -5,7 +5,6 @@ import AddressBox from "../../../components/AccountPages/AddressBox";
 import AddressesPlaceholder from "../../../components/AccountPages/AddressesPlaceholder";
 import Sidebar from "../../../components/AccountPages/Sidebar";
 import Breadcrumb from "../../../components/Breadcrumb/Breadcrumb";
-import { addresses } from "../../../data";
 import "../account.scss";
 import "./addresses.scss";
 import http from "../../../util/http";

@@ -6,11 +6,15 @@ import { Rate, Button, message } from "antd";
 import http from "../../util/http";
 import useProductDetailsContext from "../../context/ProductDetailsContext";
 import "./create-review-modal.scss";
+import useAuthContext from "../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 function CreateReviewModal({ active, closeModal, productId, loadData }) {
   const [text, setText] = useState("");
   const [rate, setRate] = useState(1);
   const [loading, setLoading] = useState(false);
   const { loadProductData } = useProductDetailsContext() || {};
+  const { user } = useAuthContext();
+  const navigate = useNavigate();
 
   const createMessage = (status) => {
     if (status === "success") {
@@ -46,6 +50,8 @@ function CreateReviewModal({ active, closeModal, productId, loadData }) {
 
     if (text.trim().length === 0) {
       return createMessage("empty");
+    } else if (!user) {
+      return navigate("/login");
     }
 
     setLoading(true);

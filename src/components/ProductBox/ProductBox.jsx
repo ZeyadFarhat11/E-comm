@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import WishlistButton from "../ProductDetailsPage/WishlistButton";
 import "./product-box.scss";
 import CartButton from "../ProductDetailsPage/CartButton";
+import PriceWrapper from "../PriceWrapper";
 
 export default function ProductBox({ setProducts, animated, product }) {
   const { id, image, title, evaluation, discount, price, label } = product;
@@ -35,11 +36,12 @@ export default function ProductBox({ setProducts, animated, product }) {
         </Link>
 
         <Rate value={evaluation} disabled allowHalf />
-        <footer>
+        {/* <footer>
           <span className="price">${price}</span>
           <del>${oldPrice}</del>
           <span className="discount">{discount}% Off</span>
-        </footer>
+        </footer> */}
+        <PriceWrapper price={price} discount={discount} />
       </div>
     </div>
   );

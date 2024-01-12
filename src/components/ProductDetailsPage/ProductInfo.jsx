@@ -11,6 +11,7 @@ import CartButton from "./CartButton.jsx";
 import WishlistButton from "./WishlistButton";
 import XShareButton from "./XShareButton.jsx";
 import FacebookShareButton from "./FacebookShareButton.jsx";
+import PriceWrapper from "../PriceWrapper.jsx";
 export default function ProductInfo() {
   const { setProduct, product } = useProductDetailsContext();
   const { user } = useAuthContext();
@@ -54,11 +55,12 @@ export default function ProductInfo() {
         />
       </div>
       <hr />
-      <div className="price-wrapper">
+      {/* <div className="price-wrapper">
         <h3 className="price">${product.price}</h3>
         <del>${oldPrice}</del>
         <span className="discount">{product.discount}% Off</span>
-      </div>
+      </div> */}
+      <PriceWrapper price={product.price} discount={product.discount} />
       <p className="info">
         <span>Brand:</span>
         <span>{product.brand}</span>
@@ -78,18 +80,27 @@ export default function ProductInfo() {
       <div className="info select-color">
         <span>Select Color:</span>
         <div className="colors">
-          {product.colors.map((color) => (
-            <button
-              className="color"
-              key={color}
-              data-active={selectedColor === color}
-              style={{
-                backgroundColor: color,
-                outlineColor: transparentize(0.65, color),
-              }}
-              onClick={() => setSelectedColor(color)}
-            ></button>
-          ))}
+          {product.colors.map((color) => {
+            let outlineColor;
+            try {
+              outlineColor = transparentize(0.55, color);
+            } catch (e) {
+              outlineColor = "rgba(0, 0, 0, 0.45);";
+            }
+            return (
+              <button
+                className="color"
+                key={color}
+                data-active={selectedColor === color}
+                style={{
+                  backgroundColor: color,
+                  outlineColor,
+                  boxShadow: "rgba(0, 0, 0, 0.3) 0px 0px 8px",
+                }}
+                onClick={() => setSelectedColor(color)}
+              ></button>
+            );
+          })}
         </div>
       </div>
       <div className="info select-size">

@@ -20,8 +20,8 @@ const CheckoutButton = () => {
       window.location.href = url;
     } catch (err) {
       if (
-        (err.response?.data?.message || err.response?.data?.error) ===
-        "Select default address."
+        err.response?.data?.message === "Select default address." ||
+        err.response?.data?.error === "Select default address."
       ) {
         showError("You must have default address to checkout!");
       } else if (err.response?.data?.message) {
