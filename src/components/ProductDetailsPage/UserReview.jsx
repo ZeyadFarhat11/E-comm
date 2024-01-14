@@ -21,7 +21,7 @@ const UserReview = ({ id, rating, customer, comment }) => {
       showUnexpectedError();
     }
   };
-  const isMine = customer === user.username;
+  const isMine = customer === user?.username;
   return (
     <div className="review">
       <div className="wrapper">

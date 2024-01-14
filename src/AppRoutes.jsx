@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
 import { ProductDetailsProvider } from "./context/ProductDetailsContext";
 import { ShopProvider } from "./context/ShopContext";
 import GuestRoute from "./middleware/GuestRoute";
@@ -17,29 +17,7 @@ import Orders from "./pages/Account/Orders/Orders";
 import UserRoute from "./middleware/UserRoute";
 import CheckoutStatus from "./pages/CheckoutStatus/CheckoutStatus";
 import { useEffect } from "react";
-
-const NavigateToAdminPanel = () => {
-  const adminUrl = import.meta.env.VITE_API_ORIGIN + "/admin/";
-  useEffect(() => {
-    window.open(adminUrl);
-  }, []);
-  return (
-    <div className="container">
-      <a
-        href={adminUrl}
-        style={{
-          fontSize: "50px",
-          textAlign: "center",
-          fontWeight: "bold",
-          display: "block",
-          padding: "50px 0",
-        }}
-      >
-        Admin Panel
-      </a>
-    </div>
-  );
-};
+import NavigateToAdminPanel from "./components/NavigateToAdminPanel";
 
 const AppRoutes = () => {
   return (

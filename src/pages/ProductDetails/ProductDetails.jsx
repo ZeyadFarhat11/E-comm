@@ -25,7 +25,7 @@ export default function ProductDetails() {
         <>
           <div className="container product">
             <ProductImagesPreview product={product} />
-            <ProductInfo />
+            <ProductInfo key={product.id} />
           </div>
           <div className="container">
             <Tabs product={product} />

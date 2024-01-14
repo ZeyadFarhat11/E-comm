@@ -23,7 +23,7 @@ const currencyOptions = [
 export default function Header() {
   const [menuActive, setMenuActive] = useState(false);
   const [profileDropDownActive, setProfileDropDownActive] = useState(false);
-  const { user, logout } = useAuthContext();
+  const { user, logout, isAdmin } = useAuthContext();
   const { cartItems } = useCartContext();
   const navigate = useNavigate();
 
@@ -91,10 +91,22 @@ export default function Header() {
           <nav data-active={menuActive}>
             <NavLink to="/">home</NavLink>
             <NavLink to="/shop">shop</NavLink>
-            <Link to="/shop?category=Shoes">shoes</Link>
-            <Link to="/shop?category=Belts">belts</Link>
+            {!isAdmin && (
+              <>
+                <Link to="/shop?category=Shoes">shoes</Link>
+                <Link to="/shop?category=Belts">belts</Link>
+              </>
+            )}
             <Link to="/shop?category=Bags">bags</Link>
             <NavLink to="/contact">contact</NavLink>
+            {isAdmin && (
+              <a
+                href={import.meta.env.VITE_API_ORIGIN + "/admin/"}
+                target="_blank"
+              >
+                Admin
+              </a>
+            )}
           </nav>
           <button className="menu-toggle" onClick={toggleMenu}>
             <FaBars />

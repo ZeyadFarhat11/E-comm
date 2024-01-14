@@ -20,9 +20,10 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  const isAdmin = !!user?.is_staff;
   return (
     <AuthContext.Provider
-      value={{ user, setUser, token, setToken, saveUser, logout }}
+      value={{ user, setUser, token, setToken, saveUser, logout, isAdmin }}
     >
       {children}
     </AuthContext.Provider>
