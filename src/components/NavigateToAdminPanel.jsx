@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 const NavigateToAdminPanel = () => {
   const navigate = useNavigate();
   const adminUrl = import.meta.env.VITE_API_ORIGIN + "/admin/";

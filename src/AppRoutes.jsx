@@ -1,23 +1,22 @@
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
+import NavigateToAdminPanel from "./components/NavigateToAdminPanel";
 import { ProductDetailsProvider } from "./context/ProductDetailsContext";
 import { ShopProvider } from "./context/ShopContext";
 import GuestRoute from "./middleware/GuestRoute";
+import UserRoute from "./middleware/UserRoute";
 import AddAddress from "./pages/Account/Addresses/AddAddress";
 import Addresses from "./pages/Account/Addresses/Addresses";
+import Orders from "./pages/Account/Orders/Orders";
 import Profile from "./pages/Account/Profile/Profile";
+import Wishlist from "./pages/Account/Wishlist/Wishlist";
 import Login from "./pages/Auth/Login";
 import Register from "./pages/Auth/Register";
 import Cart from "./pages/Cart/Cart";
+import CheckoutStatus from "./pages/CheckoutStatus/CheckoutStatus";
 import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import ProductDetails from "./pages/ProductDetails/ProductDetails";
 import Shop from "./pages/Shop/Shop";
-import Wishlist from "./pages/Account/Wishlist/Wishlist";
-import Orders from "./pages/Account/Orders/Orders";
-import UserRoute from "./middleware/UserRoute";
-import CheckoutStatus from "./pages/CheckoutStatus/CheckoutStatus";
-import { useEffect } from "react";
-import NavigateToAdminPanel from "./components/NavigateToAdminPanel";
 
 const AppRoutes = () => {
   return (
